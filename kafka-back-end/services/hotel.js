@@ -70,11 +70,15 @@ function handle_request(msg, callback){
                     console.log('Connected to mongo at: ' + mongoURL);
                     var coll = mongo.collection('search');
                     //   process.nextTick(function(){
-                          msg1 = JSON.stringify(results1[0]);
-                          console.log(msg1);
+                   //   var msg1 = [];
+                 var  msg1 = JSON.stringify(results1[0]);
+                 var msg2 = JSON.parse(msg1);
+                          console.log("msg1"+msg1);
+                    console.log("msg2"+msg2);
+
                     var myobj = {
                         user: {
-                            username: msg1.username,
+                            username: msg2.username,
                             firstName: msg1.firstName
                         }
                         ,
@@ -95,8 +99,8 @@ function handle_request(msg, callback){
                         console.log("1 document inserted");
 
                     });
-                    res.value =  msg;
-                    res.code = 200;
+                    /*res.value =  msg;
+                    res.code = 200;*/
                     // }
                     console.log("inside try:" + res);
                     callback(null, res);

@@ -237,10 +237,17 @@ app.post('/bookHotel', function(req, res) {
                 console.log(results.message[0]);
 
                 var res1 = results.message[0]; //fetching the price, since there is only one item in an array
-                                console.log(res1.amount); // taking the amount
+                console.log(res1.amount); // taking the amount
                 var bill_amount = res1.amount * days * req.body.roomCount; // calculating bill summary
-                res.status(201).send({bill_amount: bill_amount, ID: req.body.hotelID, guestCount: req.body.guestCount, roomCount: req.body.roomCount, fromDate : req.body.fromDate,
-                    toDate: req.body.toDate});
+                res.status(201).send({
+                    bill_amount: bill_amount,
+                    ID: req.body.hotelID,
+                    guestCount: req.body.guestCount,
+                    roomCount: req.body.roomCount,
+                    fromDate: req.body.fromDate,
+                    toDate: req.body.toDate
+                });
+            }
 
                 if (results.value == 404) {
                     //  done(null,true,results/*{username: username, password: password}*/);
@@ -257,7 +264,7 @@ app.post('/bookHotel', function(req, res) {
                         roomCount: req.body.roomCount
                     });
                 }
-        }
+
     });
 });
 
@@ -284,8 +291,17 @@ app.post('/payHotel', function(req, res) {
 
                 var res1 = results.message;
 
-                res.status(201).send({file: res1, message: "booking confirmed with booking ID: ", ID: req.body.hotelID, guestCount: req.body.guestCount, roomCount: req.body.roomCount, fromDate : req.body.fromDate,
-                    toDate: req.body.toDate, cardNo : req.body.cardNo});
+                res.status(201).send({
+                    file: res1,
+                    message: "booking confirmed with booking ID: ",
+                    ID: req.body.hotelID,
+                    guestCount: req.body.guestCount,
+                    roomCount: req.body.roomCount,
+                    fromDate: req.body.fromDate,
+                    toDate: req.body.toDate,
+                    cardNo: req.body.cardNo
+                });
+            }
                 if (results.value == 401) {
                     //  done(null,true,results/*{username: username, password: password}*/);
                     console.log(results.message);
@@ -301,7 +317,7 @@ app.post('/payHotel', function(req, res) {
                         roomCount: req.body.roomCount
                     });
                 }
-        }
+
     });
 });
 
@@ -332,8 +348,20 @@ app.post('/admin/flights/addFlight', function(req, res) {
 
             var res1 = results.message;
 
-            res.status(201).send({file: res1, "flightName": req.body.flightName, "operator": req.body.operator, "departureTime": req.body.departureTime, "arrivalTime" : req.body.arrivalTime,
-                "fromCity": req.body.fromCity, "toCity": req.body.toCity, "fromDate":req.body.fromDate, "price": req.body.price, "seatCount":req.body.seatCount, "seatType": req.body.seatType});
+            res.status(201).send({
+                file: res1,
+                "flightName": req.body.flightName,
+                "operator": req.body.operator,
+                "departureTime": req.body.departureTime,
+                "arrivalTime": req.body.arrivalTime,
+                "fromCity": req.body.fromCity,
+                "toCity": req.body.toCity,
+                "fromDate": req.body.fromDate,
+                "price": req.body.price,
+                "seatCount": req.body.seatCount,
+                "seatType": req.body.seatType
+            });
+        }
             if (results.value == 401) {
                 //  done(null,true,results/*{username: username, password: password}*/);
                 console.log(results.message);
@@ -349,7 +377,92 @@ app.post('/admin/flights/addFlight', function(req, res) {
                     roomCount: req.body.roomCount
                 });
             }
-        }
+
     });
 });
+app.post('/admin/flights/fetchFlight', function(req, res) {  //to fetch flights for admin
+    console.log(req.body.flightName);
+    console.log(req.body.flightID);
+
+
+    kafka.make_request('flightFetch_topic',{"flightName": req.body.flightName, "flightID":req.body.flightID }, function(err,results) {
+        console.log('in result');
+        console.log(results);
+
+        if (err) {
+            res.status(500).send();
+        }
+
+        if (results.value == 200) {
+            //  done(null,true,results/*{username: username, password: password}*/);
+            console.log("in 200 " + results.message);
+
+            var res1 = results.message;
+
+            res.status(201).send({file: res1, "flightName": req.body.flightName, "flightID": req.body.flightID});
+        }
+            if (results.value == 404) {
+                //  done(null,true,results/*{username: username, password: password}*/);
+                console.log("in 404" + results.message);
+
+                var res1 = results.message;
+
+                res.status(401).send({
+                    file: res1,
+                    "flightName": req.body.flightName, "flightID": req.body.flightID
+                });
+            }
+
+    });
+});
+
+app.post('/admin/flights/editFlight', function(req, res) {  //to fetch flights for admin
+    console.log(req.body.flightName);
+    console.log(req.body.flightID);
+    console.log(req.body.operator);console.log(req.body.fromCity);
+    console.log(req.body.toCity);
+    console.log(req.body.fromDate);
+    console.log(req.body.seatCount);
+    console.log(req.body.departureTime);
+    console.log(req.body.arrivalTime);
+    console.log(req.body.price);
+    console.log(req.body.seatType);
+
+
+     kafka.make_request('flightEdit_topic',{"flightName": req.body.flightName, "flightID":req.body.flightID, "operator":req.body.operator,
+         "fromCity":req.body.fromCity,"toCity":req.body.toCity,"fromDate":req.body.fromDate,"seatCount":req.body.seatCount,
+         "departureTime":req.body.departureTime,"arrivalTime":req.body.arrivalTime,"price":req.body.price, "seatType":req.body.seatType }, function(err,results) {
+        console.log('in result');
+        console.log(results);
+
+        if (err) {
+            res.status(500).send();
+        }
+
+        if (results.value == 200) {
+            //  done(null,true,results/*{username: username, password: password}*/);
+            console.log("in 200 " + results.message);
+
+            var res1 = results.message;
+
+            res.status(201).send({file: res1, "flightName": req.body.flightName, "flightID":req.body.flightID, "operator":req.body.operator,
+                "fromCity":req.body.fromCity,"toCity":req.body.toCity,"fromDate":req.body.fromDate,"seatCount":req.body.seatCount,
+                "departureTime":req.body.departureTime,"arrivalTime":req.body.arrivalTime,"price":req.body.price, "seatType":req.body.seatType });
+        }
+            /*if (results.value == 404) {
+                //  done(null,true,results/!*{username: username, password: password}*!/);
+                console.log(results.message);
+
+                var res1 = results.message;
+
+                res.status(401).send({
+                    file: res1,
+                    "flightName": req.body.flightName, "flightID": req.body.flightID
+                });
+            }*/
+
+    });
+});
+
+
 module.exports = app;
