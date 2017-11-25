@@ -5,6 +5,7 @@ const fse = require('fs-extra');
 var path = require('path');
 var bcrypt = require('bcrypt');
 var crypto = require('crypto');
+var mysql = require("./mysql");
 
 function handle_request(msg, callback){
 
@@ -28,7 +29,7 @@ function handle_request(msg, callback){
                 res.code = '401';
             }
             else {
-                var Ufolder = '../public/uploads/'+msg.username;
+                /*var Ufolder = '../public/uploads/'+msg.username;
                 const dir = path.join(__dirname,Ufolder);
                 const mkdirSync = function (dirPath) {
                     try {
@@ -36,7 +37,7 @@ function handle_request(msg, callback){
                     } catch (err) {
                         if (err.code !== 'EEXIST') throw err
                     }
-                }
+                }*/
                 var key ="273"
                 var hash = crypto.createHmac('sha512', key); //encrytion using SHA512
                 hash.update(msg.password);
@@ -44,24 +45,20 @@ function handle_request(msg, callback){
                 var myobj = {
                     username: msg.username,
                     password: msg.password,
-                    firstname: msg.firstname,
-                    lastname: msg.lastname
+                    firstname: msg.firstName,
+                    lastname: msg.lastName,
+                    address: msg.address,
+                    city: msg.city,
+                    state: msg.state,
+                    zipcode: msg.zipcode,
+                    email: msg.email
                 };
                 coll.insertOne(myobj, function (err, u) {
                     if (err) return err;
-                    console.log("1 document inserted");
-                    mkdirSync(dir);
-                    console.log("mkdir done");
-                    var starred = dir+'_star';
-                    mkdirSync(starred); // for staring functionality
-                    var groups = dir+'/groups';
-                    mkdirSync(groups); // for groups functionality.
-                    //  coll.close();
-                    /*if(u)
-                        {
-                      done(null, true);
-
-                       }*/
+                    else
+                    {
+                        console.log("record is inserted");
+                    }
                 });
                 res.value =  msg;
                 res.code = 200;
@@ -70,9 +67,26 @@ function handle_request(msg, callback){
             callback(null, res);
         });
               //  done (null, {username:username, password:password, firstname:req.body.firstname, lastname: req.body.lastname});
+        var getUser1="insert into users(firstName,lastName, username, password, address,city, state, zipcode, email) values ('"+msg.firstName+"','" + msg.lastName+"','" + msg.username+"','" + msg.password+"','" + msg.address+"','" + msg.city+"','" + msg.state+"','" + msg.zipcode+"','" + msg.email+"')";
+        console.log("Query is:"+getUser1);
 
+        mysql.fetchData(function(err,results) { //
+            if (err) {
+                throw err;
+            }
+            else {
 
-});
+                console.log(results);
+                console.log("records updated");
+                res.value = "200";
+                res.message = "records inserted successfully in SQL";
+                console.log("records inserted successfully in SQL");
+            }
+            /*console.log("inside try:" + res);
+            callback(null, res);*/
+        },getUser1);
+
+    });
 }
 
 

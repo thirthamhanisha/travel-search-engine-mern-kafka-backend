@@ -31,7 +31,9 @@ module.exports = passport.use('signup', new LocalStrategy({
 	  },
 	  function(req, username, password, done) {
 
-          kafka.make_request('signup_topic',{"username":username,"password":password, "firstname": req.body.firstName, "lastname": req.body.lastName}, function(err,results){
+          kafka.make_request('signup_topic',{"username":username,"password":password, "firstName": req.body.firstName, "lastName": req.body.lastName,
+                                             "city" : req.body.city, "address":  req.body.address, "state": req.body.state,
+                                             "zipcode": req.body.zipcode, "email": req.body.email}, function(err,results){
               console.log('in result');
               console.log(results);
               if(err){
@@ -41,7 +43,9 @@ module.exports = passport.use('signup', new LocalStrategy({
               {
                   if(results.code == 200){
 
-                      done(null,true,{username: username, password: password, firstname: req.body.firstName, lastname:req.body.lastName/*"bhavan@b.com",password:"a"*/});
+                      done(null,true,{username: username, password: password, firstname: req.body.firstName, lastname:req.body.lastName,
+                          city : req.body.city, address:  req.body.address, state: req.body.state,
+                          zipcode: req.body.zipcode, email: req.body.email});
                   }
                   else {
                       done(null,false);

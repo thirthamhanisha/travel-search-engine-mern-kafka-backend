@@ -95,13 +95,13 @@ app.post('/login', function(req, res) {
         }
 
         if(!user) {
-            res.status(401).send();
+            res.status(401).send("login failed");
         }
         else {
             req.session.user = user.username;
             console.log(user);
             console.log("session initilized");
-            res.status(201).send();
+            res.status(201).send("Login succesful");
         }
     })(req,res);
 });
@@ -115,7 +115,7 @@ app.post('/signup',function(req,res){
 			res.status(401).send();
 		}
 		else {
-			res.status(201).send();
+			res.status(201).send("Signup successful, please login");
 		}
 	})(req,res);
 });
@@ -362,8 +362,8 @@ app.post('/admin/flights/addFlight', function(req, res) {
                 "seatType": req.body.seatType
             });
         }
-            if (results.value == 401) {
-                //  done(null,true,results/*{username: username, password: password}*/);
+           /* if (results.value == 401) {
+                //  done(null,true,results/!*{username: username, password: password}*!/);
                 console.log(results.message);
 
                 var res1 = results.message;
@@ -376,7 +376,7 @@ app.post('/admin/flights/addFlight', function(req, res) {
                     guestCount: req.body.guestCount,
                     roomCount: req.body.roomCount
                 });
-            }
+            }*/
 
     });
 });
@@ -399,7 +399,7 @@ app.post('/admin/flights/fetchFlight', function(req, res) {  //to fetch flights 
 
             var res1 = results.message;
 
-            res.status(201).send({file: res1, "flightName": req.body.flightName, "flightID": req.body.flightID});
+            res.status(201).send({file: res1[0], "flightName": req.body.flightName, "flightID": req.body.flightID});
         }
             if (results.value == 404) {
                 //  done(null,true,results/*{username: username, password: password}*/);
@@ -464,5 +464,128 @@ app.post('/admin/flights/editFlight', function(req, res) {  //to fetch flights f
     });
 });
 
+app.post('/admin/flights/addUser', function(req, res) {
+    console.log(req.body.username);
+    console.log(req.body.firstName);
+    console.log(req.body.lastName);
+    console.log(req.body.password);
+    console.log(req.body.city);
+    console.log(req.body.address);
+    console.log(req.body.state);
+    console.log(req.body.zipcode);
+    console.log(req.body.email);
 
+
+    kafka.make_request('userAdd_topic',{"username": req.body.username, "firstName":req.body.firstName, "lastName":req.body.lastName,
+        "password":req.body.password,"city":req.body.city,"address":req.body.address,"state":req.body.state,
+        "zipcode":req.body.zipcode,"email":req.body.email }, function(err,results) {
+        console.log('in result');
+        console.log(results);
+
+        if (err) {
+            res.status(500).send();
+        }
+
+        if (results.value == 200) {
+            //  done(null,true,results/*{username: username, password: password}*/);
+            console.log("in 200 " + results.message);
+
+            var res1 = results.message;
+
+            res.status(201).send({
+                file: res1,
+                "username": req.body.username, "firstName":req.body.firstName, "lastName":req.body.lastName,
+                "password":req.body.password,"city":req.body.city,"address":req.body.address,"state":req.body.state,
+                "zipcode":req.body.zipcode,"email":req.body.email
+            });
+        }
+        /* if (results.value == 401) {
+             //  done(null,true,results/!*{username: username, password: password}*!/);
+             console.log(results.message);
+
+             var res1 = results.message;
+
+             res.status(401).send({
+                 file: res1,
+                 city: req.body.city,
+                 fromDate: req.body.fromDate,
+                 toDate: req.body.toDate,
+                 guestCount: req.body.guestCount,
+                 roomCount: req.body.roomCount
+             });
+         }*/
+
+    });
+});
+app.post('/admin/users/fetchUser', function(req, res) {  //to fetch flights for admin
+    console.log(req.body.username);
+
+
+
+    kafka.make_request('userFetch_topic',{"username": req.body.username }, function(err,results) {
+        console.log('in result');
+        console.log(results);
+
+        if (err) {
+            res.status(500).send();
+        }
+
+        if (results.value == 200) {
+            //  done(null,true,results/*{username: username, password: password}*/);
+            console.log("in 200 " + results.message);
+
+            var res1 = results.message;
+
+            res.status(201).send({file: res1[0]});
+        }
+        if (results.value == 404) {
+            //  done(null,true,results/*{username: username, password: password}*/);
+            console.log("in 404" + results.message);
+
+            var res1 = results.message;
+
+            res.status(401).send({
+                file: res1,
+
+            });
+        }
+
+    });
+});
+
+app.post('/admin/users/editUser', function(req, res) {  //to fetch flights for admin
+    console.log(req.body.firstName);
+    console.log(req.body.username);
+    console.log(req.body.lastName);console.log(req.body.password);
+    console.log(req.body.city);
+    console.log(req.body.address);
+    console.log(req.body.state);
+    console.log(req.body.zipcode);
+    console.log(req.body.email);
+
+
+    kafka.make_request('userEdit_topic',{"username": req.body.username, "firstName":req.body.firstName, "lastName":req.body.lastName,
+        "password":req.body.password,"city":req.body.city,"address":req.body.address,"state":req.body.state,
+        "zipcode":req.body.zipcode,"email":req.body.email }, function(err,results) {
+        console.log('in result');
+        console.log(results);
+
+        if (err) {
+            res.status(500).send();
+        }
+
+        if (results.value == 200) {
+            //  done(null,true,results/*{username: username, password: password}*/);
+            console.log("in 200 " + results.message);
+
+            var res1 = results.message;
+
+            res.status(201).send({file: res1, "username": req.body.username, "firstName":req.body.firstName, "lastName":req.body.lastName,
+                "password":req.body.password,"city":req.body.city,"address":req.body.address,"state":req.body.state,
+                "zipcode":req.body.zipcode,"email":req.body.email  });
+        }
+
+
+    });
+});
 module.exports = app;
