@@ -30,6 +30,17 @@ var consumer8 = connection.getConsumer('profile_topic');
 var consumer9 = connection.getConsumer('folder_topic');
 var consumer10 = connection.getConsumer('group_topic');*/
 
+var flight = require('./services/flight');
+var flightDes = require('./services/flightDes');
+var bookFlight = require('./services/bookFlight');
+var payFlight = require('./services/payFlight');
+
+var consumer_flight=connection.getConsumer('flight_topic');
+var consumer_flightDes = connection.getConsumer('flightDes_topic');
+var consumer_bookFlight = connection.getConsumer('bookFlight_topic');
+var consumer_payFlight = connection.getConsumer('payFlight_topic');
+
+
 var producer = connection.getProducer();
 
 console.log('server is running');
@@ -233,6 +244,95 @@ consumer_flightEdit.on('message', function (message) {
     console.log(JSON.stringify(message.value));
     var data = JSON.parse(message.value);
     flightEdit.handle_request(data.data, function(err,res){
+        console.log('after handle'+res);
+        var payloads = [
+            { topic: data.replyTo,
+                messages:JSON.stringify({
+                    correlationId:data.correlationId,
+                    data : res
+                }),
+                partition : 0
+            }
+        ];
+        producer.send(payloads, function(err, data){
+            console.log(data);
+        });
+        return;
+    });
+});
+
+consumer_flight.on('message', function (message) {
+    console.log('message received');
+    console.log(JSON.stringify(message.value));
+    var data = JSON.parse(message.value);
+    flight.handle_request(data.data, function(err,res){
+        console.log('after handle'+res);
+        var payloads = [
+            { topic: data.replyTo,
+                messages:JSON.stringify({
+                    correlationId:data.correlationId,
+                    data : res
+                }),
+                partition : 0
+            }
+        ];
+        producer.send(payloads, function(err, data){
+            console.log(data);
+        });
+        return;
+    });
+});
+
+consumer_flightDes.on('message', function (message) {
+    console.log('message received');
+    console.log(JSON.stringify(message.value));
+    var data = JSON.parse(message.value);
+    flight.handle_request(data.data, function(err,res){
+        console.log('after handle'+res);
+        var payloads = [
+            { topic: data.replyTo,
+                messages:JSON.stringify({
+                    correlationId:data.correlationId,
+                    data : res
+                }),
+                partition : 0
+            }
+        ];
+        producer.send(payloads, function(err, data){
+            console.log(data);
+        });
+        return;
+    });
+});
+
+consumer_bookFlight.on('message', function (message) {
+    console.log('message received');
+    console.log(JSON.stringify(message.value));
+    var data = JSON.parse(message.value);
+    bookFlight.handle_request(data.data, function(err,res){
+        console.log('after handle'+res);
+        var payloads = [
+            { topic: data.replyTo,
+                messages:JSON.stringify({
+                    correlationId:data.correlationId,
+                    data : res
+                }),
+                partition : 0
+            }
+        ];
+        producer.send(payloads, function(err, data){
+            console.log(data);
+        });
+        return;
+    });
+});
+
+
+consumer_payFlight.on('message', function (message) {
+    console.log('message received');
+    console.log(JSON.stringify(message.value));
+    var data = JSON.parse(message.value);
+    payFlight.handle_request(data.data, function(err,res){
         console.log('after handle'+res);
         var payloads = [
             { topic: data.replyTo,
