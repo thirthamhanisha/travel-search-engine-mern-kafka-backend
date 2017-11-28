@@ -21,6 +21,11 @@ var carFetch = require('./services/carFetch');
 var carEdit = require('./services/carEdit');
 var carBills = require('./services/carBills');
 var bill = require('./services/bill');
+var flight = require('./services/flight');
+var flightDes = require('./services/flightDes');
+var bookFlight = require('./services/bookFlight');
+var payFlight = require('./services/payFlight');
+
 //var topic_name = 'login_topic';
 //var consumer = connection.getConsumer(topic_name);
 var consumer_login = connection.getConsumer('login_topic');
@@ -45,6 +50,11 @@ var consumer_carFetch=connection.getConsumer('carFetch_topic');
 var consumer_carEdit=connection.getConsumer('carEdit_topic');
 var consumer_carBills=connection.getConsumer('carBills_topic');
 var consumer_bill=connection.getConsumer('bill_topic');
+var consumer_flight=connection.getConsumer('flight_topic');
+var consumer_flightDes = connection.getConsumer('flightDes_topic');
+var consumer_bookFlight = connection.getConsumer('bookFlight_topic');
+var consumer_payFlight = connection.getConsumer('payFlight_topic');
+
 /*var consumer3 = connection.getConsumer('upload_topic');
 var consumer4 = connection.getConsumer('share_topic');
 var consumer5 = connection.getConsumer('star_topic');
@@ -514,6 +524,94 @@ consumer_bill.on('message', function (message) {
     console.log(JSON.stringify(message.value));
     var data = JSON.parse(message.value);
     bill.handle_request(data.data, function(err,res){
+        console.log('after handle'+res);
+        var payloads = [
+            { topic: data.replyTo,
+                messages:JSON.stringify({
+                    correlationId:data.correlationId,
+                    data : res
+                }),
+                partition : 0
+            }
+        ];
+        producer.send(payloads, function(err, data){
+            console.log(data);
+        });
+        return;
+    });
+});
+consumer_flight.on('message', function (message) {
+    console.log('message received');
+    console.log(JSON.stringify(message.value));
+    var data = JSON.parse(message.value);
+    flight.handle_request(data.data, function(err,res){
+        console.log('after handle'+res);
+        var payloads = [
+            { topic: data.replyTo,
+                messages:JSON.stringify({
+                    correlationId:data.correlationId,
+                    data : res
+                }),
+                partition : 0
+            }
+        ];
+        producer.send(payloads, function(err, data){
+            console.log(data);
+        });
+        return;
+    });
+});
+
+consumer_flightDes.on('message', function (message) {
+    console.log('message received');
+    console.log(JSON.stringify(message.value));
+    var data = JSON.parse(message.value);
+    flight.handle_request(data.data, function(err,res){
+        console.log('after handle'+res);
+        var payloads = [
+            { topic: data.replyTo,
+                messages:JSON.stringify({
+                    correlationId:data.correlationId,
+                    data : res
+                }),
+                partition : 0
+            }
+        ];
+        producer.send(payloads, function(err, data){
+            console.log(data);
+        });
+        return;
+    });
+});
+
+consumer_bookFlight.on('message', function (message) {
+    console.log('message received');
+    console.log(JSON.stringify(message.value));
+    var data = JSON.parse(message.value);
+    bookFlight.handle_request(data.data, function(err,res){
+        console.log('after handle'+res);
+        var payloads = [
+            { topic: data.replyTo,
+                messages:JSON.stringify({
+                    correlationId:data.correlationId,
+                    data : res
+                }),
+                partition : 0
+            }
+        ];
+        producer.send(payloads, function(err, data){
+            console.log(data);
+        });
+        return;
+    });
+});
+
+
+consumer_payFlight.on('message', function (message) {
+    console.log('message received');
+    console.log(JSON.stringify(message.value));
+    var data = JSON.parse(message.value);
+    payFlight.handle_request(data.data, function(err,res){
         console.log('after handle'+res);
         var payloads = [
             { topic: data.replyTo,
