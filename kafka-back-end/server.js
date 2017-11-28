@@ -9,6 +9,18 @@ var hotelPay = require('./services/hotelPay');
 var flightAdd = require('./services/flightAdd');
 var flightFetch = require('./services/flightFetch');
 var flightEdit = require('./services/flightEdit1');
+var userAdd = require('./services/userAdd');
+var userFetch = require('./services/userFetch');
+var userEdit = require('./services/userEdit');
+var car = require('./services/car');
+var carDes = require('./services/carDes');
+var bookCar = require('./services/bookCar');
+var payCar = require('./services/payCar');
+var carAdd = require('./services/carAdd');
+var carFetch = require('./services/carFetch');
+var carEdit = require('./services/carEdit');
+var carBills = require('./services/carBills');
+var bill = require('./services/bill');
 //var topic_name = 'login_topic';
 //var consumer = connection.getConsumer(topic_name);
 var consumer_login = connection.getConsumer('login_topic');
@@ -21,6 +33,18 @@ var consumer_hotelPay = connection.getConsumer('hotelPay_topic');
 var consumer_flightAdd = connection.getConsumer('flightAdd_topic');
 var consumer_flightFetch = connection.getConsumer('flightFetch_topic');
 var consumer_flightEdit = connection.getConsumer('flightEdit_topic');
+var consumer_userFetch = connection.getConsumer('userFetch_topic');
+var consumer_userEdit = connection.getConsumer('userEdit_topic');
+var consumer_userAdd = connection.getConsumer('userAdd_topic');
+var consumer_car = connection.getConsumer('car_topic');
+var consumer_carDes = connection.getConsumer('carDes_topic');
+var consumer_bookCar=connection.getConsumer('bookCar_topic');
+var consumer_payCar=connection.getConsumer('payCar_topic');
+var consumer_carAdd=connection.getConsumer('carAdd_topic');
+var consumer_carFetch=connection.getConsumer('carFetch_topic');
+var consumer_carEdit=connection.getConsumer('carEdit_topic');
+var consumer_carBills=connection.getConsumer('carBills_topic');
+var consumer_bill=connection.getConsumer('bill_topic');
 /*var consumer3 = connection.getConsumer('upload_topic');
 var consumer4 = connection.getConsumer('share_topic');
 var consumer5 = connection.getConsumer('star_topic');
@@ -250,12 +274,11 @@ consumer_flightEdit.on('message', function (message) {
     });
 });
 
-/*
-consumer3.on('message', function (message) {
+consumer_userFetch.on('message', function (message) {
     console.log('message received');
     console.log(JSON.stringify(message.value));
     var data = JSON.parse(message.value);
-    upload.handle_request(data.data, function(err,res){
+    userFetch.handle_request(data.data, function(err,res){
         console.log('after handle'+res);
         var payloads = [
             { topic: data.replyTo,
@@ -273,11 +296,53 @@ consumer3.on('message', function (message) {
     });
 });
 
-consumer4.on('message', function (message) {
+consumer_userEdit.on('message', function (message) {
     console.log('message received');
     console.log(JSON.stringify(message.value));
     var data = JSON.parse(message.value);
-    share.handle_request(data.data, function(err,res){
+    userEdit.handle_request(data.data, function(err,res){
+        console.log('after handle'+res);
+        var payloads = [
+            { topic: data.replyTo,
+                messages:JSON.stringify({
+                    correlationId:data.correlationId,
+                    data : res
+                }),
+                partition : 0
+            }
+        ];
+        producer.send(payloads, function(err, data){
+            console.log(data);
+        });
+        return;
+    });
+});
+consumer_userAdd.on('message', function (message) {
+    console.log('message received');
+    console.log(JSON.stringify(message.value));
+    var data = JSON.parse(message.value);
+    userAdd.handle_request(data.data, function(err,res){
+        console.log('after handle'+res);
+        var payloads = [
+            { topic: data.replyTo,
+                messages:JSON.stringify({
+                    correlationId:data.correlationId,
+                    data : res
+                }),
+                partition : 0
+            }
+        ];
+        producer.send(payloads, function(err, data){
+            console.log(data);
+        });
+        return;
+    });
+});
+consumer_carDes.on('message', function (message) {
+    console.log('message received');
+    console.log(JSON.stringify(message.value));
+    var data = JSON.parse(message.value);
+    carDes.handle_request(data.data, function(err,res){
         console.log('after handle'+res);
         var payloads = [
             { topic: data.replyTo,
@@ -295,11 +360,11 @@ consumer4.on('message', function (message) {
     });
 });
 
-consumer5.on('message', function (message) {
+consumer_bookCar.on('message', function (message) {
     console.log('message received');
     console.log(JSON.stringify(message.value));
     var data = JSON.parse(message.value);
-    star.handle_request(data.data, function(err,res){
+    bookCar.handle_request(data.data, function(err,res){
         console.log('after handle'+res);
         var payloads = [
             { topic: data.replyTo,
@@ -317,11 +382,116 @@ consumer5.on('message', function (message) {
     });
 });
 
-consumer6.on('message', function (message) {
+consumer_car.on('message', function (message) {
     console.log('message received');
     console.log(JSON.stringify(message.value));
     var data = JSON.parse(message.value);
-    getstar.handle_request(data.data, function(err,res){
+    car.handle_request(data.data, function(err,res){
+        console.log('after handle'+res);
+        var payloads = [
+            { topic: data.replyTo,
+                messages:JSON.stringify({
+                    correlationId:data.correlationId,
+                    data : res
+                }),
+                partition : 0
+            }
+        ];
+        producer.send(payloads, function(err, data){
+            console.log(data);
+        });
+        return;
+    });
+});
+consumer_payCar.on('message', function (message) {
+    console.log('message received');
+    console.log(JSON.stringify(message.value));
+    var data = JSON.parse(message.value);
+    payCar.handle_request(data.data, function(err,res){
+        console.log('after handle'+res);
+        var payloads = [
+            { topic: data.replyTo,
+                messages:JSON.stringify({
+                    correlationId:data.correlationId,
+                    data : res
+                }),
+                partition : 0
+            }
+        ];
+        producer.send(payloads, function(err, data){
+            console.log(data);
+        });
+        return;
+    });
+});
+consumer_carAdd.on('message', function (message) {
+    console.log('message received');
+    console.log(JSON.stringify(message.value));
+    var data = JSON.parse(message.value);
+    carAdd.handle_request(data.data, function(err,res){
+        console.log('after handle'+res);
+        var payloads = [
+            { topic: data.replyTo,
+                messages:JSON.stringify({
+                    correlationId:data.correlationId,
+                    data : res
+                }),
+                partition : 0
+            }
+        ];
+        producer.send(payloads, function(err, data){
+            console.log(data);
+        });
+        return;
+    });
+});
+consumer_carFetch.on('message', function (message) {
+    console.log('message received');
+    console.log(JSON.stringify(message.value));
+    var data = JSON.parse(message.value);
+    carFetch.handle_request(data.data, function(err,res){
+        console.log('after handle'+res);
+        var payloads = [
+            { topic: data.replyTo,
+                messages:JSON.stringify({
+                    correlationId:data.correlationId,
+                    data : res
+                }),
+                partition : 0
+            }
+        ];
+        producer.send(payloads, function(err, data){
+            console.log(data);
+        });
+        return;
+    });
+});
+consumer_carEdit.on('message', function (message) {
+    console.log('message received');
+    console.log(JSON.stringify(message.value));
+    var data = JSON.parse(message.value);
+    carEdit.handle_request(data.data, function(err,res){
+        console.log('after handle'+res);
+        var payloads = [
+            { topic: data.replyTo,
+                messages:JSON.stringify({
+                    correlationId:data.correlationId,
+                    data : res
+                }),
+                partition : 0
+            }
+        ];
+        producer.send(payloads, function(err, data){
+            console.log(data);
+        });
+        return;
+    });
+});
+consumer_carBills.on('message', function (message) {
+    console.log('message received');
+    console.log(JSON.stringify(message.value));
+    var data = JSON.parse(message.value);
+    carBills.handle_request(data.data, function(err,res){
         console.log('after handle'+res);
         var payloads = [
             { topic: data.replyTo,
@@ -339,11 +509,11 @@ consumer6.on('message', function (message) {
     });
 });
 
-consumer7.on('message', function (message) {
+consumer_bill.on('message', function (message) {
     console.log('message received');
     console.log(JSON.stringify(message.value));
     var data = JSON.parse(message.value);
-    delstar.handle_request(data.data, function(err,res){
+    bill.handle_request(data.data, function(err,res){
         console.log('after handle'+res);
         var payloads = [
             { topic: data.replyTo,
@@ -360,69 +530,3 @@ consumer7.on('message', function (message) {
         return;
     });
 });
-
-consumer8.on('message', function (message) {
-    console.log('message received');
-    console.log(JSON.stringify(message.value));
-    var data = JSON.parse(message.value);
-    editprofile.handle_request(data.data, function(err,res){
-        console.log('after handle'+res);
-        var payloads = [
-            { topic: data.replyTo,
-                messages:JSON.stringify({
-                    correlationId:data.correlationId,
-                    data : res
-                }),
-                partition : 0
-            }
-        ];
-        producer.send(payloads, function(err, data){
-            console.log(data);
-        });
-        return;
-    });
-});
-
-consumer9.on('message', function (message) {
-    console.log('message received');
-    console.log(JSON.stringify(message.value));
-    var data = JSON.parse(message.value);
-    createfolder.handle_request(data.data, function(err,res){
-        console.log('after handle'+res);
-        var payloads = [
-            { topic: data.replyTo,
-                messages:JSON.stringify({
-                    correlationId:data.correlationId,
-                    data : res
-                }),
-                partition : 0
-            }
-        ];
-        producer.send(payloads, function(err, data){
-            console.log(data);
-        });
-        return;
-    });
-});
-
-consumer10.on('message', function (message) {
-    console.log('message received');
-    console.log(JSON.stringify(message.value));
-    var data = JSON.parse(message.value);
-    creategroup.handle_request(data.data, function(err,res){
-        console.log('after handle'+res);
-        var payloads = [
-            { topic: data.replyTo,
-                messages:JSON.stringify({
-                    correlationId:data.correlationId,
-                    data : res
-                }),
-                partition : 0
-            }
-        ];
-        producer.send(payloads, function(err, data){
-            console.log(data);
-        });
-        return;
-    });
-});*/
