@@ -20,3 +20,16 @@ bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-f
 bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic userFetch_topic
 bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic userEdit_topic
 bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic userAdd_topic
+
+
+topics name:
+
+car_topic - to fetch all cars that match the filter criteria
+carDes_topic - to get the details of the selected car
+bookCar_topic - to calculate the fare and display it to the customer
+payCar_topic - the user pays the bill
+carAdd_topic - the admin api to add cars
+carFetch_topic - the admin api to fetch car
+carEdit_topic - the admin api to edit car
+carBills_topic - the transaction bills of cars from specified time period
+bill_topic - the bill details of a particuler booking
