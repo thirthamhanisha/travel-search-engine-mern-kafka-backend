@@ -7,7 +7,10 @@ function handle_request(msg, callback) {
 
     var res = {};
     console.log("In handle request:" + JSON.stringify(msg));
-
+    var key ="273"
+    var hash = crypto.createHmac('sha512', key); //encrytion using SHA512
+    hash.update(msg.password);
+    msg.password = hash.digest('hex');
     var getUser = "insert into users(firstName, lastName, username,password,city,address,state,zipcode,email) values('" + msg.firstName + "','" + msg.lastName + "','" + msg.username + "','" + msg.password + "','" + msg.city + "','" + msg.address + "','" + msg.state + "','" + msg.zipcode + "','" + msg.email + "')";
     console.log("Query is:" + getUser);
 
