@@ -1,6 +1,29 @@
 var mysql = require("./mysql");
 function handle_request(msg, callback) {
+    var carBookServiceCount;
+    var service="carBook";
+    var getUser="select count from servicesCount where service='"+service+"'";
+    console.log("Query:"+getUser);
+    mysql.fetchData(function(err,results){
 
+        console.log("Car book Service count:"+JSON.stringify(results));
+
+        console.log("car book service count:"+JSON.stringify(results[0].count));
+        carBookServiceCount=+JSON.stringify(results[0].count);
+
+
+
+        carBookServiceCount++;
+        console.log("carBookServiceCount:"+carBookServiceCount);
+
+        var getUser="update servicesCount set count='"+carBookServiceCount+"' where service='"+service+"'";
+        console.log("Query is:"+getUser);
+        mysql.fetchData(function(err,results){
+            if(err) throw err;
+            console.log(results.affectedRows + "records updated");
+
+        },getUser);
+    },getUser);
     var res = {};
     console.log("In handle request cars:" + JSON.stringify(msg));
 
