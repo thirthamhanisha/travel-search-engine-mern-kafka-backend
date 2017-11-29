@@ -51,7 +51,8 @@ function handle_request(msg, callback){
                     city: msg.city,
                     state: msg.state,
                     zipcode: msg.zipcode,
-                    email: msg.email
+                    email: msg.email,
+                    isAdmin: 0
                 };
                 coll.insertOne(myobj, function (err, u) {
                     if (err) return err;
@@ -67,7 +68,7 @@ function handle_request(msg, callback){
             callback(null, res);
         });
               //  done (null, {username:username, password:password, firstname:req.body.firstname, lastname: req.body.lastname});
-        var getUser1="insert into users(firstName,lastName, username, password, address,city, state, zipcode, email) values ('"+msg.firstName+"','" + msg.lastName+"','" + msg.username+"','" + msg.password+"','" + msg.address+"','" + msg.city+"','" + msg.state+"','" + msg.zipcode+"','" + msg.email+"')";
+        var getUser1="insert into users(firstName,lastName, username, password, address,city, state, zipcode, email) values ('"+msg.firstName+"','" + msg.lastName+"','" + msg.username+"','" + msg.password+"','" + msg.address+"','" + msg.city+"','" + msg.state+"','" + msg.zipcode+"','" + msg.email+"', 0)";
         console.log("Query is:"+getUser1);
 
         mysql.fetchData(function(err,results) { //

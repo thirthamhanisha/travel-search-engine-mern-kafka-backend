@@ -8,7 +8,7 @@ function handle_request(msg, callback){
     var res = {};
     console.log("In handle request:" + JSON.stringify(msg));
     console.log(msg.username); //this will be undefined since the sessions are not defined in postman, you can manually give the username and test.
-    var getUser="insert into transactionHotels(hotelID,amount, noOfRooms, noOfGuests, cardNo,username) values ('"+msg.ID+"','" + msg.billAmount+"','" + msg.roomCount+"','" + msg.guestCount+"','" + msg.cardNo+"','" + msg.username+"')";
+    var getUser="insert into transactionHotels(hotelID,amount, noOfRooms, noOfGuests, cardNo,username,date) values ('"+msg.ID+"','" + msg.billAmount+"','" + msg.roomCount+"','" + msg.guestCount+"','" + msg.cardNo+"','" + msg.username+"',NOW())";
     console.log("Query is:"+getUser); // TO CHECK HOW TO INSERT BOOKING id , SHOULD BE INSERT IT EXPLICITLY OR IT WILL AUTO INCREMENT IT? SHULD SEND BOOKING ID
     mysql.fetchData(function(err,results){ // WHAT WILL THE RESULTS PRINT. HAVE TO CHECK.
         if(err){

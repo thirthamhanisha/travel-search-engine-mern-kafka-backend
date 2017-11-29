@@ -101,7 +101,7 @@ app.post('/login', function(req, res) {
             req.session.user = user.username;
             console.log(user);
             console.log("session initilized");
-            res.status(201).send("Login succesful");
+            res.status(201).send({message: "Login successful", isAdmin: user.value.isAdmin});
         }
     })(req,res);
 });
@@ -112,7 +112,7 @@ app.post('/signup',function(req,res){
 			res.status(500).send();
 		}
 		if(user === false){
-			res.status(401).send();
+			res.status(401).send("user already exists, please use a different user name");
 		}
 		else {
 			res.status(201).send("Signup successful, please login");
@@ -464,7 +464,7 @@ app.post('/admin/flights/editFlight', function(req, res) {  //to fetch flights f
     });
 });
 
-app.post('/admin/flights/addUser', function(req, res) {
+app.post('/admin/users/addUser', function(req, res) {
     console.log(req.body.username);
     console.log(req.body.firstName);
     console.log(req.body.lastName);
@@ -486,24 +486,25 @@ app.post('/admin/flights/addUser', function(req, res) {
             res.status(500).send();
         }
 
-        if (results.value == 200) {
+        if (results.code == 200) {
             //  done(null,true,results/*{username: username, password: password}*/);
-            console.log("in 200 " + results.message);
+            console.log("in 200 " + results.value);
 
-            var res1 = results.message;
+            var res1 = results.value;
 
             res.status(201).send({
                 file: res1,
+                msg: "user has been inserted successfully",
                 "username": req.body.username, "firstName":req.body.firstName, "lastName":req.body.lastName,
                 "password":req.body.password,"city":req.body.city,"address":req.body.address,"state":req.body.state,
                 "zipcode":req.body.zipcode,"email":req.body.email
             });
         }
-        /* if (results.value == 401) {
+         if (results.code == 401) {
              //  done(null,true,results/!*{username: username, password: password}*!/);
-             console.log(results.message);
+             console.log(results.value);
 
-             var res1 = results.message;
+             var res1 = results.value;
 
              res.status(401).send({
                  file: res1,
@@ -513,7 +514,7 @@ app.post('/admin/flights/addUser', function(req, res) {
                  guestCount: req.body.guestCount,
                  roomCount: req.body.roomCount
              });
-         }*/
+         }
 
     });
 });
@@ -556,7 +557,8 @@ app.post('/admin/users/fetchUser', function(req, res) {  //to fetch flights for 
 app.post('/admin/users/editUser', function(req, res) {  //to fetch flights for admin
     console.log(req.body.firstName);
     console.log(req.body.username);
-    console.log(req.body.lastName);console.log(req.body.password);
+    console.log(req.body.lastName);
+    console.log(req.body.password);
     console.log(req.body.city);
     console.log(req.body.address);
     console.log(req.body.state);
@@ -584,7 +586,24 @@ app.post('/admin/users/editUser', function(req, res) {  //to fetch flights for a
                 "password":req.body.password,"city":req.body.city,"address":req.body.address,"state":req.body.state,
                 "zipcode":req.body.zipcode,"email":req.body.email  });
         }
+        if (results.value == 401) {
+            //  done(null,true,results/!*{username: username, password: password}*!/);
+            console.log(results.message);
 
+            var res1 = results.message;
+
+            res.status(401).send({
+                file: res1,
+                city: req.body.city,
+                fromDate: req.body.fromDate,
+                toDate: req.body.toDate,
+                guestCount: req.body.guestCount,
+                roomCount: req.body.roomCount
+            });
+        }
+         else{
+            res.send("user record is edited");
+        }
 
     });
 });

@@ -10,15 +10,16 @@ function handle_request(msg, callback){
     mongo.myconnect(mongoURL, function () {
         console.log('Connected to mongo at: ' + mongoURL);
         var coll = mongo.collection('login');
-        key = "273"
+        key = "273";
         var hash = crypto.createHmac('sha512', key); //encrytion using SHA512
         hash.update(msg.password);
         msg.password = hash.digest('hex');
+
         coll.findOne({username: msg.username, password: msg.password}, function (err, user) {
             if (user) {
                 //  done(null,user/* {username: username, password: password}*/);
                 res.code = "200";
-                res.value = "Success Login";
+                res.value = user;
                 console.log(user);
                 console.log(res.value);
 

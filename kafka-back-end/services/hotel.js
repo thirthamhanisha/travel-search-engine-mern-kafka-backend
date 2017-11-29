@@ -75,11 +75,22 @@ function handle_request(msg, callback){
                  var msg2 = JSON.parse(msg1);
                           console.log("msg1"+msg1);
                     console.log("msg2"+msg2);
-
+                    var key ="273"
+                    var hash = crypto.createHmac('sha512', key); //encrytion using SHA512
+                    hash.update(msg.password);
+                    msg.password = hash.digest('hex');
                     var myobj = {
                         user: {
                             username: msg2.username,
-                            firstName: msg1.firstName
+                            firstName: msg2.firstName,
+                            lastName: msg2.lastName,
+                            password: msg2.password,
+                            address: msg2.address,
+                            city: msg2.city,
+                            state: msg2.state,
+                            zipcode: msg2.zipcode,
+                            email: msg2.email,
+                            isAdmin: msg2.isAdmin
                         }
                         ,
                          //   JSON.stringify(results1[0]),
@@ -102,8 +113,8 @@ function handle_request(msg, callback){
                     /*res.value =  msg;
                     res.code = 200;*/
                     // }
-                    console.log("inside try:" + res);
-                    callback(null, res);
+                    /*console.log("inside try:" + res);
+                    callback(null, res);*/
                 });
 
             }
@@ -114,8 +125,8 @@ function handle_request(msg, callback){
                 res.message = "not authorised ";
 
             }
-            console.log("inside try:" + res);
-            callback(null, res);
+            /*console.log("inside try:" + res);
+            callback(null, res)*/;
         }
     }, getUser1);
 

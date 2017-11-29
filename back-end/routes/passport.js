@@ -15,7 +15,7 @@ module.exports = passport.use('login', new LocalStrategy(function(username   , p
         else
         {
             if(results.code == 200){
-                done(null,{username: username, password: password/*"bhavan@b.com",password:"a"*/});
+                done(null,results);
             }
             else {
                 done(null,false);
