@@ -287,7 +287,7 @@ consumer_flightDes.on('message', function (message) {
     console.log('message received');
     console.log(JSON.stringify(message.value));
     var data = JSON.parse(message.value);
-    flight.handle_request(data.data, function(err,res){
+    flightDes.handle_request(data.data, function(err,res){
         console.log('after handle'+res);
         var payloads = [
             { topic: data.replyTo,

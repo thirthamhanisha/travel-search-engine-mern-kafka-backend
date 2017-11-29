@@ -7,7 +7,7 @@ var mysql = require("./mysql");
 const timezone = "America/Los_Angeles";
 function handle_request(msg, callback){
 
-    var res = {};
+      var res = {};
       console.log("In handle request:" + JSON.stringify(msg));
         console.log(msg.to + msg.from);
 
@@ -19,6 +19,8 @@ function handle_request(msg, callback){
             const departureDateEnd = moment(msg.departureDate,timezone).format('YYYY-MM-DD 23:59:59');
 
             var returnTime=Date.parse(msg.returnDate);
+            console.log(returnTime)
+            console.log(isNaN(returnTime))
             if (isNaN(returnTime)==false)
             {
                 //valid
@@ -111,6 +113,7 @@ function handle_request(msg, callback){
                             console.log(results);
                             res.value = "200";
                             res.message = "Success";
+                            res.departure = {}
                             res.departure.value = "200";
                             res.departure.message = "";
                             res.departure.flights = results;
@@ -120,10 +123,12 @@ function handle_request(msg, callback){
         
                             res.value = "200";
                             res.message = "Success";
+                            res.departure = {}
                             res.departure.value = "404";
                             res.departure.message = "No flights fetched with the given preferences";
                             res.departure.flights = results;
                         }
+                        res.return = {}
                         res.return.value = "400";
                         res.return.message = "Invalid return date format";
                         res.return.flights = [];
@@ -158,14 +163,10 @@ function handle_request(msg, callback){
                         console.log('Connected to mongo at: ' + mongoURL);
                         var coll = mongo.collection('search');
                         //   process.nextTick(function(){
-                              msg1 = JSON.stringify(results1[0]);
-                              console.log(msg1);
+                              delete results1[0]["password"];
+                              console.log(results1[0]);
                         var myobj = {
-                            user: {
-                                username: msg1.username,
-                                firstName: msg1.firstName
-                            }
-                            ,
+                            user: results1[0],
                              //   JSON.stringify(results1[0]),
                             flight: {
                                 "fromCity": msg.fromCity,
@@ -176,7 +177,7 @@ function handle_request(msg, callback){
                                 "passengerCount":msg.passengerCount
                             }
                         };
-                        console.log(myobj);
+                        console.log("Sending msg to mongo: " + myobj);
                         coll.insertOne(myobj, function (err, u) {
                             if (err)
                                 console.log(err);
