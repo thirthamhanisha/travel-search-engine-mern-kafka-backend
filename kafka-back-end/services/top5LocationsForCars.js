@@ -223,7 +223,38 @@ function handle_request(msg, callback){
                                                 //callback(null,res);
                                             }
                                         }
+                                        var getUser8="select count(*) as registeredUsers from users;";
+
+                                        console.log("Query is:"+getUser8);
+
+                                        mysql.fetchData(function(err,results) {
+                                            console.log(results.length);
+                                            if (err) {
+                                                throw err;
+                                            }
+                                            else {
+                                                console.log(results.length);
+                                                if (results.length > 0) {
+                                                    console.log(JSON.stringify(results));
+
+                                                    res.value = "200";
+                                                    res.registeredUsers = results;
+                                                    //value="200";
+                                                    //message=results;
+                                                    //results.send(value,message);
+                                                    //  callback(null, res);
+                                                }
+                                                else {
+
+                                                    console.log("no cars fetched with the given preferences");
+
+                                                    res.value = "404";
+                                                    res.car = "cars unavailable with the given search criteria";
+                                                    //callback(null,res);
+                                                }
+                                            }
                                         callback(null, res);
+                                        },getUser8);
                                     },getUser7);
                                 },getUser6);
                             },getUser5);
