@@ -30,7 +30,7 @@ function handle_request(msg, callback) {
                 else {
                     console.log(results1);
                     res.value = "200";
-                    res.message = "records updated successfully";
+                    res.message = "users records updated successfully";
                     console.log("success in update query");
 
                 }
