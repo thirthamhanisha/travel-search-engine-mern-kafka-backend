@@ -8,7 +8,30 @@ var crypto = require('crypto');
 var mysql = require("./mysql");
 
 function handle_request(msg, callback){
+ var signupServiceCount;
+    var service="signup";
+    var getUser="select count from servicesCount where service='"+service+"'";
+    console.log("Query:"+getUser);
+    mysql.fetchData(function(err,results){
 
+        console.log("signup Service count:"+JSON.stringify(results));
+
+        console.log("signup service count:"+JSON.stringify(results[0].count));
+        signupServiceCount=+JSON.stringify(results[0].count);
+
+
+
+        signupServiceCount++;
+        console.log("signupServiceCount:"+signupServiceCount);
+
+        var getUser="update servicesCount set count='"+signupServiceCount+"' where service='"+service+"'";
+        console.log("Query is:"+getUser);
+        mysql.fetchData(function(err,results){
+            if(err) throw err;
+            console.log(results.affectedRows + "records updated");
+
+        },getUser);
+    },getUser);
     var res = {};
     console.log("In handle request:" + JSON.stringify(msg));
     mongo.myconnect(mongoURL, function(){
