@@ -1,7 +1,30 @@
 
 var mysql = require("./mysql");
 function handle_request(msg, callback){
+ var payCarServiceCount;
+    var service="carPay";
+    var getUser="select count from servicesCount where service='"+service+"'";
+    console.log("Query:"+getUser);
+    mysql.fetchData(function(err,results){
 
+        console.log("car pay Service count:"+JSON.stringify(results));
+
+        console.log("car pay service count:"+JSON.stringify(results[0].count));
+        payCarServiceCount=+JSON.stringify(results[0].count);
+
+
+
+        payCarServiceCount++;
+        console.log("payCarServiceCount:"+payCarServiceCount);
+
+        var getUser="update servicesCount set count='"+payCarServiceCount+"' where service='"+service+"'";
+        console.log("Query is:"+getUser);
+        mysql.fetchData(function(err,results){
+            if(err) throw err;
+            console.log(results.affectedRows + "records updated");
+
+        },getUser);
+    },getUser);
     var res = {};
     console.log("In handle request:" + JSON.stringify(msg));
     console.log(msg.username); //this will be undefined since the sessions are not defined in postman, you can manually give the username and test.
