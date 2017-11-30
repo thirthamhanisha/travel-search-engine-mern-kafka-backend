@@ -4,7 +4,30 @@ var bcrypt = require('bcrypt');
 var crypto = require('crypto');
 var mysql = require("./mysql");
 function handle_request(msg, callback) {
+var hotelDetailsServiceCount;
+    var service="hotelDetails";
+    var getUser="select count from servicesCount where service='"+service+"'";
+    console.log("Query:"+getUser);
+    mysql.fetchData(function(err,results){
 
+        console.log("hotel details Service count:"+JSON.stringify(results));
+
+        console.log("hotel details service count:"+JSON.stringify(results[0].count));
+        hotelDetailsServiceCount=+JSON.stringify(results[0].count);
+
+
+
+        hotelDetailsServiceCount++;
+        console.log("hotelDetailsServiceCount:"+hotelDetailsServiceCount);
+
+        var getUser="update servicesCount set count='"+hotelDetailsServiceCount+"' where service='"+service+"'";
+        console.log("Query is:"+getUser);
+        mysql.fetchData(function(err,results){
+            if(err) throw err;
+            console.log(results.affectedRows + "records updated");
+
+        },getUser);
+    },getUser);
     var res = {};
     console.log("In handle request:" + JSON.stringify(msg));
 
