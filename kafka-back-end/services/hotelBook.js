@@ -5,7 +5,30 @@ var crypto = require('crypto');
 var mysql = require("./mysql");
 
 function handle_request(msg, callback){
+var hotelBookServiceCount;
+    var service="hotelBook";
+    var getUser="select count from servicesCount where service='"+service+"'";
+    console.log("Query:"+getUser);
+    mysql.fetchData(function(err,results){
 
+        console.log("hotel book Service count:"+JSON.stringify(results));
+
+        console.log("hotel book service count:"+JSON.stringify(results[0].count));
+        hotelSearchServiceCount=+JSON.stringify(results[0].count);
+
+
+
+        hotelBookServiceCount++;
+        console.log("hotelbookServiceCount:"+hotelBookServiceCount);
+
+        var getUser="update servicesCount set count='"+hotelBookServiceCount+"' where service='"+service+"'";
+        console.log("Query is:"+getUser);
+        mysql.fetchData(function(err,results){
+            if(err) throw err;
+            console.log(results.affectedRows + "records updated");
+
+        },getUser);
+    },getUser);
     var res = {};
     console.log("In handle request:" + JSON.stringify(msg));
 //calculate the noOfDays

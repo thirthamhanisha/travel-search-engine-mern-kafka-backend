@@ -1167,6 +1167,63 @@ app.post('/payFlight', function(req,res) {
         }    
     });
 });
+<<<<<<< HEAD
 
 
+=======
+app.post('/admin/dashboard', function(req, res) {
+
+    console.log("in cars top 5 locations api");
+    //  console.log(req.body.city);
+    //  console.log(req.body.date);
+    //  console.log(req.body.to);
+
+
+    kafka.make_request('top5LocationsCars_topic',{}, function(err,results) {
+        console.log('in result');
+        console.log(results);
+
+        if (err) {
+            res.status(500).send();
+        }
+        else {
+            if (results.value == 200) {
+                //  done(null,true,results/*{username: username, password: password});
+                console.log(results.value);
+
+                var res1 = results.value;
+
+                res.status(200).send({message: results});
+            }
+        }
+    });
+});
+app.post('/admin/reports', function(req, res) {
+
+    console.log("in cars top 5 locations api");
+    //  console.log(req.body.city);
+    //  console.log(req.body.date);
+    //  console.log(req.body.to);
+
+
+    kafka.make_request('report_topic',{"city":req.body.city,"year":req.body.year}, function(err,results) {
+        console.log('in result');
+        console.log(results);
+
+        if (err) {
+            res.status(500).send();
+        }
+        else {
+            if (results.value == 200) {
+                //  done(null,true,results/*{username: username, password: password});
+                console.log(results.value);
+
+                var res1 = results.value;
+
+                res.status(200).send({message: results});
+            }
+        }
+    });
+});
+>>>>>>> 3257b51614b60afcdbcc4bbe96f2ef9363508748
 module.exports = app;

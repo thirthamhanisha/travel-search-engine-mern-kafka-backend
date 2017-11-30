@@ -4,7 +4,30 @@ var bcrypt = require('bcrypt');
 var crypto = require('crypto');
 var mysql = require("./mysql");
 function handle_request(msg, callback){
+var hotelPayServiceCount;
+    var service="hotelPay";
+    var getUser="select count from servicesCount where service='"+service+"'";
+    console.log("Query:"+getUser);
+    mysql.fetchData(function(err,results){
 
+        console.log("hotel pay Service count:"+JSON.stringify(results));
+
+        console.log("hotel pay service count:"+JSON.stringify(results[0].count));
+        hotelPayServiceCount=+JSON.stringify(results[0].count);
+
+
+
+        hotelPayServiceCount++;
+        console.log("hotelSearchServiceCount:"+hotelPayServiceCount);
+
+        var getUser="update servicesCount set count='"+hotelPayServiceCount+"' where service='"+service+"'";
+        console.log("Query is:"+getUser);
+        mysql.fetchData(function(err,results){
+            if(err) throw err;
+            console.log(results.affectedRows + "records updated");
+
+        },getUser);
+    },getUser);
     var res = {};
     console.log("In handle request:" + JSON.stringify(msg));
     console.log(msg.username); //this will be undefined since the sessions are not defined in postman, you can manually give the username and test.
