@@ -4,7 +4,30 @@ var mongoURL = "mongodb://localhost:27017/login";
 var crypto = require('crypto');
 
 function handle_request(msg, callback){
+var loginServiceCount;
+    var service="login";
+    var getUser="select count from servicesCount where service='"+service+"'";
+    console.log("Query:"+getUser);
+    mysql.fetchData(function(err,results){
 
+        console.log("login Service count:"+JSON.stringify(results));
+
+        console.log("login service count:"+JSON.stringify(results[0].count));
+        loginServiceCount=+JSON.stringify(results[0].count);
+
+
+
+        loginServiceCount++;
+        console.log("loginServiceCount:"+loginServiceCount);
+
+        var getUser="update servicesCount set count='"+loginServiceCount+"' where service='"+service+"'";
+        console.log("Query is:"+getUser);
+        mysql.fetchData(function(err,results){
+            if(err) throw err;
+            console.log(results.affectedRows + "records updated");
+
+        },getUser);
+    },getUser);
     var res = {};
     console.log("In handle request:" + JSON.stringify(msg));
     mongo.myconnect(mongoURL, function () {
