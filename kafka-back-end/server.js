@@ -25,15 +25,15 @@ var flight = require('./services/flight');
 var flightDes = require('./services/flightDes');
 var bookFlight = require('./services/bookFlight');
 var payFlight = require('./services/payFlight');
-<<<<<<< HEAD
+
 var hotelAdd = require('./services/hotelAdd');
 var hotelFetch = require('./services/hotelFetch');
 var hotelEdit = require('./services/hotelEdit');
 
-=======
+
 var top5LocationsForCars = require('./services/top5LocationsForCars');
 var report = require('./services/report');
->>>>>>> 3257b51614b60afcdbcc4bbe96f2ef9363508748
+
 //var topic_name = 'login_topic';
 //var consumer = connection.getConsumer(topic_name);
 var consumer_login = connection.getConsumer('login_topic');
@@ -62,14 +62,14 @@ var consumer_flight=connection.getConsumer('flight_topic');
 var consumer_flightDes = connection.getConsumer('flightDes_topic');
 var consumer_bookFlight = connection.getConsumer('bookFlight_topic');
 var consumer_payFlight = connection.getConsumer('payFlight_topic');
-<<<<<<< HEAD
+
 var consumer_hotelAdd = connection.getConsumer('hotelAdd_topic');
 var consumer_hotelFetch = connection.getConsumer('hotelFetch_topic');
 var consumer_hotelEdit = connection.getConsumer('hotelEdit_topic');
-=======
+
 var consumer_top5LocationsForCars = connection.getConsumer('top5LocationsCars_topic');
 var consumer_report = connection.getConsumer('report_topic');
->>>>>>> 3257b51614b60afcdbcc4bbe96f2ef9363508748
+
 /*var consumer3 = connection.getConsumer('upload_topic');
 var consumer4 = connection.getConsumer('share_topic');
 var consumer5 = connection.getConsumer('star_topic');

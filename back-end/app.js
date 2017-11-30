@@ -1167,10 +1167,7 @@ app.post('/payFlight', function(req,res) {
         }    
     });
 });
-<<<<<<< HEAD
 
-
-=======
 app.post('/admin/dashboard', function(req, res) {
 
     console.log("in cars top 5 locations api");
@@ -1225,5 +1222,5 @@ app.post('/admin/reports', function(req, res) {
         }
     });
 });
->>>>>>> 3257b51614b60afcdbcc4bbe96f2ef9363508748
+
 module.exports = app;
