@@ -25,7 +25,7 @@ var flight = require('./services/flight');
 var flightDes = require('./services/flightDes');
 var bookFlight = require('./services/bookFlight');
 var payFlight = require('./services/payFlight');
-
+var top5LocationsForCars = require('./services/top5LocationsForCars');
 //var topic_name = 'login_topic';
 //var consumer = connection.getConsumer(topic_name);
 var consumer_login = connection.getConsumer('login_topic');
@@ -54,7 +54,7 @@ var consumer_flight=connection.getConsumer('flight_topic');
 var consumer_flightDes = connection.getConsumer('flightDes_topic');
 var consumer_bookFlight = connection.getConsumer('bookFlight_topic');
 var consumer_payFlight = connection.getConsumer('payFlight_topic');
-
+var consumer_top5LocationsForCars = connection.getConsumer('top5LocationsCars_topic');
 /*var consumer3 = connection.getConsumer('upload_topic');
 var consumer4 = connection.getConsumer('share_topic');
 var consumer5 = connection.getConsumer('star_topic');
