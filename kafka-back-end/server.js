@@ -25,7 +25,9 @@ var flight = require('./services/flight');
 var flightDes = require('./services/flightDes');
 var bookFlight = require('./services/bookFlight');
 var payFlight = require('./services/payFlight');
-var report = require('./services/cityYearwiseData');
+var hotelAdd = require('./services/hotelAdd');
+var hotelFetch = require('./services/hotelFetch');
+var hotelEdit = require('./services/hotelEdit');
 
 //var topic_name = 'login_topic';
 //var consumer = connection.getConsumer(topic_name);
@@ -55,7 +57,9 @@ var consumer_flight=connection.getConsumer('flight_topic');
 var consumer_flightDes = connection.getConsumer('flightDes_topic');
 var consumer_bookFlight = connection.getConsumer('bookFlight_topic');
 var consumer_payFlight = connection.getConsumer('payFlight_topic');
-
+var consumer_hotelAdd = connection.getConsumer('hotelAdd_topic');
+var consumer_hotelFetch = connection.getConsumer('hotelFetch_topic');
+var consumer_hotelEdit = connection.getConsumer('hotelEdit_topic');
 /*var consumer3 = connection.getConsumer('upload_topic');
 var consumer4 = connection.getConsumer('share_topic');
 var consumer5 = connection.getConsumer('star_topic');
@@ -218,6 +222,72 @@ consumer_hotelPay.on('message', function (message) {
         return;
     });
 });
+consumer_hotelAdd.on('message', function (message) {
+    console.log('message received');
+    console.log(JSON.stringify(message.value));
+    var data = JSON.parse(message.value);
+    hotelAdd.handle_request(data.data, function(err,res){
+        console.log('after handle'+res);
+        var payloads = [
+            { topic: data.replyTo,
+                messages:JSON.stringify({
+                    correlationId:data.correlationId,
+                    data : res
+                }),
+                partition : 0
+            }
+        ];
+        producer.send(payloads, function(err, data){
+            console.log(data);
+        });
+        return;
+    });
+});
+
+consumer_hotelFetch.on('message', function (message) {
+    console.log('message received');
+    console.log(JSON.stringify(message.value));
+    var data = JSON.parse(message.value);
+    hotelFetch.handle_request(data.data, function(err,res){
+        console.log('after handle'+res);
+        var payloads = [
+            { topic: data.replyTo,
+                messages:JSON.stringify({
+                    correlationId:data.correlationId,
+                    data : res
+                }),
+                partition : 0
+            }
+        ];
+        producer.send(payloads, function(err, data){
+            console.log(data);
+        });
+        return;
+    });
+});
+
+consumer_hotelEdit.on('message', function (message) {
+    console.log('message received');
+    console.log(JSON.stringify(message.value));
+    var data = JSON.parse(message.value);
+    hotelEdit.handle_request(data.data, function(err,res){
+        console.log('after handle'+res);
+        var payloads = [
+            { topic: data.replyTo,
+                messages:JSON.stringify({
+                    correlationId:data.correlationId,
+                    data : res
+                }),
+                partition : 0
+            }
+        ];
+        producer.send(payloads, function(err, data){
+            console.log(data);
+        });
+        return;
+    });
+});
+
 
 consumer_flightAdd.on('message', function (message) {
     console.log('message received');

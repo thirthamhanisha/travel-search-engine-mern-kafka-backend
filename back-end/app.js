@@ -277,7 +277,7 @@ app.post('/payHotel', function(req, res) {
     console.log(req.body.cardNo);
 
     kafka.make_request('hotelPay_topic',{"ID": req.body.hotelID, "guestCount": req.body.guestCount, "roomCount": req.body.roomCount, "fromDate" : req.body.fromDate,
-        "toDate": req.body.toDate, "billAmount": req.body.billAmount, "cardNo":req.body.cardNo, "username": req.session.user, "location": req.body.city, "hotelName": req.body.hotelName}, function(err,results) {
+        "toDate": req.body.toDate, "billAmount": req.body.billAmount, "cardNo":req.body.cardNo, "username":req.body.username /*req.session.user*/, "location": req.body.location, "hotelName": req.body.hotelName}, function(err,results) {
         console.log('in result');
         console.log(results);
 
@@ -320,7 +320,121 @@ app.post('/payHotel', function(req, res) {
 
     });
 });
+app.post('/admin/hotel/addHotel', function(req, res) {
 
+    kafka.make_request('hotelAdd_topic',{"hotelName": req.body.hotelName, "city": req.body.city, "fromDate": req.body.fromDate, "toDate" : req.body.toDate,
+        "availableRooms": req.body.availableRooms, "guestCount": req.body.guestCount, "starHotel":req.body.starHotel, "ratings": req.body.ratings, "amount":req.body.amount }, function(err,results) {
+        console.log('in result');
+        console.log(results);
+
+        if (err) {
+            res.status(500).send();
+        }
+
+        if (results.value == 200) {
+            //  done(null,true,results/*{username: username, password: password}*/);
+            console.log("in 200 " + results.message);
+
+            var res1 = results.message;
+
+            res.status(201).send({
+                file: res1,
+                "hotelName": req.body.flightName, "city": req.body.city, "fromDate": req.body.fromDate, "toDate" : req.body.toDate,
+                "availableRooms": req.body.availableRooms, "guestCount": req.body.guestCount, "starHotel":req.body.starHotel, "ratings": req.body.ratings,
+                "amount":req.body.amount
+            });
+        }
+        /* if (results.value == 401) {
+             //  done(null,true,results/!*{username: username, password: password}*!/);
+             console.log(results.message);
+
+             var res1 = results.message;
+
+             res.status(401).send({
+                 file: res1,
+                 city: req.body.city,
+                 fromDate: req.body.fromDate,
+                 toDate: req.body.toDate,
+                 guestCount: req.body.guestCount,
+                 roomCount: req.body.roomCount
+             });
+         }*/
+
+    });
+});
+app.post('/admin/hotel/fetchHotel', function(req, res) {  //to fetch flights for admin
+
+
+
+    kafka.make_request('hotelFetch_topic',{"hotelName": req.body.hotelName, "hotelID":req.body.hotelID }, function(err,results) {
+        console.log('in result');
+        console.log(results);
+
+        if (err) {
+            res.status(500).send();
+        }
+
+        if (results.value == 200) {
+            //  done(null,true,results/*{username: username, password: password}*/);
+            console.log("in 200 " + results.message);
+
+            var res1 = results.message;
+
+            res.status(201).send({file: res1[0], "flightName": req.body.flightName, "flightID": req.body.flightID});
+        }
+        if (results.value == 404) {
+            //  done(null,true,results/*{username: username, password: password}*/);
+            console.log("in 404" + results.message);
+
+            var res1 = results.message;
+
+            res.status(401).send({
+                file: res1,
+                "flightName": req.body.flightName, "flightID": req.body.flightID
+            });
+        }
+
+    });
+});
+
+app.post('/admin/hotel/EditHotel', function(req, res) {  //to fetch flights for admin
+
+
+
+    kafka.make_request('hotelEdit_topic',{"hotelName": req.body.hotelName, "hotelID":req.body.hotelID, "city":req.body.city,
+        "fromDate":req.body.fromDate,"toDate":req.body.toDate,"availableRooms":req.body.availableRooms,
+        "guestCount":req.body.guestCount,"starHotel":req.body.starHotel,"ratings":req.body.ratings, "amount":req.body.amount, "bookedRooms":req.body.bookedRooms  }, function(err,results) {
+        console.log('in result');
+        console.log(results);
+
+        if (err) {
+            res.status(500).send();
+        }
+
+        if (results.value == 200) {
+            //  done(null,true,results/*{username: username, password: password}*/);
+            console.log("in 200 " + results.message);
+
+            var res1 = results.message;
+
+            res.status(201).send({file: res1, "hotelName": req.body.hotelName, "hotelID":req.body.hotelID, "city":req.body.city,
+                "fromDate":req.body.fromDate,"toDate":req.body.toDate,"availableRooms":req.body.availableRooms,
+                "guestCount":req.body.guestCount,"starHotel":req.body.starHotel,"ratings":req.body.ratings, "amount":req.body.amount, "bookedRooms":req.body.bookedRoom});
+        }
+        if (results.value == 404) {
+            //  done(null,true,results/*{username: username, password: password}*/);
+            console.log("in 404" + results.message);
+
+            var res1 = results.message;
+
+            res.status(401).send({
+                file: res1,
+                "flightName": req.body.flightName, "flightID": req.body.flightID
+            });
+        }
+
+    });
+});
 app.post('/admin/flights/addFlight', function(req, res) {
     console.log(req.body.flightName);
     console.log(req.body.operator);

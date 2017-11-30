@@ -77,8 +77,8 @@ function handle_request(msg, callback){
                     console.log("msg2"+msg2);
                     var key ="273"
                     var hash = crypto.createHmac('sha512', key); //encrytion using SHA512
-                    hash.update(msg.password);
-                    msg.password = hash.digest('hex');
+                    hash.update(msg2.password);
+                    msg2.password = hash.digest('hex');
                     var myobj = {
                         user: {
                             username: msg2.username,
