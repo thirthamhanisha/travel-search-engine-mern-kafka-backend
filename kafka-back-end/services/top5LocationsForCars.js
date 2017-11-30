@@ -39,7 +39,7 @@ function handle_request(msg, callback){
                     // callback(null,res);
                 }
             }
-            var getUser2 = "select location,count(*) as count from transactionHotels group by location order by count desc limit 5;";
+            var getUser2 = "select hotelName,count(*) as count from transactionHotels group by hotelName order by count desc limit 5;";
             console.log("Query is:" + getUser2);
 
             mysql.fetchData(function (err, results) {
