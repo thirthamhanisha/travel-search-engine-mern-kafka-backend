@@ -277,7 +277,7 @@ app.post('/payHotel', function(req, res) {
     console.log(req.body.cardNo);
 
     kafka.make_request('hotelPay_topic',{"ID": req.body.hotelID, "guestCount": req.body.guestCount, "roomCount": req.body.roomCount, "fromDate" : req.body.fromDate,
-        "toDate": req.body.toDate, "billAmount": req.body.billAmount, "cardNo":req.body.cardNo, "username": req.session.user}, function(err,results) {
+        "toDate": req.body.toDate, "billAmount": req.body.billAmount, "cardNo":req.body.cardNo, "username": req.session.user, "location": req.body.city, "hotelName": req.body.hotelName}, function(err,results) {
         console.log('in result');
         console.log(results);
 
@@ -947,6 +947,8 @@ app.post('/bills/billID', function(req, res) {
 
     });
 });
+
+
 app.post('/flight', function(req, res) {
     console.log(req.body.username);
     console.log(req.body.fromCity);
@@ -1051,4 +1053,6 @@ app.post('/payFlight', function(req,res) {
         }    
     });
 });
+
+
 module.exports = app;

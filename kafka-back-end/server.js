@@ -25,6 +25,7 @@ var flight = require('./services/flight');
 var flightDes = require('./services/flightDes');
 var bookFlight = require('./services/bookFlight');
 var payFlight = require('./services/payFlight');
+var report = require('./services/cityYearwiseData');
 
 //var topic_name = 'login_topic';
 //var consumer = connection.getConsumer(topic_name);
@@ -348,6 +349,8 @@ consumer_userAdd.on('message', function (message) {
         return;
     });
 });
+
+
 consumer_carDes.on('message', function (message) {
     console.log('message received');
     console.log(JSON.stringify(message.value));
