@@ -26,6 +26,7 @@ var flightDes = require('./services/flightDes');
 var bookFlight = require('./services/bookFlight');
 var payFlight = require('./services/payFlight');
 var top5LocationsForCars = require('./services/top5LocationsForCars');
+var report = require('./services/report');
 //var topic_name = 'login_topic';
 //var consumer = connection.getConsumer(topic_name);
 var consumer_login = connection.getConsumer('login_topic');
@@ -55,6 +56,7 @@ var consumer_flightDes = connection.getConsumer('flightDes_topic');
 var consumer_bookFlight = connection.getConsumer('bookFlight_topic');
 var consumer_payFlight = connection.getConsumer('payFlight_topic');
 var consumer_top5LocationsForCars = connection.getConsumer('top5LocationsCars_topic');
+var consumer_report = connection.getConsumer('report_topic');
 /*var consumer3 = connection.getConsumer('upload_topic');
 var consumer4 = connection.getConsumer('share_topic');
 var consumer5 = connection.getConsumer('star_topic');
@@ -649,3 +651,25 @@ consumer_top5LocationsForCars.on('message', function (message) {
 
         return;
     });
+consumer_report.on('message', function (message) {
+    console.log('message received');
+    console.log(JSON.stringify(message.value));
+    var data = JSON.parse(message.value);
+    report.handle_request(data.data, function(err,res){
+        console.log('after handle'+res);
+        var payloads = [
+            { topic: data.replyTo,
+                messages:JSON.stringify({
+                    correlationId:data.correlationId,
+                    data : res
+                }),
+                partition : 0
+            }
+        ];
+        producer.send(payloads, function(err, data){
+            console.log(data);
+        });
+
+        return;
+    });
+});
