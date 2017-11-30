@@ -651,6 +651,7 @@ consumer_top5LocationsForCars.on('message', function (message) {
 
         return;
     });
+});
 consumer_report.on('message', function (message) {
     console.log('message received');
     console.log(JSON.stringify(message.value));

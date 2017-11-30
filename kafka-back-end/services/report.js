@@ -73,7 +73,7 @@ function handle_request(msg, callback){
                     //callback(null,res);
                 }
             }
-            var getUser2 = "select carType, count(*) as count from transactioncars where location = '"+msg.city+"' and YEAR(date) = '"+msg.year+""' group by carType order by count  desc limit 5;
+            var getUser2 = "select carType, count(*) as count from transactioncars where location = '"+msg.city+"' and YEAR(date) = '"+msg.year+"' group by carType order by count  desc limit 5";
             console.log("Query is:" + getUser2);
 
             mysql.fetchData(function (err, results) {
