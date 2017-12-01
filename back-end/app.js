@@ -98,8 +98,9 @@ app.post('/login', function(req, res) {
             res.status(401).send("login failed");
         }
         else {
-            req.session.user = user.username;
+            req.session.user = user.value.username;
             console.log(user);
+            console.log(req.session.user);
             console.log("session initilized");
             res.status(201).send({message: "Login successful", isAdmin: user.value.isAdmin});
         }
