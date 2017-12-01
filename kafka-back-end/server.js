@@ -6,9 +6,6 @@ var hotel = require('./services/hotel');
 var hotelDes = require('./services/hotelDes');
 var hotelBook = require('./services/hotelBook');
 var hotelPay = require('./services/hotelPay');
-var flightAdd = require('./services/flightAdd');
-var flightFetch = require('./services/flightFetch');
-var flightEdit = require('./services/flightEdit1');
 var userAdd = require('./services/userAdd');
 var userFetch = require('./services/userFetch');
 var userEdit = require('./services/userEdit');
@@ -21,6 +18,11 @@ var carFetch = require('./services/carFetch');
 var carEdit = require('./services/carEdit');
 var carBills = require('./services/carBills');
 var bill = require('./services/bill');
+
+var flightAdd = require('./services/flightAdd');
+var flightFetch = require('./services/flightFetch');
+var flightEdit = require('./services/flightEdit1');
+
 var flight = require('./services/flight');
 var flightDes = require('./services/flightDes');
 var bookFlight = require('./services/bookFlight');
@@ -43,9 +45,6 @@ var consumer_hotel = connection.getConsumer('hotel_topic');
 var consumer_hotelDes = connection.getConsumer('hotelDes_topic');
 var consumer_hotelBook = connection.getConsumer('hotelBook_topic');
 var consumer_hotelPay = connection.getConsumer('hotelPay_topic');
-var consumer_flightAdd = connection.getConsumer('flightAdd_topic');
-var consumer_flightFetch = connection.getConsumer('flightFetch_topic');
-var consumer_flightEdit = connection.getConsumer('flightEdit_topic');
 var consumer_userFetch = connection.getConsumer('userFetch_topic');
 var consumer_userEdit = connection.getConsumer('userEdit_topic');
 var consumer_userAdd = connection.getConsumer('userAdd_topic');
@@ -58,10 +57,15 @@ var consumer_carFetch=connection.getConsumer('carFetch_topic');
 var consumer_carEdit=connection.getConsumer('carEdit_topic');
 var consumer_carBills=connection.getConsumer('carBills_topic');
 var consumer_bill=connection.getConsumer('bill_topic');
+
 var consumer_flight=connection.getConsumer('flight_topic');
 var consumer_flightDes = connection.getConsumer('flightDes_topic');
 var consumer_bookFlight = connection.getConsumer('bookFlight_topic');
 var consumer_payFlight = connection.getConsumer('payFlight_topic');
+
+var consumer_flightAdd = connection.getConsumer('flightAdd_topic');
+var consumer_flightFetch = connection.getConsumer('flightFetch_topic');
+var consumer_flightEdit = connection.getConsumer('flightEdit_topic');
 
 var consumer_hotelAdd = connection.getConsumer('hotelAdd_topic');
 var consumer_hotelFetch = connection.getConsumer('hotelFetch_topic');
@@ -649,7 +653,7 @@ consumer_flightDes.on('message', function (message) {
     console.log('message received');
     console.log(JSON.stringify(message.value));
     var data = JSON.parse(message.value);
-    flight.handle_request(data.data, function(err,res){
+    flightDes.handle_request(data.data, function(err,res){
         console.log('after handle'+res);
         var payloads = [
             { topic: data.replyTo,
