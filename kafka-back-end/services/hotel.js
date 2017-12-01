@@ -32,7 +32,7 @@ var hotelSearchServiceCount;
     console.log("In handle request:" + JSON.stringify(msg));
 
         console.log(msg.to + msg.from);
-        var getUser = "select * from hoteldetails where city='" + msg.city + "'and fromDate>='" + msg.from + "'and toDate<= '" + msg.to + "'and availableRooms>='" + msg.roomCount + "'";
+        var getUser = "select * from hoteldetails where city='" + msg.city + "'and fromDate<='" + msg.from + "'and toDate>= '" + msg.to + "'and availableRooms>='" + msg.roomCount + "'";
         console.log("Query is:" + getUser);
 
         mysql.fetchData(function (err, results) {
