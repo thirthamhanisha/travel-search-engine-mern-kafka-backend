@@ -421,7 +421,7 @@ app.post('/admin/hotel/EditHotel', function(req, res) {  //to fetch flights for 
                 "fromDate":req.body.fromDate,"toDate":req.body.toDate,"availableRooms":req.body.availableRooms,
                 "guestCount":req.body.guestCount,"starHotel":req.body.starHotel,"ratings":req.body.ratings, "amount":req.body.amount, "bookedRooms":req.body.bookedRoom});
         }
-        if (results.value == 404) {
+        if (results.value == 401) {
             //  done(null,true,results/*{username: username, password: password}*/);
             console.log("in 404" + results.message);
 
@@ -431,6 +431,9 @@ app.post('/admin/hotel/EditHotel', function(req, res) {  //to fetch flights for 
                 file: res1,
                 "flightName": req.body.flightName, "flightID": req.body.flightID
             });
+        }
+        else{
+            res.send("hotel record is edited");
         }
 
     });

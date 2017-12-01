@@ -2,6 +2,7 @@ var mongo = require("./mongo");
 var mongoURL = "mongodb://localhost:27017/login";
 //var bcrypt = require('bcrypt');
 var crypto = require('crypto');
+var mysql = require("./mysql");
 
 function handle_request(msg, callback){
 var loginServiceCount;
