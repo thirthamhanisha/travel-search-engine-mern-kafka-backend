@@ -278,7 +278,7 @@ app.post('/payHotel', function(req, res) {
     console.log(req.body.cardNo);
 
     kafka.make_request('hotelPay_topic',{"ID": req.body.hotelID, "guestCount": req.body.guestCount, "roomCount": req.body.roomCount, "fromDate" : req.body.fromDate,
-        "toDate": req.body.toDate, "billAmount": req.body.billAmount, "cardNo":req.body.cardNo, "username":req.body.username /*req.session.user*/, "location": req.body.location, "hotelName": req.body.hotelName}, function(err,results) {
+        "toDate": req.body.toDate, "billAmount": req.body.billAmount, "cardNo":req.body.cardNo, "username":req.session.user, "location": req.body.location, "hotelName": req.body.hotelName}, function(err,results) {
         console.log('in result');
         console.log(results);
 
@@ -818,7 +818,7 @@ app.post('/payCar', function(req, res) {
     console.log(req.body.cardNo);
 
     kafka.make_request('payCar_topic',{"carID": req.body.carID, "seatCount": req.body.seatCount, "startDate" : req.body.startDate,
-        "endDate": req.body.endDate,"location":req.body.location,"billAmount": req.body.billAmount, "cardNo":req.body.cardNo, "username": req.body.username}, function(err,results) {
+        "endDate": req.body.endDate,"location":req.body.location,"billAmount": req.body.billAmount, "cardNo":req.body.cardNo, "username": req.session.usern}, function(err,results) {
         console.log('in result');
         console.log(results);
 
@@ -966,6 +966,9 @@ app.post('/admin/cars/editcar', function(req, res) {  //to fetch flights for adm
             res.status(201).send({file: res1, "flightName": req.body.flightName, "flightID":req.body.flightID, "operator":req.body.operator,
                 "fromCity":req.body.fromCity,"toCity":req.body.toCity,"fromDate":req.body.fromDate,"seatCount":req.body.seatCount,
                 "departureTime":req.body.departureTime,"arrivalTime":req.body.arrivalTime,"price":req.body.price, "seatType":req.body.seatType });
+        }
+        else{
+            res.send("user record is edited");
         }
         /*if (results.value == 404) {
             //  done(null,true,results/!*{username: username, password: password}*!/);
