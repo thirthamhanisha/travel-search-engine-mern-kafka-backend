@@ -8,8 +8,11 @@ function handle_request(msg, callback) {
     var res = {};
     console.log("In handle request:" + JSON.stringify(msg));
 
-    var getUser = "insert into flightdetails(flightName, operator, departureTime,arrivalTime,fromCity,toCity,fromDate,price,seatsCount,seatType) values('" + msg.flightName + "','" + msg.operator + "','" + msg.departureTime + "','" + msg.arrivalTime + "','" + msg.fromCity + "','" + msg.toCity + "','" + msg.fromDate + "','" + msg.price + "','" + msg.seatCount + "','" + msg.seatType + "')";
-    console.log("Query is:" + getUser);
+    if(msg.maxSeats>=msg.availableSeats)
+    {
+    var flightID =  Math.floor(Math.random() * 9999) + 1000;
+    var insertFlights = "insert into flightdetails(flightID, flightName, operator, fromCity, toCity, departureTime, arrivalTime) values('" +flightID + "','" + msg.flightName + "','" + msg.operator + "','" + msg.fromCity + "','" + msg.toCity + "','" + msg.departureTime + "','" + msg.arrivalTime + "')";
+    console.log("Query is:" + insertFlights);
 
     mysql.fetchData(function (err, results) {
         if (err) {
@@ -17,10 +20,30 @@ function handle_request(msg, callback) {
         }
 
             else  {
-                console.log(results);
+                var insertFlightSeats = "insert into flightseatdetails(flightID, seatType, maxSeats, availableSeats, price) values('" +flightID + "','" + msg.seatType + "','" + msg.maxSeats + "','" + msg.availableSeats + "','" + msg.price + "')";
+                mysql.fetchData(function (err, results) {
+                    if (err) {
+                        throw err;
+                    }
+            
+                        else  {
+                            res.value = "200";
+                            res.message = "the records have been inserted into the table flightdetails and flightseatdetails";
+                        }
+                        callback(null, res);
+                    }, insertFlightSeats);
+                
                 res.value = "200";
-                res.message = "the records have been inserted into the table flightdetails";
-            }
+                res.message = "the records have been inserted into the table flightdetails and flightseatdetails";
+                        /*else {
+                            console.log("no hotels fetched with the given preferences");
+                            res.value = "404";
+                            res.message = "No hotel exists with the criteria";
+                        }*/
+                        console.log("inside try:" + res);
+                        callback(null, res);
+            
+                }
             /*else {
                 console.log("no hotels fetched with the given preferences");
                 res.value = "404";
@@ -29,7 +52,18 @@ function handle_request(msg, callback) {
             console.log("inside try:" + res);
             callback(null, res);
 
-    }, getUser);
+    }, insertFlights);
+
+}
+
+else
+{
+  
+    res.value = "400";
+    res.message = "Available seats value cannot exceed the maxSeats Value";
+    callback(null, res);
+                
+}
 
 }
 

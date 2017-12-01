@@ -328,13 +328,13 @@ app.post('/admin/flights/addFlight', function(req, res) {
     console.log(req.body.arrivalTime);
     console.log(req.body.fromCity);
     console.log(req.body.toCity);
-    console.log(req.body.fromDate);
-    console.log(req.body.price);
-    console.log(req.body.seatCount);
     console.log(req.body.seatType);
+    console.log(req.body.maxSeats);
+    console.log(req.body.availableSeats);
+    console.log(req.body.price);
 
-    kafka.make_request('flightAdd_topic',{"flightName": req.body.flightName, "operator": req.body.operator, "departureTime": req.body.departureTime, "arrivalTime" : req.body.arrivalTime,
-        "fromCity": req.body.fromCity, "toCity": req.body.toCity, "fromDate":req.body.fromDate, "price": req.body.price, "seatCount":req.body.seatCount, "seatType": req.body.seatType }, function(err,results) {
+    kafka.make_request('flightAdd_topic',{"flightName": req.body.flightName, "operator": req.body.operator, "fromCity": req.body.fromCity, "toCity": req.body.toCity, "departureTime": req.body.departureTime, "arrivalTime" : req.body.arrivalTime,
+    "seatType": req.body.seatType, "maxSeats":req.body.maxSeats ,"availableSeats":req.body.availableSeats, "price": req.body.price}, function(err,results) {
         console.log('in result');
         console.log(results);
 
@@ -342,13 +342,13 @@ app.post('/admin/flights/addFlight', function(req, res) {
             res.status(500).send();
         }
 
-        if (results.value == 200) {
+        else {
             //  done(null,true,results/*{username: username, password: password}*/);
             console.log("in 200 " + results.message);
 
             var res1 = results.message;
-
-            res.status(201).send({
+            console.log(results.value);
+            res.status(results.value).send({
                 file: res1,
                 "flightName": req.body.flightName,
                 "operator": req.body.operator,
@@ -356,9 +356,9 @@ app.post('/admin/flights/addFlight', function(req, res) {
                 "arrivalTime": req.body.arrivalTime,
                 "fromCity": req.body.fromCity,
                 "toCity": req.body.toCity,
-                "fromDate": req.body.fromDate,
                 "price": req.body.price,
-                "seatCount": req.body.seatCount,
+                "maxSeats": req.body.maxSeats,
+                "availableSeats": req.body.availableSeats,
                 "seatType": req.body.seatType
             });
         }
@@ -371,8 +371,8 @@ app.post('/admin/flights/addFlight', function(req, res) {
                 res.status(401).send({
                     file: res1,
                     city: req.body.city,
-                    fromDate: req.body.fromDate,
-                    toDate: req.body.toDate,
+                    departureTime: req.body.departureTime,
+                    arrivalTime: req.body.arrivalTime,
                     guestCount: req.body.guestCount,
                     roomCount: req.body.roomCount
                 });
@@ -392,46 +392,49 @@ app.post('/admin/flights/fetchFlight', function(req, res) {  //to fetch flights 
         if (err) {
             res.status(500).send();
         }
-
-        if (results.value == 200) {
+        else{
+        if(results.value == 200)
+        {  console.log("in 200 " + results.message);
+        
+                    var res1 = results.message;
+                    console.log(results.value);
+                    res.status(200).send({
+                        file: res1[0],
+                        "flightName": req.body.flightName,
+                        "flightID": req.body.flightID
+                    });
+                }
             //  done(null,true,results/*{username: username, password: password}*/);
-            console.log("in 200 " + results.message);
-
-            var res1 = results.message;
-
-            res.status(201).send({file: res1, "flightName": req.body.flightName, "flightID": req.body.flightID});
-        }
+           
+        
             if (results.value == 404) {
                 //  done(null,true,results/*{username: username, password: password}*/);
                 console.log("in 404" + results.message);
 
                 var res1 = results.message;
 
-                res.status(401).send({
+                res.status(404).send({
                     file: res1,
-                    "flightName": req.body.flightName, "flightID": req.body.flightID
+                    "flightName": req.body.flightName,
+                    "flightID": req.body.flightID
                 });
-            }
-
+            }         
+        }
     });
 });
 
 app.post('/admin/flights/editFlight', function(req, res) {  //to fetch flights for admin
     console.log(req.body.flightName);
     console.log(req.body.flightID);
-    console.log(req.body.operator);console.log(req.body.fromCity);
+    console.log(req.body.operator);
+    console.log(req.body.fromCity);
     console.log(req.body.toCity);
-    console.log(req.body.fromDate);
-    console.log(req.body.seatCount);
     console.log(req.body.departureTime);
     console.log(req.body.arrivalTime);
-    console.log(req.body.price);
-    console.log(req.body.seatType);
 
 
      kafka.make_request('flightEdit_topic',{"flightName": req.body.flightName, "flightID":req.body.flightID, "operator":req.body.operator,
-         "fromCity":req.body.fromCity,"toCity":req.body.toCity,"fromDate":req.body.fromDate,"seatCount":req.body.seatCount,
-         "departureTime":req.body.departureTime,"arrivalTime":req.body.arrivalTime,"price":req.body.price, "seatType":req.body.seatType }, function(err,results) {
+         "fromCity":req.body.fromCity,"toCity":req.body.toCity,"departureTime":req.body.departureTime,"arrivalTime":req.body.arrivalTime,}, function(err,results) {
         console.log('in result');
         console.log(results);
 
@@ -439,16 +442,50 @@ app.post('/admin/flights/editFlight', function(req, res) {  //to fetch flights f
             res.status(500).send();
         }
 
-        if (results.value == 200) {
+        if (results.value == 200)
+        { 
             //  done(null,true,results/*{username: username, password: password}*/);
             console.log("in 200 " + results.message);
+       
 
             var res1 = results.message;
+            console.log(results.value);
+            res.status(results.value).send({
+                file: res1,
+                 "flightName": req.body.flightName,
+                "flightID":req.body.flightID,
+                "operator":req.body.operator,
+                "fromCity":req.body.fromCity,
+                "toCity":req.body.toCity,
+                "departureTime":req.body.departureTime,
+                "arrivalTime":req.body.arrivalTime
+            });
+            }
+            if (results.value == 400)
+            { 
+                var res1 = results.message;
+                console.log(results.value);
+            res.status(400).send({
+                
+                file: res1,
+                "flightName": req.body.flightName,
+                "flightID": req.body.flightID
+            });
+           }
+           if (results.value == 404)
+           { 
 
-            res.status(201).send({file: res1, "flightName": req.body.flightName, "flightID":req.body.flightID, "operator":req.body.operator,
-                "fromCity":req.body.fromCity,"toCity":req.body.toCity,"fromDate":req.body.fromDate,"seatCount":req.body.seatCount,
-                "departureTime":req.body.departureTime,"arrivalTime":req.body.arrivalTime,"price":req.body.price, "seatType":req.body.seatType });
-        }
+            var res1 = results.message;
+            console.log(results.value);
+           res.status(404).send({
+               file: res1,
+               "flightName": req.body.flightName,
+               "flightID": req.body.flightID
+           });
+          }
+          else{
+              res.send("flight record is edited");
+          }
             /*if (results.value == 404) {
                 //  done(null,true,results/!*{username: username, password: password}*!/);
                 console.log(results.message);
@@ -485,6 +522,8 @@ app.post('/flight', function(req, res) {
             res.status(500).send(results.message);
         }
         else {
+            if(results.length>0)
+            {
             console.log(results.value);
             var res1 = {};
             res1.departure = results.departure.flights;
@@ -499,7 +538,14 @@ app.post('/flight', function(req, res) {
                 seatType: req.body.seatType,
                 passengerCount: req.body.passengerCount
             });
-        }    
+        }
+            else{
+            res.status(results.value).send({
+                    file: "No flights are fetched within the given search criteria"
+                    
+            });
+            }
+        }
     });
 });
 
@@ -517,6 +563,8 @@ app.post('/flightDetails', function(req,res) {
         if (err) {
             res.status(500).send(results.message);
         } else{
+                if(results.length>0){
+
             console.log(results.value);
             var res1 = results.message;
             res.status(results.value).send({
@@ -524,6 +572,13 @@ app.post('/flightDetails', function(req,res) {
                 flightID: req.body.flightID,
                 seatType: req.body.seatType
             });
+        }
+        else{
+            res.status(results.value).send({
+                    file: "No flights are fetched within the given search criteria"
+                    
+            });
+            }
         }
         // res.status(200).send(results);
 

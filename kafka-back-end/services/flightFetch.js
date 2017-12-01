@@ -8,8 +8,8 @@ function handle_request(msg, callback) {
     var res = {};
     console.log("In handle request:" + JSON.stringify(msg));
 
-    var getUser = "select * from flightdetails where flightID = '" + msg.flightID + "' or flightName = '" + msg.flightName + "'";
-    console.log("Query is:" + getUser);
+    var getFlights = "select * from flightSeatDetails fsd inner join flightDetails fd on fsd.flightID = fd.flightID where fd.flightID = '" + msg.flightID + "' or fd.flightName = '" + msg.flightName + "'";
+    console.log("Query is:" + getFlights);
 
     mysql.fetchData(function (err, results) {
         if (err) {
@@ -18,12 +18,11 @@ function handle_request(msg, callback) {
 
         else {
             if (results.length > 0) {
+            
                 console.log(results);
                 res.value = "200";
                 res.message = results;
                 console.log(res);
-
-
             }
             else {
 
@@ -36,7 +35,7 @@ function handle_request(msg, callback) {
             callback(null, res);
         }
 
-    }, getUser);
+    }, getFlights);
 
 }
 

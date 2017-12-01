@@ -47,7 +47,7 @@ function handle_request(msg, callback){
                             }
                             else {
             
-                                res.value = "200";
+                                res.value = "404";
                                 res.message = "";
                                 res.departure = {};
                                 res.departure.value = "404";
@@ -77,8 +77,8 @@ function handle_request(msg, callback){
                                         console.log(res);
                                     }
                                     else {
-                                        res.value = "200";
-                                        res.message = "Success";
+                                        res.value = "404";
+                                        res.message = "";
                                         res.return = {};
                                         res.return.value = "404";
                                         res.return.message = "No return flights fetched with the given preferences";
