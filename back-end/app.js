@@ -154,7 +154,7 @@ app.post('/hotel', function(req, res) {
                var res1 = results.message;
 
                res.status(201).send({
-                   file: res1,
+                   file: results,
                    city: req.body.city,
                    fromDate: req.body.fromDate,
                    toDate: req.body.toDate,
