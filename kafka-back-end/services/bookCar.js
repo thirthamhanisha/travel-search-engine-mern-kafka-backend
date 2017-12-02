@@ -1,7 +1,7 @@
 var mysql = require("./mysql");
 function handle_request(msg, callback) {
     var carBookServiceCount;
-    var service="carBook";
+    var service="Car Booking Page";
     var getUser="select count from servicesCount where service='"+service+"'";
     console.log("Query:"+getUser);
     mysql.fetchData(function(err,results){
