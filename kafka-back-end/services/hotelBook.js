@@ -14,8 +14,8 @@ var hotelBookServiceCount;
         console.log("hotel book Service count:"+JSON.stringify(results));
 
         console.log("hotel book service count:"+JSON.stringify(results[0].count));
-        hotelSearchServiceCount=+JSON.stringify(results[0].count);
-
+        hotelBookServiceCount=+JSON.stringify(results[0].count);
+        console.log("new"+hotelBookServiceCount);
 
 
         hotelBookServiceCount++;
