@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var cors = require('cors');
-const redis = require('redis');
+/*const redis = require('redis');*/
 require('./routes/passport');
 
 var routes = require('./routes/index');
@@ -16,11 +16,11 @@ var mongoStore = require("connect-mongo/es5")(expressSessions);
 var kafka = require('./routes/kafka/client');
 var app = express();
 // Create Redis Client
-let client = redis.createClient();
+/*let client = redis.createClient();
 
 client.on('connect', function(){
     console.log('Connected to Redis...');
-});
+});*/
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
