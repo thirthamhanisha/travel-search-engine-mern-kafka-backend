@@ -9,14 +9,14 @@ var mysql = require("./mysql");
 
 function handle_request(msg, callback){
  var signupServiceCount;
-    var service="Signup Page";
+    var service=" Signup Page";
     var getUser="select count from servicesCount where service='"+service+"'";
     console.log("Query:"+getUser);
     mysql.fetchData(function(err,results){
 
         console.log("signup Service count:"+JSON.stringify(results));
 
-        console.log("signup service count:"+JSON.stringify(results[0].count));
+        console.log("signup service count:"+JSON.stringify(results.count));
         signupServiceCount=+JSON.stringify(results[0].count);
 
 
