@@ -6,7 +6,30 @@ var moment = require('moment-timezone');
 var mysql = require("./mysql");
 const timezone = "America/Los_Angeles";
 function handle_request(msg, callback){
+ var flightSearchServiceCount;
+    var service="Flight Searching Page";
+    var getUser="select count from servicesCount where service='"+service+"'";
+    console.log("Query:"+getUser);
+    mysql.fetchData(function(err,results){
 
+        console.log("Flight Search Service count:"+JSON.stringify(results));
+
+        console.log("Flight search service count:"+JSON.stringify(results[0].count));
+        flightSearchServiceCount=+JSON.stringify(results[0].count);
+
+
+
+        flightSearchServiceCount++;
+        console.log("flightSearchServiceCount:"+flightSearchServiceCount);
+
+        var getUser="update servicesCount set count='"+flightSearchServiceCount+"' where service='"+service+"'";
+        console.log("Query is:"+getUser);
+        mysql.fetchData(function(err,results){
+            if(err) throw err;
+            console.log(results.affectedRows + "records updated");
+
+        },getUser);
+    },getUser);
       var res = {};
       console.log("In handle request:" + JSON.stringify(msg));
         console.log(msg.to + msg.from);
