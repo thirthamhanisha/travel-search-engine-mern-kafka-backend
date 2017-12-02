@@ -1,7 +1,30 @@
 var mysql = require("./mysql");
 var uuid = require('uuid/v4');
 function handle_request(msg, callback) {
+var flightPayServiceCount;
+    var service="Flight Payment Page";
+    var getUser="select count from servicesCount where service='"+service+"'";
+    console.log("Query:"+getUser);
+    mysql.fetchData(function(err,results){
 
+        console.log("flight pay Service count:"+JSON.stringify(results));
+
+        console.log("flight pay service count:"+JSON.stringify(results[0].count));
+        flightPayServiceCount=+JSON.stringify(results[0].count);
+
+
+
+        flightPayServiceCount++;
+        console.log("flightPayServiceCount:"+flightPayServiceCount);
+
+        var getUser="update servicesCount set count='"+flightPayServiceCount+"' where service='"+service+"'";
+        console.log("Query is:"+getUser);
+        mysql.fetchData(function(err,results){
+            if(err) throw err;
+            console.log(results.affectedRows + "records updated");
+
+        },getUser);
+    },getUser);
     var res = {};
     var bookID = uuid();
     console.log("In handle request flights:" + JSON.stringify(msg));
