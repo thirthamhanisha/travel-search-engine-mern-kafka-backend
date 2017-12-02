@@ -5,7 +5,7 @@ var crypto = require('crypto');
 var mysql = require("./mysql");
 function handle_request(msg, callback) {
 var hotelDetailsServiceCount;
-    var service="hotelDetails";
+    var service="Hotel Details Page";
     var getUser="select count from servicesCount where service='"+service+"'";
     console.log("Query:"+getUser);
     mysql.fetchData(function(err,results){

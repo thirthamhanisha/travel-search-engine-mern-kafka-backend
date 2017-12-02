@@ -6,7 +6,7 @@ var mysql = require("./mysql");
 
 function handle_request(msg, callback){
 var loginServiceCount;
-    var service="login";
+    var service="Login Page";
     var getUser="select count from servicesCount where service='"+service+"'";
     console.log("Query:"+getUser);
     mysql.fetchData(function(err,results){
