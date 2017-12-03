@@ -773,7 +773,7 @@ app.post('/car', function(req, res) {
     //  console.log(req.body.to);
 
 
-    kafka.make_request('car_topic',{"location":req.body.location,"startDate":req.body.startDate,"endDate":req.body.endDate,"seatCount":req.body.seatCount,"carType":req.body.carType,"minPrice":req.body.minPrice,"maxPrice":req.body.maxPrice}, function(err,results) {
+    kafka.make_request('car_topic',{"location":req.body.location,"startDate":req.body.startDate,"endDate":req.body.endDate,"seatCount":req.body.seatCount,"filter":req.body.filter,"carType":req.body.carType,"minPrice":req.body.minPrice,"maxPrice":req.body.maxPrice}, function(err,results) {
         console.log('in result');
         console.log(results);
 
