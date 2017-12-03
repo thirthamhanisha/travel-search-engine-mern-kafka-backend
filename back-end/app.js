@@ -1137,7 +1137,7 @@ app.post('/bills/billID', function(req, res) {
 });
 
 
-app.post('/flight', function(req, res) {
+[12:49 PM, 12/3/2017] Sreedeep: app.post('/flight', function(req, res) {
     console.log(req.body.username);
     console.log(req.body.fromCity);
     console.log(req.body.toCity);
@@ -1148,7 +1148,7 @@ app.post('/flight', function(req, res) {
 
 
     kafka.make_request('flight_topic',{"username": req.body.username, "fromCity":req.body.fromCity, "toCity":req.body.toCity, "departureDate":req.body.departureDate,
-    "returnDate":req.body.returnDate, "seatType":req.body.seatType, "passengerCount":req.body.passengerCount},
+    "returnDate":req.body.returnDate, "seatType":req.body.seatType, "passengerCount":req.body.passengerCount, "filter":req.body.filter,"minPrice":req.body.minPrice, "maxPrice":req.body.maxPrice},
     function(err,results) {
         console.log('in result');
         console.log(results);
