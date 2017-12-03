@@ -138,7 +138,7 @@ app.post('/hotel', function(req, res) {
     if (req.body.fromDate <= req.body.toDate) {
         kafka.make_request('hotel_topic', {
             "city": req.body.city, "from": req.body.fromDate, "to": req.body.toDate, "guestCount": req.body.guestCount,
-            "roomCount": req.body.roomCount, "username":req.session.user
+            "roomCount": req.body.roomCount, "username":req.session.user,"filter":req.body.filter,"star":req.body.star,"maxPrice":req.body.maxPrice,"minPrice":req.body.minPrice
         }, function (err, results) {
             console.log('in result');
             console.log(results);
