@@ -28,7 +28,7 @@ function handle_request(msg, callback){
 
         },getUser);
     },getUser);
-    //var res = {};
+    var res = {};
     console.log("In handle request:" + JSON.stringify(msg));
 
     if(isNaN(msg.flightID)) {
