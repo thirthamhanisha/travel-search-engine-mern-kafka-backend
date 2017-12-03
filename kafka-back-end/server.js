@@ -18,7 +18,7 @@ var carFetch = require('./services/carFetch');
 var carEdit = require('./services/carEdit');
 var carBills = require('./services/carBills');
 var bill = require('./services/bill');
-
+var bills = require('./services/bills');
 var flightAdd = require('./services/flightAdd');
 var flightFetch = require('./services/flightFetch');
 var flightEdit = require('./services/flightEdit1');
@@ -73,6 +73,7 @@ var consumer_hotelEdit = connection.getConsumer('hotelEdit_topic');
 
 var consumer_top5LocationsForCars = connection.getConsumer('top5LocationsCars_topic');
 var consumer_report = connection.getConsumer('report_topic');
+var consumer_bills=connection.getConsumer('bills_topic');
 
 /*var consumer3 = connection.getConsumer('upload_topic');
 var consumer4 = connection.getConsumer('share_topic');
@@ -759,3 +760,25 @@ consumer_report.on('message', function (message) {
         return;
     });
 });
+consumer_bills.on('message', function (message) {
+    console.log('message received');
+    console.log(JSON.stringify(message.value));
+    var data = JSON.parse(message.value);
+    bills.handle_request(data.data, function(err,res){
+        console.log('after handle'+res);
+        var payloads = [
+            { topic: data.replyTo,
+                messages:JSON.stringify({
+                    correlationId:data.correlationId,
+                    data : res
+                }),
+                partition : 0
+            }
+        ];
+        producer.send(payloads, function(err, data){
+            console.log(data);
+        });
+        return;
+    });
+});
+
