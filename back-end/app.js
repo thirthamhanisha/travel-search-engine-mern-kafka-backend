@@ -1377,12 +1377,7 @@ app.post('/bills/fromDate/toDate', function(req, res) {
 
             var res1 = results.message;
 
-            res.status(201).send({
-                results: res1,
-                "fromDate": req.body.fromDate,
-                "toDate": req.body.toDate
-
-            });
+            
         }
         if (results.value == 404) {
             //  done(null,true,results/*{username: username, password: password}*/);
