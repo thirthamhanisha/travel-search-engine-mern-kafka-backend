@@ -1348,5 +1348,54 @@ app.post('/admin/reports', function(req, res) {
         }
     });
 });
+app.post('/bills/fromDate/toDate', function(req, res) {
+    //console.log(req.body.startDate);
+    //console.log(req.body.toDate);
 
+    kafka.make_request('bills_topic', {
+        "bookingType":req.body.bookingType,
+        "fromDate": req.body.fromDate,
+        "toDate": req.body.toDate
+    }, function (err, results) {
+        console.log('in result');
+        console.log(results);
+
+
+        if (err) {
+            res.status(500).send();
+        }
+
+        if (results.value == 200) {
+            var res1 = results.message;
+            res.status(200).send({
+                results:res1,
+                "fromDate":req.body.fromDate,
+                "toDate":req.body.toDate
+            });
+            //  done(null,true,results/*{username: username, password: password}*/);
+            console.log("in 200 " + results.message);
+
+            var res1 = results.message;
+
+            res.status(201).send({
+                results: res1,
+                "fromDate": req.body.fromDate,
+                "toDate": req.body.toDate
+
+            });
+        }
+        if (results.value == 404) {
+            //  done(null,true,results/*{username: username, password: password}*/);
+            console.log(results.message);
+
+            var res1 = results.message;
+
+            res.status(404).send({
+                message: res1,
+
+            });
+        }
+
+    });
+});
 module.exports = app;
