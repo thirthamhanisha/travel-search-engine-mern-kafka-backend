@@ -767,18 +767,18 @@ app.post('/admin/users/editUser', function(req, res) {  //to fetch flights for a
 });
 app.post('/car', function(req, res) {
 
-    console.log("in car api");
-    //  console.log(req.body.city);
-    //  console.log(req.body.date);
-    //  console.log(req.body.to);
+ console.log("in car api");
+  //  console.log(req.body.city);
+  //  console.log(req.body.date);
+  //  console.log(req.body.to);
 
 
-    kafka.make_request('car_topic',{"location":req.body.location,"startDate":req.body.startDate,"endDate":req.body.endDate,"seatCount":req.body.seatCount,"filter":req.body.filter,"carType":req.body.carType,"minPrice":req.body.minPrice,"maxPrice":req.body.maxPrice}, function(err,results) {
+    kafka.make_request('car_topic',{"location":req.body.location,"startDate":req.body.startDate,"endDate":req.body.endDate,"seatCount":req.body.seatCount,"carType":req.body.carType,"filter":req.body.filter,"minPrice":req.body.minPrice,"maxPrice":req.body.maxPrice}, function(err,results) {
         console.log('in result');
         console.log(results);
 
         if (err) {
-            res.status(500).send();
+            res.status(404).send({message:results});
         }
         else {
             if (results.value == 200) {
@@ -787,19 +787,14 @@ app.post('/car', function(req, res) {
 
                 var res1 = results.value;
 
-                res.status(200).send(
-                    {
-                        message: results,
-                        location: req.body.location,
-                        startDate: req.body.startDate,
-                        endDate: req.body.endDate,
-                        seatCount: req.body.seatCount
-                    }
-                );
+                res.status(200).send({message: results});
             }
-        }
+        else if(results.value == 404){
+            res.status(404).send({message:results});
+        }}
     });
 });
+
 app.post('/carDetails', function(req, res) {
     /*console.log(req.body.city);
     console.log(req.body.fromDate);
