@@ -32,6 +32,7 @@ var hotelSearchServiceCount;
     console.log("In handle request:" + JSON.stringify(msg));
 
         console.log(msg.to + msg.from);
+    if(msg.filter === 0){
         var getUser = "select * from hoteldetails where city='" + msg.city + "'and fromDate<='" + msg.from + "'and toDate>= '" + msg.to + "'and availableRooms>='" + msg.roomCount + "'";
         console.log("Query is:" + getUser);
 
@@ -58,7 +59,95 @@ var hotelSearchServiceCount;
                 console.log("inside try:" + res);
                 callback(null, res);
             }
+        }, getUser);}
+    else if(msg.filter === 1){
+        // var getUser = "select * from hoteldetails where city='" + msg.city + "'and fromDate<='" + msg.from + "'and toDate>= '" + msg.to + "'and availableRooms>='" + msg.roomCount + "'";
+       var getUser = "select * from hoteldetails where city='" + msg.city + "'and fromDate<='" + msg.from + "'and toDate>= '" + msg.to + "'and availableRooms>='" + msg.roomCount + "' and starHotel>='"+msg.star+"'";
+        console.log("Query is:" + getUser);
+
+        mysql.fetchData(function (err, results) {
+            if (err) {
+                throw err;
+            }
+            else {
+                if (results.length > 0) {
+                    console.log(results);
+                    res.value = "200";
+                    res.message = results;
+                    console.log(res);
+
+
+                }
+                else {
+
+                    console.log("no hotels fetched with the given preferences");
+                    res.value = "404";
+                    res.message = "No hotel exists with the criteria";
+
+                }
+                console.log("inside try:" + res);
+                callback(null, res);
+            }
         }, getUser);
+    }else if(msg.filter === 2){
+         //var getUser = "select * from hoteldetails where city='" + msg.city + "'and fromDate<='" + msg.from + "'and toDate>= '" + msg.to + "'and availableRooms>='" + msg.roomCount + "' and starHotel>='"+msg.star+"'";
+         var getUser = "select * from hoteldetails where city='" + msg.city + "'and fromDate<='" + msg.from + "'and toDate>= '" + msg.to + "'and availableRooms>='" + msg.roomCount + "' and amount between '"+msg.minPrice+"' and '"+msg.maxPrice+"'";
+        console.log("Query is:" + getUser);
+
+        mysql.fetchData(function (err, results) {
+            if (err) {
+                throw err;
+            }
+            else {
+                if (results.length > 0) {
+                    console.log(results);
+                    res.value = "200";
+                    res.message = results;
+                    console.log(res);
+
+
+                }
+                else {
+
+                    console.log("no hotels fetched with the given preferences");
+                    res.value = "404";
+                    res.message = "No hotel exists with the criteria";
+
+                }
+                console.log("inside try:" + res);
+                callback(null, res);
+            }
+        }, getUser);
+    }else {
+        //var getUser = "select * from hoteldetails where city='" + msg.city + "'and fromDate<='" + msg.from + "'and toDate>= '" + msg.to + "'and availableRooms>='" + msg.roomCount + "'";
+        var getUser = "select * from hoteldetails where city='" + msg.city + "'and fromDate<='" + msg.from + "'and toDate>= '" + msg.to + "'and availableRooms>='" + msg.roomCount + "' and starHotel='"+msg.star+"' and amount between '"+msg.minPrice+"' and '"+msg.maxPrice+"'";
+        console.log("Query is:" + getUser);
+
+        mysql.fetchData(function (err, results) {
+            if (err) {
+                throw err;
+            }
+            else {
+                if (results.length > 0) {
+                    console.log(results);
+                    res.value = "200";
+                    res.message = results;
+                    console.log(res);
+
+
+                }
+                else {
+
+                    console.log("no hotels fetched with the given preferences");
+                    res.value = "404";
+                    res.message = "No hotel exists with the criteria";
+
+                }
+                console.log("inside try:" + res);
+                callback(null, res);
+            }
+        }, getUser);
+    }
 
         /*   }
        catch (e){
