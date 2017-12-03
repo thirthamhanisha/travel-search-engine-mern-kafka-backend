@@ -34,6 +34,9 @@ function handle_request(msg, callback){
       console.log("In handle request:" + JSON.stringify(msg));
         console.log(msg.to + msg.from);
 
+            if(msg.filter === 0)
+            {
+
         var departureTime=Date.parse(msg.departureDate);
         if (isNaN(departureTime)==false)
         {
@@ -167,6 +170,144 @@ function handle_request(msg, callback){
             res.message="Invalid departure date format";
             callback(null,res);
         }
+    }
+
+    else
+    {
+        var departureTime=Date.parse(msg.departureDate);
+        if (isNaN(departureTime)==false)
+        {
+            //valid
+            const departureDateStart = moment(msg.departureDate,timezone).format('YYYY-MM-DD 00:00:00');
+            const departureDateEnd = moment(msg.departureDate,timezone).format('YYYY-MM-DD 23:59:59');
+
+            var returnTime=Date.parse(msg.returnDate);
+            console.log(returnTime)
+            console.log(isNaN(returnTime))
+            if (isNaN(returnTime)==false)
+            {
+                //valid
+                if(departureTime<returnTime)
+                {
+                    //valid
+                    var getDepFlights = "select * from flightDetails fd inner join flightSeatDetails fsd on fd.flightID = fsd.flightID where fromCity = '"+msg.fromCity+"'and toCity = '"+msg.toCity+"'and departureTime >= '"+departureDateStart+"'and departureTime <= '"+departureDateEnd+"' and seatType = '"+msg.seatType+"'and availableSeats >= '"+msg.passengerCount+"' and price between '"+msg.minPrice+"' and '"+msg.maxPrice+"'";
+                    console.log("Query is:"+getDepFlights);
+        
+                    mysql.fetchData(function (err, results) {
+                        if (err) {
+                            throw err;
+                        }
+                        else {
+                            if (results.length > 0) {
+                                console.log(results);
+                                res.value = "200";
+                                res.message = "";
+                                res.departure = {};
+                                res.departure.value = "200";
+                                res.departure.message = "";
+                                res.departure.flights = results;
+                                console.log(res);
+                            }
+                            else {
+            
+                                res.value = "404";
+                                res.message = "";
+                                res.departure = {};
+                                res.departure.value = "404";
+                                res.departure.message = "No flights fetched with the given preferences";
+                                res.departure.flights = results;
+                            }
+
+                            const returnDateStart = moment(msg.returnDate,timezone).format('YYYY-MM-DD 00:00:00');
+                            const returnDateEnd = moment(msg.returnDate,timezone).format('YYYY-MM-DD 23:59:59');
+
+                            var getRetFlights = "select * from flightDetails fd inner join flightSeatDetails fsd on fd.flightID = fsd.flightID where fromCity = '"+msg.toCity+"'and toCity = '"+msg.fromCity+"'and departureTime >= '"+returnDateStart+"'and departureTime <= '"+returnDateEnd+"' and seatType = '"+msg.seatType+"'and availableSeats >= '"+msg.passengerCount+"'";
+                            console.log("Query is:"+getRetFlights);
+                            
+                            mysql.fetchData(function (err, results) {
+                                if (err) {
+                                    throw err;
+                                }
+                                else {
+                                    if (results.length > 0) {
+                                        console.log(results);
+                                        res.value = "200";
+                                        res.message = "Success";
+                                        res.return = {};
+                                        res.return.value = "200";
+                                        res.return.message = "";
+                                        res.return.flights = results;
+                                        console.log(res);
+                                    }
+                                    else {
+                                        res.value = "404";
+                                        res.message = "";
+                                        res.return = {};
+                                        res.return.value = "404";
+                                        res.return.message = "No return flights fetched with the given preferences";
+                                        res.return.flights = results;  
+                                    }     
+                                    callback(null,res);                             
+                                }
+                            }, getRetFlights);
+                        }
+                    }, getDepFlights);
+                }
+                else
+                {
+                    //invalid
+                    res.value="400";
+                    res.message="Return Date should be greater than the Arrival Date.";
+                    callback(null,res);
+                }
+            }
+            else
+            {
+                //invalid
+                var getFlights = "select * from flightDetails fd inner join flightSeatDetails fsd on fd.flightID = fsd.flightID where fromCity = '"+msg.fromCity+"'and toCity = '"+msg.toCity+"'and departureTime >= '"+departureDateStart+"'and departureTime <= '"+departureDateEnd+"' and seatType = '"+msg.seatType+"'and availableSeats >= '"+msg.passengerCount+"'";
+                console.log("Query is:"+getFlights);
+    
+                mysql.fetchData(function (err, results) {
+                    if (err) {
+                        throw err;
+                    }
+                    else {
+                        if (results.length > 0) {
+                            console.log(results);
+                            res.value = "200";
+                            res.message = "Success";
+                            res.departure = {}
+                            res.departure.value = "200";
+                            res.departure.message = "";
+                            res.departure.flights = results;
+                            console.log(res);
+                        }
+                        else {
+        
+                            res.value = "200";
+                            res.message = "Success";
+                            res.departure = {}
+                            res.departure.value = "404";
+                            res.departure.message = "No flights fetched with the given preferences";
+                            res.departure.flights = results;
+                        }
+                        res.return = {}
+                        res.return.value = "400";
+                        res.return.message = "Invalid return date format";
+                        res.return.flights = [];
+                        callback(null,res);
+                    }
+                }, getFlights);
+            }
+        }
+         else
+        {
+            //invalid
+            res.value="400";
+            res.message="Invalid departure date format";
+            callback(null,res);
+        }
+    }
 
         var getUser = "select * from users where username='" + msg.username + "'";
         console.log("Query is:" + getUser);
