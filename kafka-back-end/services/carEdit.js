@@ -2,7 +2,7 @@ var mysql = require("./mysql");
 function handle_request(msg, callback) {
 
     var res = {};
-    var getUser1="select * from carDemo WHERE hotelID ='"+msg.hotelID+"'";
+    var getUser1="select * from carDemo WHERE carID='"+msg.carID+"'";
     console.log("Query is:"+getUser1);
     var getUser2="update carDemo SET  carType='"+msg.carType+"',carName=  '" + msg.carName+"', price='"+msg.price+"',seatCount='"+msg.seatCount+"',location='"+msg.location+"',operator=  '" + msg.operator+"',ratings='"+msg.ratings+"' WHERE carID ='"+msg.carID+"'";
     console.log("Query is:"+getUser2); // this is to decrement the available rooms and increase the booked rooms accordingly in database.
