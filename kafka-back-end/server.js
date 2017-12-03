@@ -35,6 +35,9 @@ var hotelEdit = require('./services/hotelEdit');
 
 var top5LocationsForCars = require('./services/top5LocationsForCars');
 var report = require('./services/report');
+var userEdit1 = require('./services/userEdit1');
+var userFetch1 = require('./services/userFetch1');
+var userDelete = require('./services/userDelete');
 
 //var topic_name = 'login_topic';
 //var consumer = connection.getConsumer(topic_name);
@@ -83,7 +86,9 @@ var consumer7 = connection.getConsumer('delstar_topic');
 var consumer8 = connection.getConsumer('profile_topic');
 var consumer9 = connection.getConsumer('folder_topic');
 var consumer10 = connection.getConsumer('group_topic');*/
-
+var consumer_userEdit1 = connection.getConsumer('userEdit1_topic');
+var consumer_userFetch1 = connection.getConsumer('userFetch1_topic');
+var consumer_userDelete = connection.getConsumer('userDelete_topic');
 var producer = connection.getProducer();
 
 console.log('server is running');
@@ -781,4 +786,67 @@ consumer_bills.on('message', function (message) {
         return;
     });
 });
+consumer_userEdit1.on('message', function (message) {
+    console.log('message received');
+    console.log(JSON.stringify(message.value));
+    var data = JSON.parse(message.value);
+    userEdit1.handle_request(data.data, function(err,res){
+        console.log('after handle'+res);
+        var payloads = [
+            { topic: data.replyTo,
+                messages:JSON.stringify({
+                    correlationId:data.correlationId,
+                    data : res
+                }),
+                partition : 0
+            }
+        ];
+        producer.send(payloads, function(err, data){
+            console.log(data);
+        });
 
+        return;
+    });
+});
+consumer_userFetch1.on('message', function (message) {
+    console.log('message received');
+    console.log(JSON.stringify(message.value));
+    var data = JSON.parse(message.value);
+    userFetch1.handle_request(data.data, function(err,res){
+        console.log('after handle'+res);
+        var payloads = [
+            { topic: data.replyTo,
+                messages:JSON.stringify({
+                    correlationId:data.correlationId,
+                    data : res
+                }),
+                partition : 0
+            }
+        ];
+        producer.send(payloads, function(err, data){
+            console.log(data);
+        });
+        return;
+    });
+});
+consumer_userDelete.on('message', function (message) {
+    console.log('message received');
+    console.log(JSON.stringify(message.value));
+    var data = JSON.parse(message.value);
+    userDelete.handle_request(data.data, function(err,res){
+        console.log('after handle'+res);
+        var payloads = [
+            { topic: data.replyTo,
+                messages:JSON.stringify({
+                    correlationId:data.correlationId,
+                    data : res
+                }),
+                partition : 0
+            }
+        ];
+        producer.send(payloads, function(err, data){
+            console.log(data);
+        });
+        return;
+    });
+});
