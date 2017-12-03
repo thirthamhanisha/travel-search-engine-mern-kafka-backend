@@ -1,7 +1,6 @@
-
 var mysql = require("./mysql");
 function handle_request(msg, callback){
- var payCarServiceCount;
+    var payCarServiceCount;
     var service="Car Payment Page";
     var getUser="select count from servicesCount where service='"+service+"'";
     console.log("Query:"+getUser);
@@ -28,7 +27,7 @@ function handle_request(msg, callback){
     var res = {};
     console.log("In handle request:" + JSON.stringify(msg));
     console.log(msg.username); //this will be undefined since the sessions are not defined in postman, you can manually give the username and test.
-    var getUser="insert into transactionCars(carID,amount,cardNo,username,date) values ('"+msg.carID+"','" + msg.billAmount+"','" + msg.cardNo+"','" + msg.username+"',NOW())";
+    var getUser="insert into transactionCars(carID,carType,amount,cardNo,username,date,location) values ('"+msg.carID+"','"+msg.carType+"','" + msg.billAmount+"','" + msg.cardNo+"','" + msg.username+"',NOW(),'"+msg.location+"')";
     console.log("Query is:"+getUser);// TO CHECK HOW TO INSERT BOOKING id , SHOULD BE INSERT IT EXPLICITLY OR IT WILL AUTO INCREMENT IT? SHULD SEND BOOKING ID
     mysql.fetchData(function(err,results){ // WHAT WILL THE RESULTS PRINT. HAVE TO CHECK.
         if(err){
@@ -55,12 +54,39 @@ function handle_request(msg, callback){
                     console.log("inserted the booking ID into the table");
                     res.value = "201";
                     res.message = results1;
+                    var getUser2="select * from transactionCars order by bookID desc LIMIT 1";
+                    mysql.fetchData(function(err,results1){ // WHAT WILL THE RESULTS PRINT. HAVE TO CHECK.
+                        if(err){
+                            throw err;
+                        }
+                        else
+                        {
+                            if(results1.length > 0){
+                                console.log(results1);
+                                console.log("fetching the booking ID from the table");
+                                res.value = "200";
+                                res.message= results1;
+
+
+                            }
+                            else {
+
+                                console.log("insert valid details");
+                                res.value= "401";
+                                res.message="invalid details";
+
+                            }
+                            console.log("inside try:" + res);
+                            callback(null, res);
+                        }
+                    },getUser2);
 
 
                 }
 
-                    console.log("inside try:" + JSON.stringify(res));
-                    callback(null, res);
+
+                //console.log("inside try:" + JSON.stringify(res));
+
 
             },getUser1);
 
