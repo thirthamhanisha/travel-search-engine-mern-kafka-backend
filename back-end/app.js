@@ -102,7 +102,7 @@ app.post('/login', function(req, res) {
         }
 
         if(!user) {
-            res.status(401).send({value: 201, messsage: "login failed"});
+            res.status(401).send({value: 401, messsage: "login failed"});
         }
         else {
             req.session.user = user.value[0].username;
@@ -120,10 +120,10 @@ app.post('/signup',function(req,res){
 			res.status(500).send();
 		}
 		if(user === false){
-			res.status(401).send("user already exists, please use a different user name");
+			res.status(401).send({value: 401, message:"user already exists, please use a different user name"});
 		}
 		else {
-			res.status(201).send("Signup successful, please login");
+			res.status(201).send({value: 201, message:"Signup successful, please login"});
 		}
 	})(req,res);
 });
@@ -171,6 +171,7 @@ app.post('/hotel', function(req, res) {
 
                 res.status(404).send({
                     file: results,
+                    value: 401,
                     city: req.body.city,
                     fromDate: req.body.fromDate,
                     toDate: req.body.toDate,
@@ -205,7 +206,8 @@ app.post('/hotelDetails', function(req, res) {
 
             res.status(201).send({
                 file: res1[0],
-                hotelRequested: req.body.hotelRequested
+                hotelRequested: req.body.hotelRequested,
+                value: 201
             });
         }
         if (results.value == 404) {
@@ -215,7 +217,8 @@ app.post('/hotelDetails', function(req, res) {
             var res1 = results.message;
 
             res.status(401).send({
-                file: results[0]
+                file: results[0],
+                value: 401
             });
         }
 
@@ -252,7 +255,8 @@ app.post('/bookHotel', function(req, res) {
                         bill_amount: bill_amount,
                         ID: req.body.hotelID
                     },
-                hotelRequested: req.body.hotelRequested
+                hotelRequested: req.body.hotelRequested,
+                value: 201
             });
         }
 
@@ -264,7 +268,8 @@ app.post('/bookHotel', function(req, res) {
 
             res.status(404).send({
                 file: res1,
-                hotelRequested: req.body.hotelRequested
+                hotelRequested: req.body.hotelRequested,
+                value: 401
             });
         }
 
@@ -296,6 +301,7 @@ app.post('/payHotel', function(req, res) {
 
             res.status(201).send({
                 file: res1[0],
+                value:201,
                 message: "booking confirmed with booking ID: ",
                 ID: req.body.hotelID,
                 guestCount: req.body.guestCount,
@@ -313,6 +319,7 @@ app.post('/payHotel', function(req, res) {
 
             res.status(401).send({
                 file: res1,
+                value:401,
                 city: req.body.city,
                 fromDate: req.body.fromDate,
                 toDate: req.body.toDate,
@@ -377,7 +384,6 @@ app.post('/flight', function(req, res) {
                     res.status(results.value).send({
                         file: "No flights are fetched within the given search criteria",
                         value: 401
-
                     });
                 }
             }
@@ -402,6 +408,7 @@ app.post('/flightDetails', function(req,res) {
                     var res1 = results.message;
                     res.status(results.value).send({
                         file: res1,
+                        value: 201,
                         flightID: req.body.flightID,
                         seatType: req.body.seatType,
                         flightRequested: req.body.flightRequested
@@ -409,7 +416,8 @@ app.post('/flightDetails', function(req,res) {
                 }
                 else{
                     res.status(results.value).send({
-                        file: "No flights are fetched within the given search criteria"
+                        file: "No flights are fetched within the given search criteria",
+                        value: 401
 
                     });
                 }
@@ -452,7 +460,8 @@ app.post('/bookFlight', function(req,res) {
                                 bill_amount: results.message.price,
                                 flightID: req.body.flightID
                             },
-                        flightRequested: req.body.flightRequested
+                        flightRequested: req.body.flightRequested,
+                        value: 201
                     }
                     /*{
                         file: res1,
@@ -487,6 +496,7 @@ app.post('/payFlight', function(req,res) {
                 res.status(results.value).send({
                     file: res1,
                     username:req.body.username,
+                    value: 201,
                     cardDetails:req.body.cardDetails,
                     depFlightID:req.body.depFlightID,
                     retFlightID:req.body.retFlightID,
@@ -520,10 +530,17 @@ app.post('/car', function(req, res) {
 
                 var res1 = results.value;
 
-                res.status(200).send({message: results});
+                res.status(200).send({
+                    message: results,
+                    location: req.body.location,
+                    startDate: req.body.startDate,
+                    endDate: req.body.endDate,
+                    seatCount: req.body.seatCount,
+                    filter: req.body.filter
+                , value: 201});
             }
             else if(results.value == 404){
-                res.status(404).send({message:results});
+                res.status(404).send({message:results, value: 401});
             }}
     });
 });
@@ -549,7 +566,8 @@ app.post('/carDetails', function(req, res) {
                 console.log(results.value);
                 res.status(200).send({
                     results: results.message[0],
-                    carRequested: req.body.carRequested
+                    carRequested: req.body.carRequested,
+                    value: 201
                 });
             }
         }
@@ -589,7 +607,8 @@ app.post('/bookCar', function(req, res) {
                                 bill_amount: bill_amount,
                                 carID:req.body.carID
                             },
-                        carRequested: req.body.carRequested
+                        carRequested: req.body.carRequested,
+                        value: 201
                     }
                 );
             }
@@ -624,6 +643,7 @@ app.post('/payCar', function(req, res) {
             res.status(201).send(
                 {
                     results: res1[0],
+                    value: 201,
                     message: "booking confirmed with booking ID: ",
                     bookID:res1.bookID,
                     carID: req.body.carID,
@@ -641,6 +661,7 @@ app.post('/payCar', function(req, res) {
 
                 res.status(401).send({
                     results: res1,
+                    value: 401,
                     bookID: res1.bookID,
                     startDate: req.body.startDate,
                     endDate: req.body.endDate,
@@ -671,6 +692,7 @@ app.post('/admin/hotel/addHotel', function(req, res) {
 
             res.status(201).send({
                 file: res1,
+                value: 201,
                 "hotelName": req.body.flightName, "city": req.body.city, "fromDate": req.body.fromDate, "toDate" : req.body.toDate,
                 "availableRooms": req.body.availableRooms, "guestCount": req.body.guestCount, "starHotel":req.body.starHotel, "ratings": req.body.ratings,
                 "amount":req.body.amount
@@ -712,7 +734,7 @@ app.post('/admin/hotel/fetchHotel', function(req, res) {  //to fetch flights for
 
             var res1 = results.message;
 
-            res.status(201).send({file: res1[0], "flightName": req.body.flightName, "flightID": req.body.flightID});
+            res.status(201).send({file: res1[0], value:201,"flightName": req.body.flightName, "flightID": req.body.flightID});
         }
         if (results.value == 404) {
             //  done(null,true,results/*{username: username, password: password}*/);
@@ -722,6 +744,7 @@ app.post('/admin/hotel/fetchHotel', function(req, res) {  //to fetch flights for
 
             res.status(401).send({
                 file: res1,
+                value: 401,
                 "flightName": req.body.flightName, "flightID": req.body.flightID
             });
         }
@@ -749,7 +772,7 @@ app.post('/admin/hotel/EditHotel', function(req, res) {  //to fetch flights for 
 
             var res1 = results.message;
 
-            res.status(201).send({file: res1, "hotelName": req.body.hotelName, "hotelID":req.body.hotelID, "city":req.body.city,
+            res.status(201).send({file: res1, value: 201,"hotelName": req.body.hotelName, "hotelID":req.body.hotelID, "city":req.body.city,
                 "fromDate":req.body.fromDate,"toDate":req.body.toDate,"availableRooms":req.body.availableRooms,
                 "guestCount":req.body.guestCount,"starHotel":req.body.starHotel,"ratings":req.body.ratings, "amount":req.body.amount, "bookedRooms":req.body.bookedRoom});
         }
@@ -761,6 +784,7 @@ app.post('/admin/hotel/EditHotel', function(req, res) {  //to fetch flights for 
 
             res.status(401).send({
                 file: res1,
+                value: 401,
                 "flightName": req.body.flightName, "flightID": req.body.flightID
             });
         }
@@ -800,6 +824,7 @@ app.post('/admin/flights/addFlight', function(req, res) {
             console.log(results.value);
             res.status(results.value).send({
                 file: res1,
+                value: 201,
                 "flightName": req.body.flightName,
                 "operator": req.body.operator,
                 "departureTime": req.body.departureTime,
@@ -820,6 +845,7 @@ app.post('/admin/flights/addFlight', function(req, res) {
 
                 res.status(401).send({
                     file: res1,
+                    value: 401,
                     city: req.body.city,
                     departureTime: req.body.departureTime,
                     arrivalTime: req.body.arrivalTime,
@@ -850,6 +876,7 @@ app.post('/admin/flights/fetchFlight', function(req, res) {  //to fetch flights 
                     console.log(results.value);
                     res.status(200).send({
                         file: res1[0],
+                        value: 201,
                         "flightName": req.body.flightName,
                         "flightID": req.body.flightID
                     });
@@ -865,6 +892,7 @@ app.post('/admin/flights/fetchFlight', function(req, res) {  //to fetch flights 
 
                 res.status(404).send({
                     file: res1,
+                    value: 401,
                     "flightName": req.body.flightName,
                     "flightID": req.body.flightID
                 });
@@ -902,6 +930,7 @@ app.post('/admin/flights/editFlight', function(req, res) {  //to fetch flights f
             console.log(results.value);
             res.status(results.value).send({
                 file: res1,
+                value: 201,
                  "flightName": req.body.flightName,
                 "flightID":req.body.flightID,
                 "operator":req.body.operator,
@@ -918,6 +947,7 @@ app.post('/admin/flights/editFlight', function(req, res) {  //to fetch flights f
             res.status(400).send({
                 
                 file: res1,
+                value: 401,
                 "flightName": req.body.flightName,
                 "flightID": req.body.flightID
             });
@@ -929,6 +959,7 @@ app.post('/admin/flights/editFlight', function(req, res) {  //to fetch flights f
             console.log(results.value);
            res.status(404).send({
                file: res1,
+               value: 401,
                "flightName": req.body.flightName,
                "flightID": req.body.flightID
            });
@@ -983,6 +1014,7 @@ app.post('/admin/users/addUser', function(req, res) {
             res.status(201).send({
                 file: res1,
                 msg: "user has been inserted successfully",
+                value: 201,
                 "username": req.body.username, "firstName":req.body.firstName, "lastName":req.body.lastName,
                 "password":req.body.password,"city":req.body.city,"address":req.body.address,"state":req.body.state,
                 "zipcode":req.body.zipcode,"email":req.body.email
@@ -996,6 +1028,7 @@ app.post('/admin/users/addUser', function(req, res) {
 
              res.status(401).send({
                  file: res1,
+                 value: 401,
                  city: req.body.city,
                  fromDate: req.body.fromDate,
                  toDate: req.body.toDate,
@@ -1025,7 +1058,7 @@ app.post('/admin/users/fetchUser', function(req, res) {  //to fetch flights for 
 
             var res1 = results.message;
 
-            res.status(201).send({file: res1[0]});
+            res.status(201).send({file: res1[0], value: 201});
         }
         if (results.value == 404) {
             //  done(null,true,results/*{username: username, password: password}*/);
@@ -1035,7 +1068,7 @@ app.post('/admin/users/fetchUser', function(req, res) {  //to fetch flights for 
 
             res.status(401).send({
                 file: res1,
-
+                value: 401
             });
         }
 
@@ -1070,7 +1103,7 @@ app.post('/admin/users/editUser', function(req, res) {  //to fetch flights for a
 
             var res1 = results.message;
 
-            res.status(201).send({file: res1, "username": req.body.username, "firstName":req.body.firstName, "lastName":req.body.lastName,
+            res.status(201).send({file: res1,value: 201, "username": req.body.username, "firstName":req.body.firstName, "lastName":req.body.lastName,
                 "password":req.body.password,"city":req.body.city,"address":req.body.address,"state":req.body.state,
                 "zipcode":req.body.zipcode,"email":req.body.email  });
         }
@@ -1082,6 +1115,7 @@ app.post('/admin/users/editUser', function(req, res) {  //to fetch flights for a
 
             res.status(401).send({
                 file: res1,
+                value: 401,
                 city: req.body.city,
                 fromDate: req.body.fromDate,
                 toDate: req.body.toDate,
@@ -1123,6 +1157,7 @@ app.post('/admin/cars/addCar', function(req, res) {
 
             res.status(201).send({
                 file: res1,
+                value: 201,
                 "carName": req.body.carName,
                 "carType":req.body.carType,
                 "operator": req.body.operator,
@@ -1140,6 +1175,7 @@ app.post('/admin/cars/addCar', function(req, res) {
 
             res.status(404).send({
                 message: res1,
+                value: 401
 
             });
         }
@@ -1165,7 +1201,7 @@ app.post('/admin/cars/fetchCar', function(req, res) {  //to fetch flights for ad
 
             var res1 = results.message;
 
-            res.status(201).send({file: res1, "carName": req.body.carName, "carID": req.body.carID});
+            res.status(201).send({file: res1, value: 201, "carName": req.body.carName, "carID": req.body.carID});
         }
         if (results.value == 404) {
             //  done(null,true,results/*{username: username, password: password}*/);
@@ -1175,6 +1211,7 @@ app.post('/admin/cars/fetchCar', function(req, res) {  //to fetch flights for ad
 
             res.status(401).send({
                 file: res1,
+                value: 401,
                 "carName": req.body.carName, "carID": req.body.carID
             });
         }
@@ -1208,12 +1245,12 @@ app.post('/admin/cars/editcar', function(req, res) {  //to fetch flights for adm
 
             var res1 = results.message;
 
-            res.status(201).send({file: res1, "flightName": req.body.flightName, "flightID":req.body.flightID, "operator":req.body.operator,
+            res.status(201).send({file: res1, value: 201,"flightName": req.body.flightName, "flightID":req.body.flightID, "operator":req.body.operator,
                 "fromCity":req.body.fromCity,"toCity":req.body.toCity,"fromDate":req.body.fromDate,"seatCount":req.body.seatCount,
                 "departureTime":req.body.departureTime,"arrivalTime":req.body.arrivalTime,"price":req.body.price, "seatType":req.body.seatType });
         }
         else{
-            res.send("user record is edited");
+            res.send({value: 401,"user record is edited"});
         }
         /*if (results.value == 404) {
             //  done(null,true,results/!*{username: username, password: password}*!/);
@@ -1251,6 +1288,7 @@ app.post('/bills/cars/fromDte/toDate', function(req, res) {
 
             res.status(201).send({
                 results: res1,
+                value: 201,
                 "fromDate": req.body.startDate,
                 "toDate": req.body.toDate
 
@@ -1264,6 +1302,7 @@ app.post('/bills/cars/fromDte/toDate', function(req, res) {
 
             res.status(404).send({
                 message: res1,
+                value: 401
 
             });
         }
@@ -1294,6 +1333,7 @@ app.post('/bills/billID', function(req, res) {
 
             res.status(201).send({
                 results: res1,
+                value: 201,
                 "fromDate": req.body.startDate,
                 "toDate": req.body.toDate
 
@@ -1307,6 +1347,7 @@ app.post('/bills/billID', function(req, res) {
 
             res.status(404).send({
                 message: res1,
+                value: 401
 
             });
         }
@@ -1338,7 +1379,7 @@ app.post('/admin/dashboard', function(req, res) {
 
                 var res1 = results.value;
 
-                res.status(200).send({message: results});
+                res.status(200).send({message: results,value: 201});
             }
         }
     });
@@ -1365,7 +1406,7 @@ app.post('/admin/reports', function(req, res) {
 
                 var res1 = results.value;
 
-                res.status(200).send({message: results});
+                res.status(200).send({message: results, value: 201});
             }
         }
     });
@@ -1391,6 +1432,7 @@ app.post('/bills/fromDate/toDate', function(req, res) {
             var res1 = results.message;
             res.status(200).send({
                 results:res1,
+                value:201,
                 "fromDate":req.body.fromDate,
                 "toDate":req.body.toDate
             });
@@ -1409,6 +1451,7 @@ app.post('/bills/fromDate/toDate', function(req, res) {
 
             res.status(404).send({
                 message: res1,
+                value:401
 
             });
         }
@@ -1443,7 +1486,7 @@ app.post('/users/editUser', function(req, res) {  //to fetch flights for admin
 
             var res1 = results.message;
 
-            res.status(201).send({file: res1, "username": req.body.username, "firstName":req.body.firstName, "lastName":req.body.lastName,
+            res.status(201).send({file: res1,value:201, "username": req.body.username, "firstName":req.body.firstName, "lastName":req.body.lastName,
                 "password":req.body.password,"city":req.body.city,"address":req.body.address,"state":req.body.state,
                 "zipcode":req.body.zipcode,"email":req.body.email  });
         }
@@ -1455,6 +1498,7 @@ app.post('/users/editUser', function(req, res) {  //to fetch flights for admin
 
             res.status(401).send({
                 file: res1,
+                value:401,
                 city: req.body.city,
                 fromDate: req.body.fromDate,
                 toDate: req.body.toDate,
@@ -1463,7 +1507,7 @@ app.post('/users/editUser', function(req, res) {  //to fetch flights for admin
             });
         }
         else{
-            res.send("user record is edited");
+            res.send({value:201,message:"user record is edited"});
         }
 
     });
@@ -1487,7 +1531,7 @@ app.post('/users/fetchUser', function(req, res) {  //to fetch flights for admin
 
             var res1 = results.message;
 
-            res.status(201).send({file: res1[0]});
+            res.status(201).send({file: res1[0],value:201});
         }
         if (results.value == 401) {
             //  done(null,true,results/*{username: username, password: password}*/);
@@ -1497,6 +1541,7 @@ app.post('/users/fetchUser', function(req, res) {  //to fetch flights for admin
 
             res.status(401).send({
                 file: res1,
+                value:401
 
             });
         }
@@ -1525,7 +1570,7 @@ app.post('/users/deleteUser', function(req, res) {  //to fetch flights for admin
            // res.status(200).send();
             var res1 = results.message;
 
-            res.status(201).send({file: "user deleted successfully"});
+            res.status(201).send({file: "user deleted successfully",value:201});
         }
         if (results.value == 401) {
             //  done(null,true,results/*{username: username, password: password}*/);
@@ -1535,6 +1580,7 @@ app.post('/users/deleteUser', function(req, res) {  //to fetch flights for admin
 
             res.status(401).send({
                 file: "user does not exist to delete",
+                value: 401
 
             });
         }
