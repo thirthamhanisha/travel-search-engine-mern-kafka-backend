@@ -43,7 +43,7 @@ function handle_request(msg, callback){
                 // callback(null,res);
             }
         }
-        var getUser1 = "select hotelID, count(*) as count from transactionHotels where location = '"+msg.city+"' and YEAR(time) = '"+msg.year+"' group by location order by count desc limit 5;";
+        var getUser1 = "select hotelName, count(*) as count from transactionHotels where location = '"+msg.city+"' and YEAR(time) = '"+msg.year+"' group by hotelName order by count desc limit 5;";
 
         console.log("Query is:" + getUser1);
 
@@ -102,7 +102,7 @@ function handle_request(msg, callback){
                         //callback(null,res);
                     }
                 }
-               var getUser3= "select sum(amount) as revenue from transactionCars where year(date)='"+msg.year+"' and location ="+msg.city+"";
+               var getUser3= "select sum(amount) as car from transactionCars where year(date)='"+msg.year+"' and location ='"+msg.city+"'";
                 console.log("Query is:" + getUser3);
 
                 mysql.fetchData(function (err, results) {
@@ -116,7 +116,7 @@ function handle_request(msg, callback){
                             console.log(results);
 
                             res.value = "200";
-                            res.car = results;
+                            res.revenue = results;
                             //value="200";
                             //message=results;
                             //results.send(value,message);
@@ -131,7 +131,7 @@ function handle_request(msg, callback){
                             //callback(null,res);
                         }
                     }
-                    var getUser4= "select sum(price) as revenue from transactionFlights where year(time)='"+msg.year+"' and location ="+msg.city+"";
+                    var getUser4= "select sum(price) as flight from transactionFlights where year(time)='"+msg.year+"' and fromCity ='"+msg.city+"'";
                     console.log("Query is:" + getUser3);
 
                     mysql.fetchData(function (err, results) {
@@ -145,7 +145,7 @@ function handle_request(msg, callback){
                                 console.log(results);
 
                                 res.value = "200";
-                                res.flight = results;
+                                res.revenue = results;
                                 //value="200";
                                 //message=results;
                                 //results.send(value,message);
@@ -153,14 +153,14 @@ function handle_request(msg, callback){
                             }
                             else {
 
-                                console.log("no cars fetched with the given preferences");
+                                console.log("no flights fetched with the given preferences");
 
                                 res.value = "404";
-                                res.message = "cars unavailable with the given search criteria";
+                                res.message = "flights unavailable with the given search criteria";
                                 //callback(null,res);
                             }
                         }
-                        var getUser5= "select sum(billAmount) as revenue from transactionHotels where year(time)='"+msg.year+"' and location ="+msg.city+"";
+                        var getUser5= "select sum(billAmount) as hotel from transactionHotels where year(time)='"+msg.year+"' and location ='"+msg.city+"'";
                         console.log("Query is:" + getUser3);
 
                         mysql.fetchData(function (err, results) {
@@ -174,7 +174,7 @@ function handle_request(msg, callback){
                                     console.log(results);
 
                                     res.value = "200";
-                                    res.hotel = results;
+                                    res.revenue = results;
                                     //value="200";
                                     //message=results;
                                     //results.send(value,message);
