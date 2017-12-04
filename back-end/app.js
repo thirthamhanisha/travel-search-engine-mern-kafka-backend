@@ -789,7 +789,7 @@ app.post('/admin/hotel/EditHotel', function(req, res) {  //to fetch flights for 
             });
         }
         else{
-            res.send("hotel record is edited");
+            res.send({value:201,message:"hotel record is edited"});
         }
 
     });
