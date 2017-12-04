@@ -1250,7 +1250,7 @@ app.post('/admin/cars/editcar', function(req, res) {  //to fetch flights for adm
                 "departureTime":req.body.departureTime,"arrivalTime":req.body.arrivalTime,"price":req.body.price, "seatType":req.body.seatType });
         }
         else{
-            res.send({value: 401,"user record is edited"});
+            res.send({value: 401,message:"user record is edited"});
         }
         /*if (results.value == 404) {
             //  done(null,true,results/!*{username: username, password: password}*!/);
