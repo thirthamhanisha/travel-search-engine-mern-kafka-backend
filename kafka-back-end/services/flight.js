@@ -284,8 +284,8 @@ function handle_request(msg, callback){
                         }
                         else {
         
-                            res.value = "200";
-                            res.message = "Success";
+                            res.value = "401";
+                            res.message = "No flights fetched with the given preferences";
                             res.departure = {}
                             res.departure.value = "404";
                             res.departure.message = "No flights fetched with the given preferences";
