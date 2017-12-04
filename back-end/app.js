@@ -351,7 +351,7 @@ app.post('/flight', function(req, res) {
                 res.status(500).send(results.message);
             }
             else {
-                if(results.length> 0)
+                if(results)
                 {
                     console.log(results.value);
                     var res1 = {};
