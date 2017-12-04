@@ -120,7 +120,7 @@ var hotelSearchServiceCount;
         }, getUser);
     }else if(msg.filter === 3) {
         //var getUser = "select * from hoteldetails where city='" + msg.city + "'and fromDate<='" + msg.from + "'and toDate>= '" + msg.to + "'and availableRooms>='" + msg.roomCount + "'";
-<<<<<<< HEAD
+
         var getUser = "select * from hoteldetails where city='" + msg.city + "'and fromDate>='" + msg.from + "'and toDate<= '" + msg.to + "'and availableRooms>='" + msg.roomCount + "' and starHotel>='"+msg.star+"' and amount between '"+msg.minPrice+"' and '"+msg.maxPrice+"'";
         console.log("Query is:" + getUser);
 
@@ -152,9 +152,6 @@ var hotelSearchServiceCount;
 
     else{
         var getUser = "select * from hoteldetails where city='" + msg.city + "'and fromDate>='" + msg.from + "'and toDate<= '" + msg.to + "'and availableRooms>='" + msg.roomCount + "'";
-=======
-        var getUser = "select * from hoteldetails where city='" + msg.city + "'and fromDate>='" + msg.from + "'and toDate<= '" + msg.to + "'and availableRooms>='" + msg.roomCount + "' and starHotel='"+msg.star+"' and amount between '"+msg.minPrice+"' and '"+msg.maxPrice+"'";
->>>>>>> efe1d0230f40a2ee78001416ab75be3b2a0191a4
         console.log("Query is:" + getUser);
 
         mysql.fetchData(function (err, results) {
