@@ -105,7 +105,7 @@ app.post('/login', function(req, res) {
             res.status(401).send("login failed");
         }
         else {
-            req.session.user = user.value.username;
+            req.session.user = user.value[0].username;
             console.log(user);
             console.log(req.session.user);
             console.log("session initilized");
