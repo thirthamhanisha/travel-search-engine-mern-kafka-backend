@@ -92,7 +92,7 @@ app.post('/logout', function(req,res) {
     console.log(req.session.user);
     req.session.destroy();
     console.log('Session Destroyed');
-    res.status(200).send();
+    res.status(200).send({value: 201});
 });
 
 app.post('/login', function(req, res) {
@@ -102,14 +102,14 @@ app.post('/login', function(req, res) {
         }
 
         if(!user) {
-            res.status(401).send("login failed");
+            res.status(401).send({value: 201, messsage: "login failed"});
         }
         else {
             req.session.user = user.value[0].username;
             console.log(user);
             console.log(req.session.user);
             console.log("session initilized");
-            res.status(201).send({message: "Login successful", isAdmin: user.value.isAdmin});
+            res.status(201).send({value: 201, message: "Login successful", isAdmin: user.value.isAdmin});
         }
     })(req,res);
 });
@@ -155,6 +155,7 @@ app.post('/hotel', function(req, res) {
 
                 res.status(201).send({
                     file: results,
+                    value: 201,
                     city: req.body.city,
                     fromDate: req.body.fromDate,
                     toDate: req.body.toDate,
@@ -343,7 +344,7 @@ app.post('/flight', function(req, res) {
                 res.status(500).send(results.message);
             }
             else {
-                if(results)
+                if(results.length> 0)
                 {
                     console.log(results.value);
                     var res1 = {};
@@ -362,6 +363,7 @@ app.post('/flight', function(req, res) {
                     console.log(res2);
                     res.status(results.value).send({
                         file: msg.departure,
+                        value: 201,
                         username: req.body.username,
                         fromCity: req.body.fromCity,
                         toCity: req.body.toCity,
@@ -373,7 +375,8 @@ app.post('/flight', function(req, res) {
                 }
                 else{
                     res.status(results.value).send({
-                        file: "No flights are fetched within the given search criteria"
+                        file: "No flights are fetched within the given search criteria",
+                        value: 401
 
                     });
                 }
