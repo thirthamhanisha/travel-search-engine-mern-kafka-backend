@@ -63,7 +63,7 @@ function handle_request(msg, callback){
                         else {
                             if (results.length > 0) {
                                 console.log(results);
-                                res.value = "200";
+                                res.value = "201";
                                 res.message = "";
                                 res.departure = {};
                                 res.departure.value = "200";
@@ -94,7 +94,7 @@ function handle_request(msg, callback){
                                 else {
                                     if (results.length > 0) {
                                         console.log(results);
-                                        res.value = "200";
+                                        res.value = "201";
                                         res.message = "Success";
                                         res.return = {};
                                         res.return.value = "200";
@@ -137,7 +137,7 @@ function handle_request(msg, callback){
                     else {
                         if (results.length > 0) {
                             console.log(results);
-                            res.value = "200";
+                            res.value = "201";
                             res.message = "Success";
                             res.departure = {}
                             res.departure.value = "200";
@@ -200,7 +200,7 @@ function handle_request(msg, callback){
                         else {
                             if (results.length > 0) {
                                 console.log(results);
-                                res.value = "200";
+                                res.value = "201";
                                 res.message = "";
                                 res.departure = {};
                                 res.departure.value = "200";
@@ -231,7 +231,7 @@ function handle_request(msg, callback){
                                 else {
                                     if (results.length > 0) {
                                         console.log(results);
-                                        res.value = "200";
+                                        res.value = "201";
                                         res.message = "Success";
                                         res.return = {};
                                         res.return.value = "200";
@@ -274,7 +274,7 @@ function handle_request(msg, callback){
                     else {
                         if (results.length > 0) {
                             console.log(results);
-                            res.value = "200";
+                            res.value = "201";
                             res.message = "Success";
                             res.departure = {}
                             res.departure.value = "200";
