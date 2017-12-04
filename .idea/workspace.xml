@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="adae2d55-1ecf-47fe-bf8e-97f649acc838" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-back-end/services/flightDes.js" afterPath="$PROJECT_DIR$/kafka-back-end/services/flightDes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/back-end/package.json" afterPath="$PROJECT_DIR$/back-end/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-back-end/services/login.js" afterPath="$PROJECT_DIR$/kafka-back-end/services/login.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-back-end/services/signup.js" afterPath="$PROJECT_DIR$/kafka-back-end/services/signup.js" />
     </list>
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,8 +18,48 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/back-end/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="632">
-              <caret line="649" column="3" lean-forward="false" selection-start-line="649" selection-start-column="3" selection-end-line="649" selection-end-column="3" />
+            <state relative-caret-position="-16">
+              <caret line="117" column="45" lean-forward="false" selection-start-line="117" selection-start-column="45" selection-end-line="117" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/back-end/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/kafka-back-end/services/login.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="78" lean-forward="true" selection-start-line="11" selection-start-column="78" selection-end-line="11" selection-end-column="78" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mysql.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kafka-back-end/services/mysql.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-7">
+              <caret line="13" column="1" lean-forward="false" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mongo.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kafka-back-end/services/mongo.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-7">
+              <caret line="32" column="13" lean-forward="false" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -26,92 +68,38 @@
       <file leaf-file-name="redis.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kafka-back-end/services/redis.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="986">
+            <state relative-caret-position="-7">
               <caret line="58" column="44" lean-forward="false" selection-start-line="58" selection-start-column="44" selection-end-line="58" selection-end-column="44" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="flightDes.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kafka-back-end/services/flightDes.js">
+      <file leaf-file-name="signup.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kafka-back-end/services/signup.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="30" column="4" lean-forward="false" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
+            <state relative-caret-position="576">
+              <caret line="112" column="40" lean-forward="false" selection-start-line="112" selection-start-column="40" selection-end-line="112" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kafka-back-end/server.js">
+      <file leaf-file-name="userEdit.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kafka-back-end/services/userEdit.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+            <state relative-caret-position="-7">
+              <caret line="36" column="47" lean-forward="false" selection-start-line="36" selection-start-column="47" selection-end-line="36" selection-end-column="47" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="flight.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kafka-back-end/services/flight.js">
+      <file leaf-file-name="userFetch.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kafka-back-end/services/userFetch.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1855">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="car.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kafka-back-end/services/car.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2210">
-              <caret line="157" column="10" lean-forward="true" selection-start-line="157" selection-start-column="10" selection-end-line="157" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="carEdit.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kafka-back-end/services/carEdit.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="22" lean-forward="true" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="hotel.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kafka-back-end/services/hotel.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2096">
-              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-              <folding>
-                <marker date="1512336479283" expanded="true" signature="216:218" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="hotelPay.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kafka-back-end/services/hotelPay.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1086">
-              <caret line="72" column="22" lean-forward="false" selection-start-line="72" selection-start-column="14" selection-end-line="72" selection-end-column="22" />
-              <folding>
-                <marker date="1512185512056" expanded="true" signature="216:218" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="payCar.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/kafka-back-end/services/payCar.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="29" column="95" lean-forward="false" selection-start-line="29" selection-start-column="87" selection-end-line="29" selection-end-column="95" />
+            <state relative-caret-position="-7">
+              <caret line="38" column="16" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="38" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -123,6 +111,7 @@
     <findStrings>
       <find>pay</find>
       <find>flight</find>
+      <find>login</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -146,14 +135,17 @@
         <option value="$PROJECT_DIR$/kafka-back-end/services/hotel.js" />
         <option value="$PROJECT_DIR$/kafka-back-end/package.json" />
         <option value="$PROJECT_DIR$/kafka-back-end/services/mysql.js" />
-        <option value="$PROJECT_DIR$/kafka-back-end/services/signup.js" />
-        <option value="$PROJECT_DIR$/kafka-back-end/services/login.js" />
         <option value="$PROJECT_DIR$/kafka-back-end/services/redis.js" />
         <option value="$PROJECT_DIR$/kafka-back-end/services/payCar.js" />
         <option value="$PROJECT_DIR$/kafka-back-end/server.js" />
-        <option value="$PROJECT_DIR$/back-end/app.js" />
         <option value="$PROJECT_DIR$/kafka-back-end/services/carEdit.js" />
         <option value="$PROJECT_DIR$/kafka-back-end/services/flightDes.js" />
+        <option value="$PROJECT_DIR$/back-end/test.js" />
+        <option value="$PROJECT_DIR$/kafka-back-end/services/mongo.js" />
+        <option value="$PROJECT_DIR$/back-end/app.js" />
+        <option value="$PROJECT_DIR$/kafka-back-end/services/signup.js" />
+        <option value="$PROJECT_DIR$/back-end/package.json" />
+        <option value="$PROJECT_DIR$/kafka-back-end/services/login.js" />
       </list>
     </option>
   </component>
@@ -198,12 +190,6 @@
             <path>
               <item name="travel-search-engine-mern-kafka-backend" type="b2602c69:ProjectViewProjectNode" />
               <item name="travel-search-engine-mern-kafka-backend" type="462c0819:PsiDirectoryNode" />
-              <item name="back-end" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="travel-search-engine-mern-kafka-backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="travel-search-engine-mern-kafka-backend" type="462c0819:PsiDirectoryNode" />
               <item name="kafka-back-end" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -243,7 +229,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2278000" />
+    <option name="totallyTimeSpent" value="9829000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -438,17 +424,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-back-end/services/userEdit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="36" column="47" lean-forward="true" selection-start-line="36" selection-start-column="47" selection-end-line="36" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kafka-back-end/services/userAdd.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="66" lean-forward="false" selection-start-line="13" selection-start-column="58" selection-end-line="13" selection-end-column="66" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -490,62 +470,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/back-end/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="39" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-back-end/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding>
-            <marker date="1512258156300" expanded="true" signature="0:661" ph="{&quot;name&quot;: &quot;back-end&quot;...}" />
-            <marker date="1512258156300" expanded="true" signature="103:166" ph="{&quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;...}" />
-            <marker date="1512258156300" expanded="true" signature="222:659" ph="{&quot;bcrypt&quot;: &quot;^1.0.3&quot;...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-back-end/services/mysql.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="1" lean-forward="false" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-back-end/services/signup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="18" lean-forward="false" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-back-end/services/login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="8" column="18" lean-forward="false" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kafka-back-end/services/hotelFetch.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-back-end/services/userFetch.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -576,18 +504,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/back-end/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="632">
-          <caret line="649" column="3" lean-forward="false" selection-start-line="649" selection-start-column="3" selection-end-line="649" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kafka-back-end/services/hotel.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2096">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding>
             <marker date="1512336479283" expanded="true" signature="216:218" ph="{...}" />
           </folding>
@@ -597,7 +517,7 @@
     <entry file="file://$PROJECT_DIR$/kafka-back-end/services/carEdit.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="11" column="22" lean-forward="true" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+          <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -605,15 +525,7 @@
     <entry file="file://$PROJECT_DIR$/kafka-back-end/services/car.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2210">
-          <caret line="157" column="10" lean-forward="true" selection-start-line="157" selection-start-column="10" selection-end-line="157" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-back-end/services/redis.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="986">
-          <caret line="58" column="44" lean-forward="false" selection-start-line="58" selection-start-column="44" selection-end-line="58" selection-end-column="44" />
+          <caret line="157" column="10" lean-forward="false" selection-start-line="157" selection-start-column="10" selection-end-line="157" selection-end-column="10" />
           <folding />
         </state>
       </provider>
@@ -628,8 +540,96 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/kafka-back-end/services/payCar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
+        <state relative-caret-position="493">
           <caret line="29" column="95" lean-forward="false" selection-start-line="29" selection-start-column="87" selection-end-line="29" selection-end-column="95" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-back-end/services/redis.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7">
+          <caret line="58" column="44" lean-forward="false" selection-start-line="58" selection-start-column="44" selection-end-line="58" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-back-end/services/userEdit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7">
+          <caret line="36" column="47" lean-forward="false" selection-start-line="36" selection-start-column="47" selection-end-line="36" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-back-end/services/userFetch.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7">
+          <caret line="38" column="16" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="38" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-back-end/services/mysql.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7">
+          <caret line="13" column="1" lean-forward="false" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-back-end/services/mongo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7">
+          <caret line="32" column="13" lean-forward="false" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/back-end/test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-680">
+          <caret line="11" column="28" lean-forward="false" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/back-end/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-16">
+          <caret line="117" column="45" lean-forward="false" selection-start-line="117" selection-start-column="45" selection-end-line="117" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-back-end/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/back-end/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-back-end/services/signup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="112" column="40" lean-forward="false" selection-start-line="112" selection-start-column="40" selection-end-line="112" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-back-end/services/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="78" lean-forward="true" selection-start-line="11" selection-start-column="78" selection-end-line="11" selection-end-column="78" />
           <folding />
         </state>
       </provider>
