@@ -109,7 +109,7 @@ app.post('/login', function(req, res) {
             console.log(user);
             console.log(req.session.user);
             console.log("session initilized");
-            res.status(201).send({value: 201, message: "Login successful", isAdmin: user.value.isAdmin});
+            res.status(201).send({value: 201, message: "Login successful", isAdmin: user.value[0].isAdmin});
         }
     })(req,res);
 });
