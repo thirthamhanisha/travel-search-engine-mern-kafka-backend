@@ -51,7 +51,7 @@ var flightPayServiceCount;
                 res.message.bookID = bookID;
                 console.log(res);
 
-                var payDepFlight = "insert into transactionFlights(bookID, flightID, fromCity, toCity, price, noOfSeats, seatType, cardNo, username) values ('" + bookID + "', '" + results[0]["fromCity"] + "', '" + results[0]["toCity"] + "',  '"+msg.depFlightID+"','" + msg.price+"','" + msg.passengerCount+"','" + msg.seatType+"','" +msg.cardDetails+"','" + msg.username+"')";
+                var payDepFlight = "insert into transactionFlights(bookID, flightID, fromCity, toCity, price, noOfSeats, seatType, cardNo, username) values ('" + bookID + "', '"+msg.depFlightID+"', '" + results[0]["fromCity"] + "', '" + results[0]["toCity"] + "',  '" + msg.price+"','" + msg.passengerCount+"','" + msg.seatType+"','" +msg.cardDetails+"','" + msg.username+"')";
                 console.log("Query is:" + payDepFlight);
                 mysql.fetchData(function (err, results) {
                     if (err) {
@@ -113,7 +113,7 @@ var flightPayServiceCount;
                                 console.log(results);
                                 res.value = "200";
                                 // res.message.price = res.message.price + results[0].price*msg.passengerCount;
-                                var payDepFlight = "insert into transactionFlights(bookID, flightID, fromCity, toCity, price, noOfSeats, seatType, cardNo, username) values ('" + bookID + "', '" + results[0]["fromCity"] + "', '" + results[0]["toCity"] + "',  '"+msg.retFlightID+"','" + msg.price+"','" + msg.passengerCount+"','" + msg.seatType+"','" +msg.cardDetails+"','" + msg.username+"')";
+                                var payDepFlight = "insert into transactionFlights(bookID, flightID, fromCity, toCity, price, noOfSeats, seatType, cardNo, username) values ('" + bookID + "', '"+msg.retFlightID+"', '" + results[0]["fromCity"] + "', '" + results[0]["toCity"] + "',  '" + msg.price+"','" + msg.passengerCount+"','" + msg.seatType+"','" +msg.cardDetails+"','" + msg.username+"')";
                                 console.log("Query is:" + payDepFlight);
                                 mysql.fetchData(function (err, results) {
                                     if (err) {

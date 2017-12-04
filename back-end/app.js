@@ -138,7 +138,7 @@ app.post('/hotel', function(req, res) {
     if (req.body.fromDate <= req.body.toDate) {
         kafka.make_request('hotel_topic', {
             "city": req.body.city, "from": req.body.fromDate, "to": req.body.toDate, "guestCount": req.body.guestCount,
-            "roomCount": req.body.roomCount, "username":req.session.user,"filter":req.body.filter,"star":req.body.star,"maxPrice":req.body.maxPrice,"minPrice":req.body.minPrice
+            "roomCount": req.body.roomCount, "username":req.session.user,"hotelName": req.body.hotelName,"filter":req.body.filter,"star":req.body.star,"maxPrice":req.body.maxPrice,"minPrice":req.body.minPrice
         }, function (err, results) {
             console.log('in result');
             console.log(results);
@@ -160,7 +160,8 @@ app.post('/hotel', function(req, res) {
                     fromDate: req.body.fromDate,
                     toDate: req.body.toDate,
                     guestCount: req.body.guestCount,
-                    roomCount: req.body.roomCount
+                    roomCount: req.body.roomCount,
+                    filter: req.body.filter
                 });
             }
             if (results.value == 404) {
@@ -176,7 +177,8 @@ app.post('/hotel', function(req, res) {
                     fromDate: req.body.fromDate,
                     toDate: req.body.toDate,
                     guestCount: req.body.guestCount,
-                    roomCount: req.body.roomCount
+                    roomCount: req.body.roomCount,
+                    filter: req.body.filter
                 });
             }
         });
@@ -283,7 +285,7 @@ app.post('/payHotel', function(req, res) {
     console.log(req.body.guestCount);
     console.log(req.body.roomCount);
     console.log(req.body.cardNo);
-
+    console.log(  req.body.hotelName);
     kafka.make_request('hotelPay_topic',{"ID": req.body.hotelID, "guestCount": req.body.guestCount, "roomCount": req.body.roomCount, "fromDate" : req.body.fromDate,
         "toDate": req.body.toDate, "billAmount": req.body.billAmount, "cardNo":req.body.cardNo, "username":req.session.user, "location": req.body.location, "hotelName": req.body.hotelName}, function(err,results) {
         console.log('in result');
@@ -367,17 +369,17 @@ app.post('/flight', function(req, res) {
                     console.log("res2 deaprture"+msg.departure);
                     console.log("res2 flights"+msg.departure.flights);
                     if(msg.departure && msg.departure.flights[0]) {
-                    console.log("res2 first array of flight"+msg.departure.flights[0].flightID);
+                    console.log(results.value + "res2 first array of flight"+msg.departure.flights[0].flightID);
                     }
                     else{
-                        console.log("res2 no departure flights");
+                        console.log(results.value+"res2 no departure flights");
                     }
                     console.log(res2);
                     res.status(results.value).send({
                         file: msg.departure,
-//                      value: 201,
-                        value: results.value,
-			username: req.body.username,
+                          value: 201,
+    //                    value: results.value,
+			            username: req.body.username,
                         fromCity: req.body.fromCity,
                         toCity: req.body.toCity,
                         departureDate: req.body.departureDate,
@@ -520,6 +522,7 @@ app.post('/car', function(req, res) {
     //  console.log(req.body.city);
     //  console.log(req.body.date);
     //  console.log(req.body.to);
+    console.log(req.body.filter);
 
 
     kafka.make_request('car_topic',{"location":req.body.location,"startDate":req.body.startDate,"endDate":req.body.endDate,"seatCount":req.body.seatCount,"carType":req.body.carType,"filter":req.body.filter,"minPrice":req.body.minPrice,"maxPrice":req.body.maxPrice}, function(err,results) {
@@ -536,16 +539,16 @@ app.post('/car', function(req, res) {
 
                 var res1 = results.value;
 
-                res.status(200).send({
+                res.status(201).send({
                     message: results,
                     location: req.body.location,
                     startDate: req.body.startDate,
                     endDate: req.body.endDate,
                     seatCount: req.body.seatCount,
-                    filter: req.body.filter
-                , value: 201});
+                    filter: req.body.filter,
+                    value: 201});
             }
-            else if(results.value == 404){
+            else if(results.value === 404){
                 res.status(404).send({message:results, value: 401});
             }}
     });
@@ -629,10 +632,11 @@ app.post('/payCar', function(req, res) {
     //console.log(req.body.roomCount);
     console.log(req.body.billAmount);
     console.log(req.body.cardNo);
+    console.log(req.body.carType);
     //console.log(req.body.carRequested.seatCount)
 
     kafka.make_request('payCar_topic',{"carID": req.body.carID, "seatCount": req.body.seatCount, "startDate" : req.body.startDate,
-        "endDate": req.body.endDate,"location":req.body.location,"billAmount": req.body.billAmount, "cardNo":req.body.cardNo, "username": req.session.user}, function(err,results) {
+        "endDate": req.body.endDate,"location":req.body.location,"billAmount": req.body.billAmount, "cardNo":req.body.cardNo, "username": req.session.user, "carType": req.body.carType}, function(err,results) {
         console.log('in result');
         console.log(results);
 

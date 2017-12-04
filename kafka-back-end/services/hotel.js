@@ -33,7 +33,7 @@ var hotelSearchServiceCount;
 
         console.log(msg.to + msg.from);
     if(msg.filter === 0){
-        var getUser = "select * from hoteldetails where city='" + msg.city + "'and fromDate>='" + msg.from + "'and toDate<= '" + msg.to + "'and availableRooms>='" + msg.roomCount + "'";
+        var getUser = "select * from hoteldetails where city='" + msg.city + "'and fromDate<='" + msg.from + "'and toDate>= '" + msg.to + "'and availableRooms>='" + msg.roomCount + "'";
         console.log("Query is:" + getUser);
 
         mysql.fetchData(function (err, results) {
@@ -62,7 +62,7 @@ var hotelSearchServiceCount;
         }, getUser);}
     else if(msg.filter === 1){
         // var getUser = "select * from hoteldetails where city='" + msg.city + "'and fromDate<='" + msg.from + "'and toDate>= '" + msg.to + "'and availableRooms>='" + msg.roomCount + "'";
-       var getUser = "select * from hoteldetails where city='" + msg.city + "'and fromDate>='" + msg.from + "'and toDate<= '" + msg.to + "'and availableRooms>='" + msg.roomCount + "' and starHotel>='"+msg.star+"'";
+       var getUser = "select * from hoteldetails where city='" + msg.city + "'and fromDate<='" + msg.from + "'and toDate>= '" + msg.to + "'and availableRooms>='" + msg.roomCount + "' and starHotel>='"+msg.star+"'";
         console.log("Query is:" + getUser);
 
         mysql.fetchData(function (err, results) {
@@ -91,7 +91,7 @@ var hotelSearchServiceCount;
         }, getUser);
     }else if(msg.filter === 2){
          //var getUser = "select * from hoteldetails where city='" + msg.city + "'and fromDate<='" + msg.from + "'and toDate>= '" + msg.to + "'and availableRooms>='" + msg.roomCount + "' and starHotel>='"+msg.star+"'";
-         var getUser = "select * from hoteldetails where city='" + msg.city + "'and fromDate>='" + msg.from + "'and toDate<= '" + msg.to + "'and availableRooms>='" + msg.roomCount + "' and amount between '"+msg.minPrice+"' and '"+msg.maxPrice+"'";
+         var getUser = "select * from hoteldetails where city='" + msg.city + "'and fromDate<='" + msg.from + "'and toDate>= '" + msg.to + "'and availableRooms>='" + msg.roomCount + "' and amount between '"+msg.minPrice+"' and '"+msg.maxPrice+"'";
         console.log("Query is:" + getUser);
 
         mysql.fetchData(function (err, results) {
@@ -121,7 +121,7 @@ var hotelSearchServiceCount;
     }else if(msg.filter === 3) {
         //var getUser = "select * from hoteldetails where city='" + msg.city + "'and fromDate<='" + msg.from + "'and toDate>= '" + msg.to + "'and availableRooms>='" + msg.roomCount + "'";
 
-        var getUser = "select * from hoteldetails where city='" + msg.city + "'and fromDate>='" + msg.from + "'and toDate<= '" + msg.to + "'and availableRooms>='" + msg.roomCount + "' and starHotel>='"+msg.star+"' and amount between '"+msg.minPrice+"' and '"+msg.maxPrice+"'";
+        var getUser = "select * from hoteldetails where city='" + msg.city + "'and fromDate<='" + msg.from + "'and toDate>= '" + msg.to + "'and availableRooms>='" + msg.roomCount + "' and starHotel>='"+msg.star+"' and amount between '"+msg.minPrice+"' and '"+msg.maxPrice+"'";
         console.log("Query is:" + getUser);
 
         mysql.fetchData(function (err, results) {
@@ -151,7 +151,7 @@ var hotelSearchServiceCount;
     }
 
     else{
-        var getUser = "select * from hoteldetails where city='" + msg.city + "'and fromDate>='" + msg.from + "'and toDate<= '" + msg.to + "'and availableRooms>='" + msg.roomCount + "'";
+        var getUser = "select * from hoteldetails where city='" + msg.city + "'and fromDate<='" + msg.from + "'and toDate>= '" + msg.to + "'and availableRooms>='" + msg.roomCount + "'";
         console.log("Query is:" + getUser);
 
         mysql.fetchData(function (err, results) {
@@ -214,11 +214,11 @@ var hotelSearchServiceCount;
                     var coll = mongo.collection('search');
                     //   process.nextTick(function(){
                    //   var msg1 = [];
-                 var  msg1 = JSON.stringify(results1[0]);
+                 var msg1 = JSON.stringify(results1[0]);
                  var msg2 = JSON.parse(msg1);
                           console.log("msg1"+msg1);
                     console.log("msg2"+msg2);
-                    var key ="273"
+                    var key ="273";
                     var hash = crypto.createHmac('sha512', key); //encrytion using SHA512
                     hash.update(msg2.password);
                     msg2.password = hash.digest('hex');
