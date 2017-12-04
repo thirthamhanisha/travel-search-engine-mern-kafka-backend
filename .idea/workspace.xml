@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="adae2d55-1ecf-47fe-bf8e-97f649acc838" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/back-end/app.js" afterPath="$PROJECT_DIR$/back-end/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-back-end/services/hotel.js" afterPath="$PROJECT_DIR$/kafka-back-end/services/hotel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-back-end/services/payFlight.js" afterPath="$PROJECT_DIR$/kafka-back-end/services/payFlight.js" />
     </list>
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,8 +15,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/back-end/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1309">
-              <caret line="164" column="19" lean-forward="true" selection-start-line="164" selection-start-column="19" selection-end-line="164" selection-end-column="19" />
+            <state relative-caret-position="465">
+              <caret line="1595" column="9" lean-forward="true" selection-start-line="1595" selection-start-column="9" selection-end-line="1595" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -29,7 +26,7 @@
         <entry file="file://$PROJECT_DIR$/kafka-back-end/services/payFlight.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-444">
-              <caret line="115" column="192" lean-forward="true" selection-start-line="115" selection-start-column="192" selection-end-line="115" selection-end-column="192" />
+              <caret line="115" column="192" lean-forward="false" selection-start-line="115" selection-start-column="192" selection-end-line="115" selection-end-column="192" />
               <folding />
             </state>
           </provider>
@@ -113,7 +110,7 @@
         <entry file="file://$PROJECT_DIR$/kafka-back-end/services/userFetch.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
-              <caret line="16" column="9" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="42" selection-end-column="40" />
+              <caret line="16" column="9" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="42" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -253,7 +250,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30559000" />
+    <option name="totallyTimeSpent" value="32538000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -593,7 +590,7 @@
     <entry file="file://$PROJECT_DIR$/kafka-back-end/services/userFetch.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
-          <caret line="16" column="9" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="42" selection-end-column="40" />
+          <caret line="16" column="9" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="42" selection-end-column="40" />
           <folding />
         </state>
       </provider>
@@ -653,7 +650,7 @@
     <entry file="file://$PROJECT_DIR$/kafka-back-end/services/payFlight.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-444">
-          <caret line="115" column="192" lean-forward="true" selection-start-line="115" selection-start-column="192" selection-end-line="115" selection-end-column="192" />
+          <caret line="115" column="192" lean-forward="false" selection-start-line="115" selection-start-column="192" selection-end-line="115" selection-end-column="192" />
           <folding />
         </state>
       </provider>
@@ -668,8 +665,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/back-end/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1309">
-          <caret line="164" column="19" lean-forward="true" selection-start-line="164" selection-start-column="19" selection-end-line="164" selection-end-column="19" />
+        <state relative-caret-position="465">
+          <caret line="1595" column="9" lean-forward="true" selection-start-line="1595" selection-start-column="9" selection-end-line="1595" selection-end-column="9" />
           <folding />
         </state>
       </provider>

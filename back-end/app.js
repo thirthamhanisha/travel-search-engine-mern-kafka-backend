@@ -1389,7 +1389,7 @@ app.post('/admin/dashboard', function(req, res) {
 
                 var res1 = results.value;
 
-                res.status(200).send({message: results,value: 201});
+                res.status(201).send({message: results,value: 201});
             }
         }
     });
