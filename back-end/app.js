@@ -366,12 +366,18 @@ app.post('/flight', function(req, res) {
                     console.log("res2"+msg.value);
                     console.log("res2 deaprture"+msg.departure);
                     console.log("res2 flights"+msg.departure.flights);
+                    if(msg.departure && msg.departure.flights[0]) {
                     console.log("res2 first array of flight"+msg.departure.flights[0].flightID);
+                    }
+                    else{
+                        console.log("res2 no departure flights");
+                    }
                     console.log(res2);
                     res.status(results.value).send({
                         file: msg.departure,
-                        value: 201,
-                        username: req.body.username,
+//                      value: 201,
+                        value: results.value,
+			username: req.body.username,
                         fromCity: req.body.fromCity,
                         toCity: req.body.toCity,
                         departureDate: req.body.departureDate,
