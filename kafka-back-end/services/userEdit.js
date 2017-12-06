@@ -1,18 +1,23 @@
 var mongo = require("./mongo");
 var mongoURL = "mongodb://localhost:27017/login";
 var bcrypt = require('bcrypt');
-var crypto = require('crypto');
+//
+// var crypto = require('crypto');
 var mysql = require("./mysql");
 function handle_request(msg, callback) {
 
     var res = {};
     var res1 = {};
-    var key ="273";
+   /* var key ="273";
     var hash = crypto.createHmac('sha512', key); //encrytion using SHA512
     hash.update(msg.password);
-    msg.password = hash.digest('hex');
+    msg.password = hash.digest('hex');*/
     var getUser1 = "select * from users where username ='"+msg.username+"'";
+<<<<<<< HEAD
     var getUser2="update users SET  firstName=  '" + msg.firstName+"', lastName=  '" + msg.lastName+"',address=  '" + msg.address+"', city=  '" + msg.city+"',state=  '" + msg.state+"',zipcode=  '" + msg.zipcode+"',email=  '" + msg.email+"',isAdmin='0' where username ='" + msg.username+"' ";
+=======
+    var getUser2="update users SET  firstName=  '" + msg.firstName+"', lastName=  '" + msg.lastName+"', address=  '" + msg.address+"', city=  '" + msg.city+"',state=  '" + msg.state+"',zipcode=  '" + msg.zipcode+"',email=  '" + msg.email+"',isAdmin='0' where username ='" + msg.username+"' ";
+>>>>>>> 7a4d4d288fd322214d466d95f7d5097fce3c02e7
     console.log("Query is:"+getUser2); // this is to decrement the available rooms and increase the booked rooms accordingly in database.
     mysql.fetchData(function(err,results) { //
         if (err) {

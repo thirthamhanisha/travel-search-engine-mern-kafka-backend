@@ -1211,7 +1211,7 @@ app.post('/admin/cars/fetchCar', function(req, res) {  //to fetch flights for ad
 
             var res1 = results.message;
 
-            res.status(201).send({file: res1, value: 201, "carName": req.body.carName, "carID": req.body.carID});
+            res.status(201).send({file: res1[0], value: 201, "carName": req.body.carName, "carID": req.body.carID});
         }
         if (results.value == 404) {
             //  done(null,true,results/*{username: username, password: password}*/);

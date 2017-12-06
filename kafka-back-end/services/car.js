@@ -1,5 +1,12 @@
 
 var mysql = require("./mysql");
+
+const redis = require('redis');
+var client = redis.createClient();
+client.on('connect', function () {
+    console.log('Connected to Redis...');
+});
+
 function handle_request(msg, callback){
     var carServiceCount;
     var service="Car Searching Page";
@@ -40,34 +47,79 @@ function handle_request(msg, callback){
         var getUser = "select * from CarDemo where location='" + msg["location"] + "' and seatCount='" + msg["seatCount"] + "' and carID not in (select carID from Availability where startDate between '" + msg["startDate"] + "' and '" + msg["endDate"] + "' and endDate between '" + msg["startDate"] + "' and '" + msg["endDate"] + "')";
 //var getUser ="select * from carDemo where location='"+msg.location+"' and seatCount = '"+msg.seatCount+"'";
         console.log("Query is:" + getUser);
+        var id = "select * from CarDemo where location='" + msg["location"] + "' and seatCount='" + msg["seatCount"] + "' and carID not in (select carID from Availability where startDate between '" + msg["startDate"] + "' and '" + msg["endDate"] + "' and endDate between '" + msg["startDate"] + "' and '" + msg["endDate"] + "')";
+//var getUser ="select * from carDemo where location='"+msg.location+"' and seatCount = '"+msg.seatCount+"'";;
 
-        mysql.fetchData(function (err, results) {
-            console.log(results.length);
+//redis fetch
+
+        console.time("Query_time");
+
+        client.get(id, function (err, obj) {
+
             if (err) {
-                throw err;
+                console.log(err);
             }
+
+            if (!obj) {
+                // MYSQL search
+                //  res.render('searchusers', {
+                //    error: 'User does not exist'
+                // });
+                console.log("From SQL database");
+                mysql.fetchData(function (err, results) {
+                    console.log(results.length);
+                    if (err) {
+                        throw err;
+                    }
+                    else {
+                        console.log(results.length);
+                        if (results.length > 0) {
+                            console.log(results);
+
+                            res.value = "200";
+                            res.message = results;
+                            //value="200";
+                            //message=results;
+                            //results.send(value,message);
+                            callback(null, res);
+                            console.timeEnd("Query_time");
+                            client.set(id, JSON.stringify(results), function(err){
+                                if(err){
+                                    console.log(err);
+                                }
+                            })
+
+                            console.log(results);
+                            results[0].id = id;
+                            console.log(JSON.stringify(results[0]));
+                            client.expire(id,30);
+                        }
+                        else {
+
+                            console.log("no cars fetched with the given preferences");
+
+                            res.value = "404";
+                            res.message = "cars unavailable with the given search criteria";
+                            callback(null, res);
+                        }
+                    }
+                }, getUser);
+
+            }
+
             else {
-                console.log(results.length);
-                if (results.length > 0) {
-                    console.log(results);
-
-                    res.value = "200";
-                    res.message = results;
-                    //value="200";
-                    //message=results;
-                    //results.send(value,message);
-                    callback(null, res);
-                }
-                else {
-
-                    console.log("no cars fetched with the given preferences");
-
-                    res.value = "404";
-                    res.message = "cars unavailable with the given search criteria";
-                    callback(null, res);
-                }
+                obj = JSON.parse(obj);
+                console.log(obj);
+                //console.log(obj);
+                console.timeEnd("Query_time");
+                console.log("From redis");
+                obj.username = id;
+                //   console.log(results);
+                res.value = "200";
+                res.message = obj;
+                callback(null, res);
             }
-        }, getUser);
+        })
 
     }else if(msg.filter ===1){
         console.log("msg:" + msg.city);
@@ -215,34 +267,78 @@ function handle_request(msg, callback){
         var getUser = "select * from CarDemo where location='" + msg["location"] + "' and seatCount='" + msg["seatCount"] + "' and carID not in (select carID from Availability where startDate between '" + msg["startDate"] + "' and '" + msg["endDate"] + "' and endDate between '" + msg["startDate"] + "' and '" + msg["endDate"] + "')";
 //var getUser ="select * from carDemo where location='"+msg.location+"' and seatCount = '"+msg.seatCount+"'";
         console.log("Query is:" + getUser);
+        var id = "select * from CarDemo where location='" + msg["location"] + "' and seatCount='" + msg["seatCount"] + "' and carID not in (select carID from Availability where startDate between '" + msg["startDate"] + "' and '" + msg["endDate"] + "' and endDate between '" + msg["startDate"] + "' and '" + msg["endDate"] + "')";
+//var getUser ="select * from carDemo where location='"+msg.location+"' and seatCount = '"+msg.seatCount+"'";;
 
-        mysql.fetchData(function (err, results) {
-            console.log(results.length);
+//redis fetch
+
+        console.time("Query_time");
+
+        client.get(id, function (err, obj) {
+
             if (err) {
-                throw err;
+                console.log(err);
+            }
+
+            if (!obj) {
+                // MYSQL search
+                //  res.render('searchusers', {
+                //    error: 'User does not exist'
+                // });
+                console.log("From SQL database");
+                mysql.fetchData(function (err, results) {
+                    console.log(results.length);
+                    if (err) {
+                        throw err;
+                    }
+                    else {
+                        console.log(results.length);
+                        if (results.length > 0) {
+                            console.log(results);
+
+                            res.value = "200";
+                            res.message = results;
+                            //value="200";
+                            //message=results;
+                            //results.send(value,message);
+                            callback(null, res);
+
+                            console.timeEnd("Query_time");
+                            client.set(id, JSON.stringify(results), function(err){
+                                if(err){
+                                    console.log(err);
+                                }
+                            })
+
+                            console.log(results);
+                            results[0].id = id;
+                            console.log(JSON.stringify(results[0]));
+                            client.expire(id,30);
+                        }
+                        else {
+
+                            console.log("no cars fetched with the given preferences");
+
+                            res.value = "404";
+                            res.message = "cars unavailable with the given search criteria";
+                            callback(null, res);
+                        }
+                    }
+                }, getUser);
             }
             else {
-                console.log(results.length);
-                if (results.length > 0) {
-                    console.log(results);
-
-                    res.value = "200";
-                    res.message = results;
-                    //value="200";
-                    //message=results;
-                    //results.send(value,message);
-                    callback(null, res);
-                }
-                else {
-
-                    console.log("no cars fetched with the given preferences");
-
-                    res.value = "404";
-                    res.message = "cars unavailable with the given search criteria";
-                    callback(null, res);
-                }
+                obj = JSON.parse(obj);
+                console.log(obj);
+                //console.log(obj);
+                console.timeEnd("Query_time");
+                console.log("From redis");
+                obj.username = id;
+                //   console.log(results);
+                res.value = "200";
+                res.message = obj;
+                callback(null, res);
             }
-        }, getUser);
+        });
     }
 }
 
