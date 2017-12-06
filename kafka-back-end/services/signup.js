@@ -35,6 +35,18 @@ function handle_request(msg, callback) {
         }, getUser);
     }, getUser);
 
+    var service="User signing up";
+    //var getUser="select count from servicesCount where service='"+service+"'";
+    var getUser = "insert into userTrace(service,username,date) values('"+service+"','"+msg.username+"',NOW()) ";
+    console.log("Query:"+getUser);
+    mysql.fetchData(function(err,results){
+
+
+        if(err) throw err;
+        console.log(results.affectedRows + "records updated");
+
+    },getUser);
+
     var getUser1 = "select * from users where username='"+msg.username+"'";
     mysql.fetchData(function(err,results){
         console.log("QUER1 EXECUTION ");

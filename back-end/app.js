@@ -192,7 +192,7 @@ app.post('/hotelDetails', function(req, res) {
     console.log(req.body.hotelID);
 
 
-    kafka.make_request('hotelDes_topic',{"ID":req.body.hotelID}, function(err,results) {
+    kafka.make_request('hotelDes_topic',{"ID":req.body.hotelID,"username":req.session.user}, function(err,results) {
         console.log('in result');
         console.log(results);
 
@@ -234,7 +234,7 @@ app.post('/bookHotel', function(req, res) {
     console.log(req.body.hotelRequested.guestCount);
     console.log(req.body.hotelRequested.roomCount);
 
-    kafka.make_request('hotelBook_topic',{"ID": req.body.hotelID, "guestCount": req.body.hotelRequested.guestCount, "roomCount": req.body.hotelRequested.roomCount, "fromDate" : req.body.hotelRequested.fromDate,
+    kafka.make_request('hotelBook_topic',{"username":req.session.user,"ID": req.body.hotelID, "guestCount": req.body.hotelRequested.guestCount, "roomCount": req.body.hotelRequested.roomCount, "fromDate" : req.body.hotelRequested.fromDate,
         "toDate": req.body.hotelRequested.toDate}, function(err,results) {
         console.log('in result');
         console.log(results);
@@ -402,7 +402,7 @@ app.post('/flightDetails', function(req,res) {
     console.log(req.body.flightID);
     console.log(req.body.seatType);
 
-    kafka.make_request('flightDes_topic',{"flightID":req.body.flightID, "seatType":req.body.seatType},
+    kafka.make_request('flightDes_topic',{"flightID":req.body.flightID, "seatType":req.body.seatType,"username":req.session.user},
         function(err,results) {
             console.log('in result');
             console.log(results);
@@ -451,7 +451,7 @@ app.post('/bookFlight', function(req,res) {
     console.log(req.body.seatType);
     console.log(req.body.passengerCount);
 
-    kafka.make_request('bookFlight_topic',{"depFlightID":req.body.flightID, "retFlightID":req.body.retFlightID, "seatType":req.body.seatType, "passengerCount":req.body.passengerCount},
+    kafka.make_request('bookFlight_topic',{"depFlightID":req.body.flightID, "retFlightID":req.body.retFlightID, "seatType":req.body.seatType, "passengerCount":req.body.passengerCount,"username":req.session.user},
         function(err,results) {
             console.log('in result');
             console.log(results);
@@ -525,7 +525,7 @@ app.post('/car', function(req, res) {
     console.log(req.body.filter);
 
 
-    kafka.make_request('car_topic',{"location":req.body.location,"startDate":req.body.startDate,"endDate":req.body.endDate,"seatCount":req.body.seatCount,"carType":req.body.carType,"filter":req.body.filter,"minPrice":req.body.minPrice,"maxPrice":req.body.maxPrice}, function(err,results) {
+    kafka.make_request('car_topic',{"location":req.body.location,"startDate":req.body.startDate,"endDate":req.body.endDate,"seatCount":req.body.seatCount,"carType":req.body.carType,"filter":req.body.filter,"minPrice":req.body.minPrice,"maxPrice":req.body.maxPrice, "username": req.session.user}, function(err,results) {
         console.log('in result');
         console.log(results);
 
@@ -562,7 +562,7 @@ app.post('/carDetails', function(req, res) {
     console.log(req.body.roomCount);
 */
     console.log(req.body.carRequested.seatCount)
-    kafka.make_request('carDes_topic',{"carID":req.body.carID}, function(err,results) {
+    kafka.make_request('carDes_topic',{"carID":req.body.carID,"username":req.session.user}, function(err,results) {
         console.log('in result');
         console.log(results);
 
@@ -1410,14 +1410,15 @@ app.post('/admin/reports', function(req, res) {
             res.status(500).send();
         }
         else {
-            if (results.value == 200) {
+            //if (results.value == 200) {
+
                 //  done(null,true,results/*{username: username, password: password});
                 console.log(results.value);
 
                 var res1 = results.value;
 
                 res.status(200).send({message: results, value: 201});
-            }
+            
         }
     });
 });
@@ -1597,4 +1598,44 @@ app.post('/users/deleteUser', function(req, res) {  //to fetch flights for admin
 
     });
 });
+
+app.post('/admin/userTrace', function(req, res) {
+    
+        console.log("user Trace api");
+        //  console.log(req.body.city);
+        //  console.log(req.body.date);
+        //  console.log(req.body.to);
+        //console.log(req.body.filter);
+        console.log(req.body.username);
+        console.log(req.body.date);
+    
+    
+        kafka.make_request('userTrace_topic',{"username":req.body.username,"date":req.body.date}, function(err,results) {
+            console.log('in result');
+            console.log(results);
+    
+            if (err) {
+                res.status(404).send({message:results});
+            }
+            else {
+                if (results.value == 200) {
+                    //  done(null,true,results/*{username: username, password: password});
+                    console.log(results.value);
+    
+                    var res1 = results.value;
+    
+                    res.status(201).send({
+                        message: results,
+                        location: req.body.location,
+                        startDate: req.body.startDate,
+                        endDate: req.body.endDate,
+                        seatCount: req.body.seatCount,
+                        filter: req.body.filter,
+                        value: 201});
+                }
+                else if(results.value === 404){
+                    res.status(404).send({message:results, value: 401});
+                }}
+        });
+    });
 module.exports = app;

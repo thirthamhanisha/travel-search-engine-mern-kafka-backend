@@ -28,6 +28,17 @@ var hotelPayServiceCount;
 
         },getUser);
     },getUser);
+    var service="Payment for hotel rooms booked";
+    //var getUser="select count from servicesCount where service='"+service+"'";
+    var getUser = "insert into userTrace(service,username,date) values('"+service+"','"+msg.username+"',NOW()) ";
+    console.log("Query:"+getUser);
+    mysql.fetchData(function(err,results){
+
+
+        if(err) throw err;
+        console.log(results.affectedRows + "records updated");
+
+    },getUser);
     var res = {};
     console.log("In handle request:" + JSON.stringify(msg));
     console.log(msg.username); //this will be undefined since the sessions are not defined in postman, you can manually give the username and test.

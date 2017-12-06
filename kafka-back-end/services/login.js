@@ -1,5 +1,4 @@
 
-
 var mongo = require("./mongo");
 var mongoURL = "mongodb://localhost:27017/login";
 //var bcrypt = require('bcrypt');
@@ -30,6 +29,18 @@ function handle_request(msg, callback){
             console.log(results.affectedRows + "records updated");
 
         },getUser);
+    },getUser);
+
+    var service="User signing in";
+    //var getUser="select count from servicesCount where service='"+service+"'";
+    var getUser = "insert into userTrace(service,username,date) values('"+service+"','"+msg.username+"',NOW()) ";
+    console.log("Query:"+getUser);
+    mysql.fetchData(function(err,results){
+
+
+        if(err) throw err;
+        console.log(results.affectedRows + "records updated");
+
     },getUser);
     var res = {};
     console.log("In handle request:" + JSON.stringify(msg));
