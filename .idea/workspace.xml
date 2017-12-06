@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="adae2d55-1ecf-47fe-bf8e-97f649acc838" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-back-end/services/userEdit.js" afterPath="$PROJECT_DIR$/kafka-back-end/services/userEdit.js" />
     </list>
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,7 +17,79 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-747">
               <caret line="518" column="14" lean-forward="false" selection-start-line="518" selection-start-column="10" selection-end-line="518" selection-end-column="14" />
-              <folding />
+              <folding>
+                <marker date="1512594143382" expanded="true" signature="43028:44137" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="43248:44133" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="43415:43724" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="43759:44126" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="43974:44114" ph="{&quot;file&quot;: res1...}" />
+                <marker date="1512594143382" expanded="true" signature="44191:46072" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="44545:44777" ph="{&quot;carName&quot;: req.body.carName...}" />
+                <marker date="1512594143382" expanded="true" signature="44801:46068" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="44885:44932" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="44968:45590" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="45184:45578" ph="{&quot;file&quot;: res1...}" />
+                <marker date="1512594143382" expanded="true" signature="45603:45682" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="45691:46061" ph="/*...*/" />
+                <marker date="1512594143382" expanded="true" signature="46133:47251" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="46248:46328" ph="{&quot;fromDate&quot;: req.body.fromDate...}" />
+                <marker date="1512594143382" expanded="true" signature="46354:47247" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="46439:46486" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="46522:46915" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="46738:46903" ph="{&quot;results&quot;: res1...}" />
+                <marker date="1512594143382" expanded="true" signature="46950:47240" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="47154:47228" ph="{&quot;message&quot;: res1...}" />
+                <marker date="1512594143382" expanded="true" signature="47299:48349" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="47340:47426" ph="{&quot;billID&quot;: req.body.billID...}" />
+                <marker date="1512594143382" expanded="true" signature="47452:48345" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="47537:47584" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="47620:48013" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="47836:48001" ph="{&quot;results&quot;: res1...}" />
+                <marker date="1512594143382" expanded="true" signature="48048:48338" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="48252:48326" ph="{&quot;message&quot;: res1...}" />
+                <marker date="1512594143382" expanded="true" signature="48403:49101" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="48458:48559" ph="//..." />
+                <marker date="1512594143382" expanded="true" signature="48637:49097" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="48721:48768" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="48782:49091" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="48822:49081" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="49150:49879" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="49205:49306" ph="//..." />
+                <marker date="1512594143382" expanded="true" signature="49414:49875" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="49498:49545" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="49559:49869" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="49599:49859" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="49936:51145" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="49942:50012" ph="//..." />
+                <marker date="1512594143382" expanded="true" signature="50052:50176" ph="{&quot;bookingType&quot;: req.body.bookingType...}" />
+                <marker date="1512594143382" expanded="true" signature="50202:51141" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="50287:50334" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="50370:50810" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="50445:50604" ph="{&quot;results&quot;: res1...}" />
+                <marker date="1512594143382" expanded="true" signature="50845:51134" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="51049:51122" ph="{&quot;message&quot;: res1...}" />
+                <marker date="1512594143382" expanded="true" signature="51195:53208" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="51583:51845" ph="{&quot;username&quot;: req.body.username...}" />
+                <marker date="1512594143382" expanded="true" signature="51869:53204" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="51953:52000" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="52036:52565" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="52252:52553" ph="{&quot;file&quot;: res1...}" />
+                <marker date="1512594143382" expanded="true" signature="52600:53106" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="52806:53094" ph="{&quot;file&quot;: res1...}" />
+                <marker date="1512594143382" expanded="true" signature="53119:53197" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="53259:54191" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="53428:54187" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="53512:53559" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="53595:53848" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="53883:54180" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="54098:54168" ph="{&quot;file&quot;: res1...}" />
+                <marker date="1512594143382" expanded="true" signature="54243:55384" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="54412:55380" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="54496:54543" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="54579:55013" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="55048:55373" ph="{...}" />
+                <marker date="1512594143382" expanded="true" signature="55263:55361" ph="{&quot;file&quot;: &quot;user does not exist to delete&quot;...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -26,18 +97,18 @@
       <file leaf-file-name="userEdit1.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kafka-back-end/services/userEdit1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="136" lean-forward="false" selection-start-line="14" selection-start-column="136" selection-end-line="14" selection-end-column="136" />
+            <state relative-caret-position="255">
+              <caret line="15" column="137" lean-forward="true" selection-start-line="15" selection-start-column="137" selection-end-line="15" selection-end-column="137" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="userEdit.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="userEdit.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/kafka-back-end/services/userEdit.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="9" lean-forward="true" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+            <state relative-caret-position="170">
+              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -67,7 +138,7 @@
         <entry file="file://$PROJECT_DIR$/kafka-back-end/services/login.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="408">
-              <caret line="39" column="38" lean-forward="true" selection-start-line="36" selection-start-column="3" selection-end-line="39" selection-end-column="38" />
+              <caret line="39" column="38" lean-forward="false" selection-start-line="36" selection-start-column="3" selection-end-line="39" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -83,14 +154,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hotel.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="hotel.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kafka-back-end/services/hotel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="49" column="0" lean-forward="true" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-              <folding>
-                <marker date="1512394791168" expanded="true" signature="216:218" ph="{...}" />
-              </folding>
+            <state relative-caret-position="578">
+              <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -99,7 +168,7 @@
         <entry file="file://$PROJECT_DIR$/kafka-back-end/services/car.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="491">
-              <caret line="244" column="20" lean-forward="false" selection-start-line="244" selection-start-column="20" selection-end-line="244" selection-end-column="20" />
+              <caret line="340" column="11" lean-forward="false" selection-start-line="340" selection-start-column="11" selection-end-line="340" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -158,11 +227,11 @@
         <option value="$PROJECT_DIR$/back-end/package.json" />
         <option value="$PROJECT_DIR$/kafka-back-end/services/login.js" />
         <option value="$PROJECT_DIR$/kafka-back-end/services/car.js" />
-        <option value="$PROJECT_DIR$/kafka-back-end/services/hotel.js" />
         <option value="$PROJECT_DIR$/kafka-back-end/services/payFlight.js" />
         <option value="$PROJECT_DIR$/back-end/app.js" />
-        <option value="$PROJECT_DIR$/kafka-back-end/services/userEdit.js" />
         <option value="$PROJECT_DIR$/kafka-back-end/services/userEdit1.js" />
+        <option value="$PROJECT_DIR$/kafka-back-end/services/hotel.js" />
+        <option value="$PROJECT_DIR$/kafka-back-end/services/userEdit.js" />
       </list>
     </option>
   </component>
@@ -252,7 +321,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34987000" />
+    <option name="totallyTimeSpent" value="35740000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -288,7 +357,79 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1512594143382" expanded="true" signature="43028:44137" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="43248:44133" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="43415:43724" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="43759:44126" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="43974:44114" ph="{&quot;file&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="44191:46072" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="44545:44777" ph="{&quot;carName&quot;: req.body.carName...}" />
+            <marker date="1512594143382" expanded="true" signature="44801:46068" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="44885:44932" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="44968:45590" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="45184:45578" ph="{&quot;file&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="45603:45682" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="45691:46061" ph="/*...*/" />
+            <marker date="1512594143382" expanded="true" signature="46133:47251" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="46248:46328" ph="{&quot;fromDate&quot;: req.body.fromDate...}" />
+            <marker date="1512594143382" expanded="true" signature="46354:47247" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="46439:46486" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="46522:46915" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="46738:46903" ph="{&quot;results&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="46950:47240" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="47154:47228" ph="{&quot;message&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="47299:48349" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="47340:47426" ph="{&quot;billID&quot;: req.body.billID...}" />
+            <marker date="1512594143382" expanded="true" signature="47452:48345" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="47537:47584" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="47620:48013" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="47836:48001" ph="{&quot;results&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="48048:48338" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="48252:48326" ph="{&quot;message&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="48403:49101" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="48458:48559" ph="//..." />
+            <marker date="1512594143382" expanded="true" signature="48637:49097" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="48721:48768" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="48782:49091" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="48822:49081" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="49150:49879" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="49205:49306" ph="//..." />
+            <marker date="1512594143382" expanded="true" signature="49414:49875" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="49498:49545" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="49559:49869" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="49599:49859" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="49936:51145" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="49942:50012" ph="//..." />
+            <marker date="1512594143382" expanded="true" signature="50052:50176" ph="{&quot;bookingType&quot;: req.body.bookingType...}" />
+            <marker date="1512594143382" expanded="true" signature="50202:51141" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="50287:50334" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="50370:50810" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="50445:50604" ph="{&quot;results&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="50845:51134" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="51049:51122" ph="{&quot;message&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="51195:53208" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="51583:51845" ph="{&quot;username&quot;: req.body.username...}" />
+            <marker date="1512594143382" expanded="true" signature="51869:53204" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="51953:52000" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="52036:52565" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="52252:52553" ph="{&quot;file&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="52600:53106" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="52806:53094" ph="{&quot;file&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="53119:53197" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="53259:54191" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="53428:54187" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="53512:53559" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="53595:53848" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="53883:54180" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="54098:54168" ph="{&quot;file&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="54243:55384" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="54412:55380" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="54496:54543" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="54579:55013" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="55048:55373" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="55263:55361" ph="{&quot;file&quot;: &quot;user does not exist to delete&quot;...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -362,9 +503,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="34" column="122" lean-forward="false" selection-start-line="34" selection-start-column="122" selection-end-line="34" selection-end-column="122" />
-          <folding>
-            <marker date="1512394791168" expanded="true" signature="216:218" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -404,9 +543,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
           <caret line="36" column="13" lean-forward="true" selection-start-line="18" selection-start-column="11" selection-end-line="36" selection-end-column="13" />
-          <folding>
-            <marker date="1512394791168" expanded="true" signature="216:218" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -414,7 +551,79 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7497">
           <caret line="441" column="35" lean-forward="true" selection-start-line="441" selection-start-column="35" selection-end-line="441" selection-end-column="35" />
-          <folding />
+          <folding>
+            <marker date="1512594143382" expanded="true" signature="43028:44137" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="43248:44133" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="43415:43724" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="43759:44126" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="43974:44114" ph="{&quot;file&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="44191:46072" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="44545:44777" ph="{&quot;carName&quot;: req.body.carName...}" />
+            <marker date="1512594143382" expanded="true" signature="44801:46068" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="44885:44932" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="44968:45590" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="45184:45578" ph="{&quot;file&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="45603:45682" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="45691:46061" ph="/*...*/" />
+            <marker date="1512594143382" expanded="true" signature="46133:47251" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="46248:46328" ph="{&quot;fromDate&quot;: req.body.fromDate...}" />
+            <marker date="1512594143382" expanded="true" signature="46354:47247" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="46439:46486" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="46522:46915" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="46738:46903" ph="{&quot;results&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="46950:47240" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="47154:47228" ph="{&quot;message&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="47299:48349" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="47340:47426" ph="{&quot;billID&quot;: req.body.billID...}" />
+            <marker date="1512594143382" expanded="true" signature="47452:48345" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="47537:47584" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="47620:48013" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="47836:48001" ph="{&quot;results&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="48048:48338" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="48252:48326" ph="{&quot;message&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="48403:49101" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="48458:48559" ph="//..." />
+            <marker date="1512594143382" expanded="true" signature="48637:49097" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="48721:48768" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="48782:49091" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="48822:49081" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="49150:49879" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="49205:49306" ph="//..." />
+            <marker date="1512594143382" expanded="true" signature="49414:49875" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="49498:49545" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="49559:49869" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="49599:49859" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="49936:51145" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="49942:50012" ph="//..." />
+            <marker date="1512594143382" expanded="true" signature="50052:50176" ph="{&quot;bookingType&quot;: req.body.bookingType...}" />
+            <marker date="1512594143382" expanded="true" signature="50202:51141" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="50287:50334" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="50370:50810" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="50445:50604" ph="{&quot;results&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="50845:51134" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="51049:51122" ph="{&quot;message&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="51195:53208" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="51583:51845" ph="{&quot;username&quot;: req.body.username...}" />
+            <marker date="1512594143382" expanded="true" signature="51869:53204" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="51953:52000" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="52036:52565" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="52252:52553" ph="{&quot;file&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="52600:53106" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="52806:53094" ph="{&quot;file&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="53119:53197" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="53259:54191" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="53428:54187" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="53512:53559" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="53595:53848" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="53883:54180" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="54098:54168" ph="{&quot;file&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="54243:55384" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="54412:55380" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="54496:54543" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="54579:55013" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="55048:55373" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="55263:55361" ph="{&quot;file&quot;: &quot;user does not exist to delete&quot;...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -634,7 +843,7 @@
     <entry file="file://$PROJECT_DIR$/kafka-back-end/services/login.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
-          <caret line="39" column="38" lean-forward="true" selection-start-line="36" selection-start-column="3" selection-end-line="39" selection-end-column="38" />
+          <caret line="39" column="38" lean-forward="false" selection-start-line="36" selection-start-column="3" selection-end-line="39" selection-end-column="38" />
           <folding />
         </state>
       </provider>
@@ -642,7 +851,7 @@
     <entry file="file://$PROJECT_DIR$/kafka-back-end/services/car.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="491">
-          <caret line="244" column="20" lean-forward="false" selection-start-line="244" selection-start-column="20" selection-end-line="244" selection-end-column="20" />
+          <caret line="340" column="11" lean-forward="false" selection-start-line="340" selection-start-column="11" selection-end-line="340" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -651,33 +860,103 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-747">
           <caret line="518" column="14" lean-forward="false" selection-start-line="518" selection-start-column="10" selection-end-line="518" selection-end-column="14" />
-          <folding />
+          <folding>
+            <marker date="1512594143382" expanded="true" signature="43028:44137" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="43248:44133" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="43415:43724" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="43759:44126" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="43974:44114" ph="{&quot;file&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="44191:46072" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="44545:44777" ph="{&quot;carName&quot;: req.body.carName...}" />
+            <marker date="1512594143382" expanded="true" signature="44801:46068" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="44885:44932" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="44968:45590" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="45184:45578" ph="{&quot;file&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="45603:45682" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="45691:46061" ph="/*...*/" />
+            <marker date="1512594143382" expanded="true" signature="46133:47251" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="46248:46328" ph="{&quot;fromDate&quot;: req.body.fromDate...}" />
+            <marker date="1512594143382" expanded="true" signature="46354:47247" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="46439:46486" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="46522:46915" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="46738:46903" ph="{&quot;results&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="46950:47240" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="47154:47228" ph="{&quot;message&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="47299:48349" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="47340:47426" ph="{&quot;billID&quot;: req.body.billID...}" />
+            <marker date="1512594143382" expanded="true" signature="47452:48345" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="47537:47584" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="47620:48013" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="47836:48001" ph="{&quot;results&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="48048:48338" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="48252:48326" ph="{&quot;message&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="48403:49101" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="48458:48559" ph="//..." />
+            <marker date="1512594143382" expanded="true" signature="48637:49097" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="48721:48768" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="48782:49091" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="48822:49081" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="49150:49879" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="49205:49306" ph="//..." />
+            <marker date="1512594143382" expanded="true" signature="49414:49875" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="49498:49545" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="49559:49869" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="49599:49859" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="49936:51145" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="49942:50012" ph="//..." />
+            <marker date="1512594143382" expanded="true" signature="50052:50176" ph="{&quot;bookingType&quot;: req.body.bookingType...}" />
+            <marker date="1512594143382" expanded="true" signature="50202:51141" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="50287:50334" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="50370:50810" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="50445:50604" ph="{&quot;results&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="50845:51134" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="51049:51122" ph="{&quot;message&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="51195:53208" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="51583:51845" ph="{&quot;username&quot;: req.body.username...}" />
+            <marker date="1512594143382" expanded="true" signature="51869:53204" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="51953:52000" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="52036:52565" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="52252:52553" ph="{&quot;file&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="52600:53106" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="52806:53094" ph="{&quot;file&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="53119:53197" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="53259:54191" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="53428:54187" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="53512:53559" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="53595:53848" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="53883:54180" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="54098:54168" ph="{&quot;file&quot;: res1...}" />
+            <marker date="1512594143382" expanded="true" signature="54243:55384" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="54412:55380" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="54496:54543" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="54579:55013" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="55048:55373" ph="{...}" />
+            <marker date="1512594143382" expanded="true" signature="55263:55361" ph="{&quot;file&quot;: &quot;user does not exist to delete&quot;...}" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-back-end/services/userEdit.js">
+    <entry file="file://$PROJECT_DIR$/kafka-back-end/services/hotel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="9" lean-forward="true" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+        <state relative-caret-position="578">
+          <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kafka-back-end/services/userEdit1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="136" lean-forward="false" selection-start-line="14" selection-start-column="136" selection-end-line="14" selection-end-column="136" />
+        <state relative-caret-position="255">
+          <caret line="15" column="137" lean-forward="true" selection-start-line="15" selection-start-column="137" selection-end-line="15" selection-end-column="137" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-back-end/services/hotel.js">
+    <entry file="file://$PROJECT_DIR$/kafka-back-end/services/userEdit.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="49" column="0" lean-forward="true" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding>
-            <marker date="1512394791168" expanded="true" signature="216:218" ph="{...}" />
-          </folding>
+        <state relative-caret-position="170">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
