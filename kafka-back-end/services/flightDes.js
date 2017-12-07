@@ -28,9 +28,11 @@ function handle_request(msg, callback){
 
         },getUser);
     },getUser);
-    var service="Searched for flight details";
+//<<<<<<< final-branch
+    var service="Fetching details of a flight";
     //var getUser="select count from servicesCount where service='"+service+"'";
-    var getUser = "insert into userTrace(service,username,date) values('"+service+"','"+msg.username+"',NOW()) ";
+    var getUser = "insert into userTrace(service,username,date,time) values('"+service+"','"+msg.username+"','"+NOW()+"',3) ";
+
     console.log("Query:"+getUser);
     mysql.fetchData(function(err,results){
 

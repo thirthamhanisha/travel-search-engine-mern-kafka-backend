@@ -25,9 +25,11 @@ var flightPayServiceCount;
 
         },getUser);
     },getUser);
-    var service="Payment for flight booked";
+//<<<<<<< final-branch
+    var service="Payment for flight";
     //var getUser="select count from servicesCount where service='"+service+"'";
-    var getUser = "insert into userTrace(service,username,date) values('"+service+"','"+msg.username+"',NOW()) ";
+    var getUser = "insert into userTrace(service,username,date,time) values('"+service+"','"+msg.username+"',NOW(),4) ";
+
     console.log("Query:"+getUser);
     mysql.fetchData(function(err,results){
 

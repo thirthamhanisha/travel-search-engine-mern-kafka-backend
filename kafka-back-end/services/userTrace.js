@@ -4,7 +4,9 @@ var mysql = require("./mysql");
 function handle_request(msg, callback){
 
     var res = {};
-    var getUser = "select username,service,time(date) as time from userTrace where username='"+msg.username+"' and date(date)='"+msg.date+"'";
+//<<<<<<< final-branch
+    var getUser = "select username,service,time(date) as date,time from userTrace where username='"+msg.username+"' and date(date)='"+msg.date+"'";
+
     mysql.fetchData(function(err,results){
         console.log(results.length);
         if(err){
@@ -25,4 +27,5 @@ function handle_request(msg, callback){
 
 }
 
+//<<<<<<< final-branch
 exports.handle_request = handle_request;

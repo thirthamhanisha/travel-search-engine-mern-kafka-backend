@@ -38,6 +38,7 @@ var report = require('./services/report');
 var userEdit1 = require('./services/userEdit1');
 var userFetch1 = require('./services/userFetch1');
 var userDelete = require('./services/userDelete');
+var userTrace = require('./services/userTrace');
 
 var userTrace = require('./services/userTrace');
 
@@ -80,7 +81,7 @@ var consumer_top5LocationsForCars = connection.getConsumer('top5LocationsCars_to
 var consumer_report = connection.getConsumer('report_topic');
 var consumer_bills=connection.getConsumer('bills_topic');
 
-var consumer_userTrace = connection.getConsumer('userTrace_topic');
+var consumer_userTrace=connection.getConsumer('userTrace_topic');
 
 /*var consumer3 = connection.getConsumer('upload_topic');
 var consumer4 = connection.getConsumer('share_topic');

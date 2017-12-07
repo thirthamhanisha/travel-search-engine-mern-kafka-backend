@@ -32,9 +32,11 @@ function handle_request(msg, callback){
 
         },getUser);
     },getUser);
+
     var service="Searched for cars";
     //var getUser="select count from servicesCount where service='"+service+"'";
-    var getUser = "insert into userTrace(service,username,date) values('"+service+"','"+msg.username+"',NOW()) ";
+    var getUser = "insert into userTrace(service,username,date,time) values('"+service+"','"+msg.username+"',NOW(),3) ";
+
     console.log("Query:"+getUser);
     mysql.fetchData(function(err,results){
 

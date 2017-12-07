@@ -28,9 +28,11 @@ var hotelPayServiceCount;
 
         },getUser);
     },getUser);
-    var service="Payment for hotel rooms booked";
+//<<<<<<< final-branch
+    var service="Payment for hotel";
     //var getUser="select count from servicesCount where service='"+service+"'";
-    var getUser = "insert into userTrace(service,username,date) values('"+service+"','"+msg.username+"',NOW()) ";
+    var getUser = "insert into userTrace(service,username,date,time) values('"+service+"','"+msg.username+"',NOW(),6) ";
+
     console.log("Query:"+getUser);
     mysql.fetchData(function(err,results){
 
