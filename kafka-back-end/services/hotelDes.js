@@ -28,9 +28,11 @@ var hotelDetailsServiceCount;
 
         },getUser);
     },getUser);
+//<<<<<<< final-branch
     var service="Searching for hotel details";
     //var getUser="select count from servicesCount where service='"+service+"'";
     var getUser = "insert into userTrace(service,username,date,time) values('"+service+"','"+msg.username+"',NOW(),2) ";
+
     console.log("Query:"+getUser);
     mysql.fetchData(function(err,results){
 
@@ -39,7 +41,6 @@ var hotelDetailsServiceCount;
         console.log(results.affectedRows + "records updated");
 
     },getUser);
-
     var res = {};
     console.log("In handle request:" + JSON.stringify(msg));
 

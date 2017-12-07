@@ -16,6 +16,7 @@ var mongoSessionURL = "mongodb://localhost:27017/sessions";
 var expressSessions = require("express-session");
 var mongoStore = require("connect-mongo/es5")(expressSessions);
 var kafka = require('./routes/kafka/client');
+var mysql = require("./mysql");
 var app = express();
 // Create Redis Client
 /*let client = redis.createClient();
@@ -101,6 +102,17 @@ app.post('/logout', function(req,res) {
     console.log(req.session.user);
     req.session.destroy();
     console.log('Session Destroyed');
+    var query = "select * from userTrace into OUTFILE /tmp/userTrace.csv FIELDS TERMINATED BY ',' LINES TERMINATED BY '/n'";
+    mysql.fetchData(function (err, results) {
+        if (err) {
+            throw err;
+        }
+        else {
+                console.log(results + "inserted into the file");
+
+            }
+
+    }, getUser);
     res.status(200).send({value: 201});
 });
 
@@ -1531,14 +1543,15 @@ app.post('/admin/reports', function(req, res) {
             res.status(500).send();
         }
         else {
-            if (results.value == 200) {
+            //if (results.value == 200) {
+
                 //  done(null,true,results/*{username: username, password: password});
                 console.log(results.value);
 
                 var res1 = results.value;
 
                 res.status(200).send({message: results, value: 201});
-            }
+            
         }
     });
 });
@@ -1757,6 +1770,5 @@ app.post('/admin/userTrace', function(req, res) {
             }}
     });
 });
-
 
 module.exports = app;

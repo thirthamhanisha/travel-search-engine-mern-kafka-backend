@@ -29,9 +29,11 @@ var hotelBookServiceCount;
 
         },getUser);
     },getUser);
+//<<<<<<< final-branch
     var service="Booking for hotels ";
     //var getUser="select count from servicesCount where service='"+service+"'";
     var getUser = "insert into userTrace(service,username,date,time) values('"+service+"','"+msg.username+"',NOW(),4) ";
+
     console.log("Query:"+getUser);
     mysql.fetchData(function(err,results){
 
@@ -40,7 +42,6 @@ var hotelBookServiceCount;
         console.log(results.affectedRows + "records updated");
 
     },getUser);
-
     var res = {};
     console.log("In handle request:" + JSON.stringify(msg));
 //calculate the noOfDays

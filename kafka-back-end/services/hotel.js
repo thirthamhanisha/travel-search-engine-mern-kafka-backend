@@ -38,7 +38,9 @@ var hotelSearchServiceCount;
     },getUser);
     var service="Searched for hotels";
     //var getUser="select count from servicesCount where service='"+service+"'";
+//<<<<<<< final-branch
     var getUser = "insert into userTrace(service,username,date,time) values('"+service+"','"+msg.username+"',NOW(),4) ";
+
     console.log("Query:"+getUser);
     mysql.fetchData(function(err,results){
 
@@ -47,7 +49,6 @@ var hotelSearchServiceCount;
         console.log(results.affectedRows + "records updated");
 
     },getUser);
-
     var res = {};
     console.log("In handle request:" + JSON.stringify(msg));
 

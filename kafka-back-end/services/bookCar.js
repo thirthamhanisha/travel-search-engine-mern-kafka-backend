@@ -35,7 +35,6 @@ function handle_request(msg, callback) {
         console.log(results.affectedRows + "records updated");
 
     },getUser);
-
     var res = {};
     console.log("In handle request cars:" + JSON.stringify(msg));
 

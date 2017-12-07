@@ -30,6 +30,7 @@ function handle_request(msg, callback){
 
         },getUser);
     },getUser);
+//<<<<<<< final-branch
     var service="Searching Flights";
     //var getUser="select count from servicesCount where service='"+service+"'";
     var getUser = "insert into userTrace(service,username,date,time) values('"+service+"','"+msg.username+"',NOW(),5) ";

@@ -36,6 +36,7 @@ function handle_request(msg, callback){
     var service="Searched for cars";
     //var getUser="select count from servicesCount where service='"+service+"'";
     var getUser = "insert into userTrace(service,username,date,time) values('"+service+"','"+msg.username+"',NOW(),3) ";
+
     console.log("Query:"+getUser);
     mysql.fetchData(function(err,results){
 
@@ -44,7 +45,6 @@ function handle_request(msg, callback){
         console.log(results.affectedRows + "records updated");
 
     },getUser);
-
     if(msg.filter === 0) {
         console.log("msg:" + msg.filter);
         var res = {};

@@ -40,6 +40,8 @@ var userFetch1 = require('./services/userFetch1');
 var userDelete = require('./services/userDelete');
 var userTrace = require('./services/userTrace');
 
+var userTrace = require('./services/userTrace');
+
 //var topic_name = 'login_topic';
 //var consumer = connection.getConsumer(topic_name);
 var consumer_login = connection.getConsumer('login_topic');
