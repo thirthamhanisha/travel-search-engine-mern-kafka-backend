@@ -38,6 +38,7 @@ var report = require('./services/report');
 var userEdit1 = require('./services/userEdit1');
 var userFetch1 = require('./services/userFetch1');
 var userDelete = require('./services/userDelete');
+var userTrace = require('./services/userTrace');
 
 //var topic_name = 'login_topic';
 //var consumer = connection.getConsumer(topic_name);
@@ -77,6 +78,8 @@ var consumer_hotelEdit = connection.getConsumer('hotelEdit_topic');
 var consumer_top5LocationsForCars = connection.getConsumer('top5LocationsCars_topic');
 var consumer_report = connection.getConsumer('report_topic');
 var consumer_bills=connection.getConsumer('bills_topic');
+
+var consumer_userTrace=connection.getConsumer('userTrace_topic');
 
 /*var consumer3 = connection.getConsumer('upload_topic');
 var consumer4 = connection.getConsumer('share_topic');
@@ -834,6 +837,28 @@ consumer_userDelete.on('message', function (message) {
     console.log(JSON.stringify(message.value));
     var data = JSON.parse(message.value);
     userDelete.handle_request(data.data, function(err,res){
+        console.log('after handle'+res);
+        var payloads = [
+            { topic: data.replyTo,
+                messages:JSON.stringify({
+                    correlationId:data.correlationId,
+                    data : res
+                }),
+                partition : 0
+            }
+        ];
+        producer.send(payloads, function(err, data){
+            console.log(data);
+        });
+        return;
+    });
+});
+
+consumer_userTrace.on('message', function (message) {
+    console.log('message received');
+    console.log(JSON.stringify(message.value));
+    var data = JSON.parse(message.value);
+    userTrace.handle_request(data.data, function(err,res){
         console.log('after handle'+res);
         var payloads = [
             { topic: data.replyTo,

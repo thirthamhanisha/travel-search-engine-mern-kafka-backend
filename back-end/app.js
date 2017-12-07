@@ -7,6 +7,8 @@ var passport = require('passport');
 var cors = require('cors');
 /*const redis = require('redis');*/
 require('./routes/passport');
+var filePath = "./public/useractivity.txt";
+var fs = require('fs');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -89,6 +91,13 @@ app.use('/', routes);
 app.use('/users', users);
 
 app.post('/logout', function(req,res) {
+
+    var time = new Date();
+    var data = "\n"+req.session.user+"\t"+'/logout'+"\t"+ time.getHours()+":"+time.getMinutes()+":"+time.getSeconds();
+    fs.appendFile(filePath, data, function(err){
+        if (err) throw err;
+        console.log('The "data to append" was appended to file!');
+    });
     console.log(req.session.user);
     req.session.destroy();
     console.log('Session Destroyed');
@@ -96,6 +105,13 @@ app.post('/logout', function(req,res) {
 });
 
 app.post('/login', function(req, res) {
+
+    var time = new Date();
+    var data = "\n"+req.session.user+"\t"+'/login'+"\t"+ time.getHours()+":"+time.getMinutes()+":"+time.getSeconds();
+    fs.appendFile(filePath, data, function(err){
+        if (err) throw err;
+        console.log('The "data to append" was appended to file!');
+    });
     passport.authenticate('login', function(err, user) {
         if(err) {
             res.status(500).send();
@@ -115,6 +131,13 @@ app.post('/login', function(req, res) {
 });
 
 app.post('/signup',function(req,res){
+
+    var time = new Date();
+    var data = "\n"+req.session.user+"\t"+'/signup'+"\t"+ time.getHours()+":"+time.getMinutes()+":"+time.getSeconds();
+    fs.appendFile(filePath, data, function(err){
+        if (err) throw err;
+        console.log('The "data to append" was appended to file!');
+    });
 	passport.authenticate('signup', function(err,user){
 		if(err){
 			res.status(500).send();
@@ -130,6 +153,18 @@ app.post('/signup',function(req,res){
 
 
 app.post('/hotel', function(req, res) {
+
+    /*var sw = new StreamWriter(filepathIncludingFileName);
+    sw.WriteLine("Line to write");
+    sw.WriteLine("Another Line");*/
+
+    var time = new Date();
+    var data = "\n"+req.session.user+"\t"+'/hotel'+"\t"+ time.getHours()+":"+time.getMinutes()+":"+time.getSeconds();
+    fs.appendFile(filePath, data, function(err){
+            if (err) throw err;
+        console.log('The "data to append" was appended to file!');
+    });
+
     console.log(req.body.city);
     console.log(req.body.fromDate);
     console.log(req.body.toDate);
@@ -191,8 +226,14 @@ app.post('/hotel', function(req, res) {
 app.post('/hotelDetails', function(req, res) {
     console.log(req.body.hotelID);
 
+    var time = new Date();
+    var data = "\n"+req.session.user+"\t"+'/hotelDetails'+"\t"+ time.getHours()+":"+time.getMinutes()+":"+time.getSeconds();
+    fs.appendFile(filePath, data, function(err){
+        if (err) throw err;
+        console.log('The "data to append" was appended to file!');
+    });
 
-    kafka.make_request('hotelDes_topic',{"ID":req.body.hotelID}, function(err,results) {
+    kafka.make_request('hotelDes_topic',{"ID":req.body.hotelID,"username":req.session.user}, function(err,results) {
         console.log('in result');
         console.log(results);
 
@@ -228,6 +269,13 @@ app.post('/hotelDetails', function(req, res) {
 });
 
 app.post('/bookHotel', function(req, res) {
+
+    var time = new Date();
+    var data = "\n"+req.session.user+"\t"+'/bookHotel'+"\t"+ time.getHours()+":"+time.getMinutes()+":"+time.getSeconds();
+    fs.appendFile(filePath, data, function(err){
+        if (err) throw err;
+        console.log('The "data to append" was appended to file!');
+    });
     console.log(req.body.hotelID);
     console.log(req.body.hotelRequested.fromDate);
     console.log(req.body.hotelRequested.toDate);
@@ -235,7 +283,7 @@ app.post('/bookHotel', function(req, res) {
     console.log(req.body.hotelRequested.roomCount);
 
     kafka.make_request('hotelBook_topic',{"ID": req.body.hotelID, "guestCount": req.body.hotelRequested.guestCount, "roomCount": req.body.hotelRequested.roomCount, "fromDate" : req.body.hotelRequested.fromDate,
-        "toDate": req.body.hotelRequested.toDate}, function(err,results) {
+        "toDate": req.body.hotelRequested.toDate,"username":req.session.user}, function(err,results) {
         console.log('in result');
         console.log(results);
         var days = days_between(req.body.hotelRequested.toDate,req.body.hotelRequested.fromDate);
@@ -286,6 +334,13 @@ app.post('/payHotel', function(req, res) {
     console.log(req.body.roomCount);
     console.log(req.body.cardNo);
     console.log(  req.body.hotelName);
+
+    var time = new Date();
+    var data = "\n"+req.session.user+"\t"+'/payHotel'+"\t"+ time.getHours()+":"+time.getMinutes()+":"+time.getSeconds();
+    fs.appendFile(filePath, data, function(err){
+        if (err) throw err;
+        console.log('The "data to append" was appended to file!');
+    });
     kafka.make_request('hotelPay_topic',{"ID": req.body.hotelID, "guestCount": req.body.guestCount, "roomCount": req.body.roomCount, "fromDate" : req.body.fromDate,
         "toDate": req.body.toDate, "billAmount": req.body.billAmount, "cardNo":req.body.cardNo, "username":req.session.user, "location": req.body.location, "hotelName": req.body.hotelName}, function(err,results) {
         console.log('in result');
@@ -343,6 +398,12 @@ app.post('/flight', function(req, res) {
     console.log(req.body.passengerCount);
 
 
+    var time = new Date();
+    var data = "\n"+req.session.user+"\t"+'/flight'+"\t"+ time.getHours()+":"+time.getMinutes()+":"+time.getSeconds();
+    fs.appendFile(filePath, data, function(err){
+        if (err) throw err;
+        console.log('The "data to append" was appended to file!');
+    });
     kafka.make_request('flight_topic',{"username": req.session.user, "fromCity":req.body.fromCity, "toCity":req.body.toCity, "departureDate":req.body.departureDate,
             "returnDate":req.body.returnDate, "seatType":req.body.seatType, "passengerCount":req.body.passengerCount},
         function(err,results) {
@@ -402,7 +463,14 @@ app.post('/flightDetails', function(req,res) {
     console.log(req.body.flightID);
     console.log(req.body.seatType);
 
-    kafka.make_request('flightDes_topic',{"flightID":req.body.flightID, "seatType":req.body.seatType},
+    var time = new Date();
+    var data = "\n"+req.session.user+"\t"+'/flightDetails'+"\t"+ time.getHours()+":"+time.getMinutes()+":"+time.getSeconds();
+    fs.appendFile(filePath, data, function(err){
+        if (err) throw err;
+        console.log('The "data to append" was appended to file!');
+    });
+
+    kafka.make_request('flightDes_topic',{"flightID":req.body.flightID, "seatType":req.body.seatType,"username":req.session.user},
         function(err,results) {
             console.log('in result');
             console.log(results);
@@ -451,7 +519,13 @@ app.post('/bookFlight', function(req,res) {
     console.log(req.body.seatType);
     console.log(req.body.passengerCount);
 
-    kafka.make_request('bookFlight_topic',{"depFlightID":req.body.flightID, "retFlightID":req.body.retFlightID, "seatType":req.body.seatType, "passengerCount":req.body.passengerCount},
+    var time = new Date();
+    var data = "\n"+req.session.user+"\t"+'/bookFlight'+"\t"+ time.getHours()+":"+time.getMinutes()+":"+time.getSeconds();
+    fs.appendFile(filePath, data, function(err){
+        if (err) throw err;
+        console.log('The "data to append" was appended to file!');
+    });
+    kafka.make_request('bookFlight_topic',{"username":req.session.user,"depFlightID":req.body.flightID, "retFlightID":req.body.retFlightID, "seatType":req.body.seatType, "passengerCount":req.body.passengerCount},
         function(err,results) {
             console.log('in result');
             console.log(results);
@@ -491,6 +565,13 @@ app.post('/payFlight', function(req,res) {
     console.log(req.body.passengerCount);
     console.log(req.body.price);
 
+    var time = new Date();
+    var data = "\n"+req.session.user+"\t"+'/payFlight'+"\t"+ time.getHours()+":"+time.getMinutes()+":"+time.getSeconds();
+    fs.appendFile(filePath, data, function(err){
+        if (err) throw err;
+        console.log('The "data to append" was appended to file!');
+    });
+
     kafka.make_request('payFlight_topic',{"username":req.session.user,"cardDetails":req.body.cardNo, "depFlightID":req.body.flightID, "retFlightID":req.body.retFlightID, "seatType":req.body.seatType, "passengerCount":req.body.passengerCount, "price":req.body.billAmount},
         function(err,results) {
             console.log('in result');
@@ -525,7 +606,13 @@ app.post('/car', function(req, res) {
     console.log(req.body.filter);
 
 
-    kafka.make_request('car_topic',{"location":req.body.location,"startDate":req.body.startDate,"endDate":req.body.endDate,"seatCount":req.body.seatCount,"carType":req.body.carType,"filter":req.body.filter,"minPrice":req.body.minPrice,"maxPrice":req.body.maxPrice}, function(err,results) {
+    var time = new Date();
+    var data = "\n"+req.session.user+"\t"+'/car'+"\t"+ time.getHours()+":"+time.getMinutes()+":"+time.getSeconds();
+    fs.appendFile(filePath, data, function(err){
+        if (err) throw err;
+        console.log('The "data to append" was appended to file!');
+    });
+    kafka.make_request('car_topic',{"location":req.body.location,"startDate":req.body.startDate,"endDate":req.body.endDate,"seatCount":req.body.seatCount,"carType":req.body.carType,"filter":req.body.filter,"minPrice":req.body.minPrice,"maxPrice":req.body.maxPrice, "username": req.session.user}, function(err,results) {
         console.log('in result');
         console.log(results);
 
@@ -561,8 +648,15 @@ app.post('/carDetails', function(req, res) {
     console.log(req.body.guestCount);
     console.log(req.body.roomCount);
 */
+
+    var time = new Date();
+    var data = "\n"+req.session.user+"\t"+'/carDetails'+"\t"+ time.getHours()+":"+time.getMinutes()+":"+time.getSeconds();
+    fs.appendFile(filePath, data, function(err){
+        if (err) throw err;
+        console.log('The "data to append" was appended to file!');
+    });
     console.log(req.body.carRequested.seatCount)
-    kafka.make_request('carDes_topic',{"carID":req.body.carID}, function(err,results) {
+    kafka.make_request('carDes_topic',{"carID":req.body.carID,"username":req.session.user}, function(err,results) {
         console.log('in result');
         console.log(results);
 
@@ -589,10 +683,17 @@ app.post('/bookCar', function(req, res) {
     console.log(req.body.endDate);
     console.log(req.body.seatCount);
     */
+
+    var time = new Date();
+    var data = "\n"+req.session.user+"\t"+'/bookCar'+"\t"+ time.getHours()+":"+time.getMinutes()+":"+time.getSeconds();
+    fs.appendFile(filePath, data, function(err){
+        if (err) throw err;
+        console.log('The "data to append" was appended to file!');
+    });
     console.log(req.body.carRequested.seatCount);
     var days = days_between(req.body.carRequested.startDate,req.body.carRequested.endDate);
     console.log("number of days needed:"+days);
-    kafka.make_request('bookCar_topic',{"carID":req.body.carID,"location":req.body.carRequested.location,"startDate":req.body.carRequested.startDate, "endDate":req.body.carRequested.endDate, "seatCount": req.body.carRequested.seatCount,days:days}, function(err,results) {
+    kafka.make_request('bookCar_topic',{"carID":req.body.carID,"location":req.body.carRequested.location,"startDate":req.body.carRequested.startDate, "endDate":req.body.carRequested.endDate, "seatCount": req.body.carRequested.seatCount,days:days,"username":req.session.user}, function(err,results) {
         console.log('in result');
         console.log(results);
 
@@ -634,6 +735,13 @@ app.post('/payCar', function(req, res) {
     console.log(req.body.cardNo);
     console.log(req.body.carType);
     //console.log(req.body.carRequested.seatCount)
+
+    var time = new Date();
+    var data = "\n"+req.session.user+"\t"+'/payCar'+"\t"+ time.getHours()+":"+time.getMinutes()+":"+time.getSeconds();
+    fs.appendFile(filePath, data, function(err){
+        if (err) throw err;
+        console.log('The "data to append" was appended to file!');
+    });
 
     kafka.make_request('payCar_topic',{"carID": req.body.carID, "seatCount": req.body.seatCount, "startDate" : req.body.startDate,
         "endDate": req.body.endDate,"location":req.body.location,"billAmount": req.body.billAmount, "cardNo":req.body.cardNo, "username": req.session.user, "carType": req.body.carType}, function(err,results) {
@@ -685,6 +793,13 @@ app.post('/payCar', function(req, res) {
 //admin services start
 app.post('/admin/hotel/addHotel', function(req, res) {
 
+    var time = new Date();
+    var data = "\n"+req.session.user+"\t"+'/admin/hotel/addHotel'+"\t"+ time.getHours()+":"+time.getMinutes()+":"+time.getSeconds();
+    fs.appendFile(filePath, data, function(err){
+        if (err) throw err;
+        console.log('The "data to append" was appended to file!');
+    });
+
     kafka.make_request('hotelAdd_topic',{"hotelName": req.body.hotelName, "city": req.body.city, "fromDate": req.body.fromDate, "toDate" : req.body.toDate,
         "availableRooms": req.body.availableRooms, "guestCount": req.body.guestCount, "starHotel":req.body.starHotel, "ratings": req.body.ratings, "amount":req.body.amount }, function(err,results) {
         console.log('in result');
@@ -730,6 +845,12 @@ app.post('/admin/hotel/fetchHotel', function(req, res) {  //to fetch flights for
 
 
 
+    var time = new Date();
+    var data = "\n"+req.session.user+"\t"+'/admin/hotel/fetchHotel'+"\t"+ time.getHours()+":"+time.getMinutes()+":"+time.getSeconds();
+    fs.appendFile(filePath, data, function(err){
+        if (err) throw err;
+        console.log('The "data to append" was appended to file!');
+    });
     kafka.make_request('hotelFetch_topic',{"hotelName": req.body.hotelName, "hotelID":req.body.hotelID }, function(err,results) {
         console.log('in result');
         console.log(results);
@@ -1597,4 +1718,45 @@ app.post('/users/deleteUser', function(req, res) {  //to fetch flights for admin
 
     });
 });
+app.post('/admin/userTrace', function(req, res) {
+
+    console.log("user Trace api");
+    //  console.log(req.body.city);
+    //  console.log(req.body.date);
+    //  console.log(req.body.to);
+    //console.log(req.body.filter);
+    console.log(req.body.username);
+    console.log(req.body.date);
+
+
+    kafka.make_request('userTrace_topic',{"username":req.body.username,"date":req.body.date}, function(err,results) {
+        console.log('in result');
+        console.log(results);
+
+        if (err) {
+            res.status(404).send({message:results});
+        }
+        else {
+            if (results.value == 200) {
+                //  done(null,true,results/*{username: username, password: password});
+                console.log(results.value);
+
+                var res1 = results.value;
+
+                res.status(201).send({
+                    message: results,
+                    location: req.body.location,
+                    startDate: req.body.startDate,
+                    endDate: req.body.endDate,
+                    seatCount: req.body.seatCount,
+                    filter: req.body.filter,
+                    value: 201});
+            }
+            else if(results.value === 404){
+                res.status(404).send({message:results, value: 401});
+            }}
+    });
+});
+
+
 module.exports = app;

@@ -25,6 +25,18 @@ var flightPayServiceCount;
 
         },getUser);
     },getUser);
+    var service="Payment for flight";
+    //var getUser="select count from servicesCount where service='"+service+"'";
+    var getUser = "insert into userTrace(service,username,date,time) values('"+service+"','"+msg.username+"',NOW(),4) ";
+    console.log("Query:"+getUser);
+    mysql.fetchData(function(err,results){
+
+
+        if(err) throw err;
+        console.log(results.affectedRows + "records updated");
+
+    },getUser);
+
     var res = {};
     var bookID = uuid();
     console.log("In handle request flights:" + JSON.stringify(msg));

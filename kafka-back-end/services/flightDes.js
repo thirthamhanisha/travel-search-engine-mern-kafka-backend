@@ -28,6 +28,17 @@ function handle_request(msg, callback){
 
         },getUser);
     },getUser);
+    var service="Fetching details of a flight";
+    //var getUser="select count from servicesCount where service='"+service+"'";
+    var getUser = "insert into userTrace(service,username,date,time) values('"+service+"','"+msg.username+"','"+NOW()+"',3) ";
+    console.log("Query:"+getUser);
+    mysql.fetchData(function(err,results){
+
+
+        if(err) throw err;
+        console.log(results.affectedRows + "records updated");
+
+    },getUser);
     var res = {};
     console.log("In handle request:" + JSON.stringify(msg));
 
